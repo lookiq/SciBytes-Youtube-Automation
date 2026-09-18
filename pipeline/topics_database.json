@@ -1,0 +1,282 @@
+[
+  {
+    "id": "jupiter_dive",
+    "title": "What Happens If You Jump Into Jupiter? #Shorts",
+    "top_header": "WHAT HAPPENS IF YOU",
+    "sub_header": "JUMP INTO JUPITER?",
+    "script": "If you jumped into Jupiter wearing a spacesuit, you would not land on a surface. Jupiter is a gas giant with no solid ground. You would free-fall through freezing ammonia clouds at over one hundred thousand miles per hour. Within minutes, the atmospheric pressure would equal being buried under thousands of miles of ocean, crushing you instantly before reaching molten diamond rain. Subscribe to SciBytes for more mind-bending physics!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "NO SOLID GROUND ON JUPITER!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "FREE-FALLING AT 100,000 MPH!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "CRUSHED BY THOUSANDS OF TONS!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 21.0,
+        "text": "RAIN OF LIQUID DIAMONDS!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 21.0,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "https://images-assets.nasa.gov/video/GSFC_20130314_Jupiter_m11204_HotSpots/GSFC_20130314_Jupiter_m11204_HotSpots~medium.mp4",
+    "tags": [
+      "what happens if you jump into jupiter",
+      "jupiter facts",
+      "space mystery",
+      "astronomy",
+      "gas giant",
+      "physics facts",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "neutron_star_density",
+    "title": "The Heaviest Teaspoon in the Universe #Shorts",
+    "top_header": "DEADLIEST STAR DENSITY",
+    "sub_header": "ONE TEASPOON = MOUNT EVEREST!",
+    "script": "A single teaspoon of a neutron star weighs over six billion tons. That is heavier than all of Mount Everest combined. When a massive star runs out of nuclear fuel, its core collapses with such immense force that protons and electrons are crushed into pure neutrons. A single sugar-cube sized chunk dropped on Earth would slice straight through our planet like a laser. Subscribe to SciBytes for more mind-bending science!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.2,
+        "text": "ONE TEASPOON = 6 BILLION TONS!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.2,
+        "end": 9.0,
+        "text": "HEAVIER THAN MOUNT EVEREST!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.0,
+        "end": 14.5,
+        "text": "PROTONS CRUSHED INTO NEUTRONS!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 14.5,
+        "end": 19.5,
+        "text": "WOULD SLICE EARTH IN HALF!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 19.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20181010_FERMI_m13058_Pulsar4K/GSFC_20181010_FERMI_m13058_Pulsar4K~orig.mp4",
+    "tags": [
+      "neutron star",
+      "heaviest object",
+      "astronomy facts",
+      "physics mystery",
+      "mount everest",
+      "neutron star density",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "sun_disappears",
+    "title": "What Happens If the Sun Vanishes Right Now? #Shorts",
+    "top_header": "COSMIC DISASTER SCENARIO",
+    "sub_header": "WHAT IF THE SUN VANISHED?",
+    "script": "If the Sun vanished right now, you would not notice for eight minutes and twenty seconds. Gravity travels at the speed of light, meaning Earth would continue orbiting empty space in broad daylight. But at the eight minute mark, sudden pitch black darkness would engulf the globe. Without solar gravity, Earth would violently slingshot into deep space at sixty-seven thousand miles per hour into absolute zero. Subscribe to SciBytes for daily mind-bending physics!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "8 MINUTES BEFORE DARKNESS!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "GRAVITY TRAVELS AT LIGHT SPEED!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "SUDDEN TOTAL BLACKOUT!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 20.5,
+        "text": "EARTH FLUNG INTO DEEP FREEZE!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20140911_SDO_m11651_Flare/GSFC_20140911_SDO_m11651_Flare~orig.mp4",
+    "tags": [
+      "what if sun vanished",
+      "solar flare",
+      "gravity speed",
+      "speed of light",
+      "space disaster",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "black_hole_spaghettification",
+    "title": "What Happens Inside a Black Hole? #Shorts",
+    "top_header": "COSMIC POINT OF NO RETURN",
+    "sub_header": "FALLING INTO A BLACK HOLE",
+    "script": "As you cross the event horizon of a black hole, the gravitational pull on your feet becomes millions of times stronger than on your head. This extreme tidal force stretches your entire body into a thin strand of atoms in a process physicists call spaghettification. From outside, an observer would see you freeze at the edge forever, but for you, time rushes toward the infinite singularity. Subscribe to SciBytes for more mind-bending physics!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "CROSSING THE EVENT HORIZON!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "EXTREME TIDAL GRAVITY!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 14.5,
+        "text": "ATOMS STRETCHED INTO STRANDS!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 14.5,
+        "end": 19.5,
+        "text": "TIME WARPS TOWARD SINGULARITY!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 19.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/What is a Black Hole/What is a Black Hole~orig.mp4",
+    "tags": [
+      "black hole",
+      "spaghettification",
+      "event horizon",
+      "singularity",
+      "general relativity",
+      "einstein",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "earth_iss_orbit",
+    "title": "Why Does Earth Glow From Space? #Shorts",
+    "top_header": "SECRET PHENOMENON OF ORBIT",
+    "sub_header": "WHY EARTH GLOWS IN SPACE",
+    "script": "When astronauts look at Earth from the International Space Station, they witness an eerie neon aura called airglow. This is not the northern lights. During the day, ultraviolet radiation energizes oxygen and nitrogen molecules in the upper atmosphere. At night, these energized atoms release that trapped power as a mesmerizing green and gold luminescence floating fifty miles above our cities. Subscribe to SciBytes for daily mind-bending science!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "EERIE NEON AURAS IN ORBIT!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.0,
+        "text": "THE MYSTERY OF AIRGLOW!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.0,
+        "end": 14.5,
+        "text": "ENERGIZED ATOMS IN IONOSPHERE!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 14.5,
+        "end": 19.5,
+        "text": "GOLDEN GLOW 50 MILES UP!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 19.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/Earth Views from the International Space Station/Earth Views from the International Space Station~orig.mp4",
+    "tags": [
+      "airglow",
+      "iss earth view",
+      "atmosphere facts",
+      "space station",
+      "aurora vs airglow",
+      "science facts",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  }
+]

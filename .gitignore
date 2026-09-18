@@ -1,0 +1,23 @@
+﻿# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Sensitive Credentials
+token.json
+client_secret.json
+.env
+
+# Generated Output & Caches (kept local / produced on-the-fly in the cloud)
+output/*.mp4
+output/*.mp3
+output/*.mkv
+output/metadata.json
+temp/
+*.mp4
+*.mp3
+*.mkv
+
+# OS
+Thumbs.db
+.DS_Store

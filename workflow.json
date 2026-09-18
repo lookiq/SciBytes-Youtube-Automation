@@ -1,0 +1,221 @@
+{
+  "name": "YouTube Shorts Automation - Clip Existing Video (Free Stack)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "n0-manual-test",
+      "name": "Manual Trigger (Test Run)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-200, 500]
+    },
+    {
+      "parameters": {
+        "pollTimes": { "item": [{ "mode": "everyMinute" }] },
+        "triggerOn": "specificFolder",
+        "folderToWatch": { "mode": "list", "value": "REPLACE_WITH_YOUR_RAW_VIDEOS_FOLDER_ID" },
+        "event": "fileCreated"
+      },
+      "id": "n1-drive-trigger",
+      "name": "New Video Uploaded",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [-200, 0],
+      "credentials": { "googleDriveOAuth2Api": { "id": "", "name": "Google Drive account" } }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": { "mode": "id", "value": "={{ $json.id }}" },
+        "options": {}
+      },
+      "id": "n2-drive-download",
+      "name": "Download Video",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [40, 0],
+      "credentials": { "googleDriveOAuth2Api": { "id": "", "name": "Google Drive account" } }
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "temp/input.mp4",
+        "dataPropertyName": "data",
+        "options": {}
+      },
+      "id": "n3-save-local",
+      "name": "Save Video to Local Disk",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [280, 0]
+    },
+    {
+      "parameters": {
+        "command": "whisper temp/input.mp4 --model base --output_format srt --output_dir temp"
+      },
+      "id": "n4-whisper",
+      "name": "Generate Transcript (Whisper)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [520, 0]
+    },
+    {
+      "parameters": {
+        "command": "powershell -Command \"Get-Content temp/input.srt -Raw\""
+      },
+      "id": "n5-read-srt",
+      "name": "Read Transcript Text",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [760, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=REPLACE_WITH_YOUR_AI_STUDIO_API_KEY",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ contents: [{ parts: [{ text: \"You are a Shorts editor. Below is a timestamped transcript (SRT format) of a long video.\\nPick the 3 most engaging, self-contained 25-45 second segments that would work as standalone YouTube Shorts (hook, punchline, or emotional moment).\\nReturn ONLY valid JSON, no markdown, in this exact shape:\\n[{\\\"start\\\":\\\"HH:MM:SS\\\",\\\"end\\\":\\\"HH:MM:SS\\\",\\\"reason\\\":\\\"short reason\\\"}]\\n\\nTranscript:\\n\" + $json.stdout }] }] }) }}"
+      },
+      "id": "n6-gemini-highlights",
+      "name": "Ask Gemini - Find Highlights",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1000, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.candidates[0].content.parts[0].text;\nconst cleaned = raw.replace(/```json|```/g, '').trim();\nlet clips;\ntry { clips = JSON.parse(cleaned); } catch (e) { throw new Error('Could not parse Gemini response as JSON: ' + raw); }\nreturn clips.map((clip, index) => ({ json: { index, start: clip.start, end: clip.end, reason: clip.reason || '' } }));"
+      },
+      "id": "n7-parse-clips",
+      "name": "Parse Gemini Response → Clip List",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1240, 0]
+    },
+    {
+      "parameters": {
+        "command": "=ffmpeg -y -i temp/input.mp4 -ss {{ $json.start }} -to {{ $json.end }} -c copy temp/clip_{{ $json.index }}.mp4"
+      },
+      "id": "n8-cut-clip",
+      "name": "Cut Clip (FFmpeg)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1480, 0]
+    },
+    {
+      "parameters": {
+        "command": "=ffmpeg -y -i temp/clip_{{ $json.index }}.mp4 -vf \"crop=ih*9/16:ih,scale=1080:1920\" temp/clip_{{ $json.index }}_vertical.mp4"
+      },
+      "id": "n9-crop-vertical",
+      "name": "Crop to Vertical 9:16",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1720, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=REPLACE_WITH_YOUR_AI_STUDIO_API_KEY",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ contents: [{ parts: [{ text: \"Write a catchy YouTube Shorts title (under 60 characters), a short description, and 5 relevant hashtags for a clip about: \" + $json.reason + \".\\nReturn ONLY valid JSON in this exact shape: {\\\"title\\\":\\\"...\\\",\\\"description\\\":\\\"...\\\",\\\"hashtags\\\":[\\\"#tag1\\\",\\\"#tag2\\\"]}\" }] }] }) }}"
+      },
+      "id": "n10-gemini-metadata",
+      "name": "Ask Gemini - Title & Description",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1960, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.candidates[0].content.parts[0].text;\nconst cleaned = raw.replace(/```json|```/g, '').trim();\nlet meta;\ntry { meta = JSON.parse(cleaned); } catch (e) { meta = { title: 'New Short', description: '', hashtags: [] }; }\nconst index = $('Parse Gemini Response → Clip List').item.json.index;\nreturn [{ json: { index, filePath: `temp/clip_${index}_vertical.mp4`, title: meta.title, description: (meta.description || '') + '\\n\\n' + (meta.hashtags || []).join(' ') } }];"
+      },
+      "id": "n11-build-metadata",
+      "name": "Build Final Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2200, 0]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "fileSelector": "={{ $json.filePath }}",
+        "options": {}
+      },
+      "id": "n12-load-binary",
+      "name": "Load Final Clip as Binary",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [2440, 0]
+    },
+    {
+      "parameters": {
+        "resource": "video",
+        "operation": "upload",
+        "title": "={{ $('Build Final Metadata').item.json.title }}",
+        "regionCode": "BD",
+        "categoryId": "22",
+        "options": {
+          "description": "={{ $('Build Final Metadata').item.json.description }}",
+          "privacyStatus": "private"
+        }
+      },
+      "id": "n13-youtube-upload",
+      "name": "Upload to YouTube (Shorts)",
+      "type": "n8n-nodes-base.youTube",
+      "typeVersion": 1,
+      "position": [2680, 0],
+      "credentials": { "youTubeOAuth2Api": { "id": "", "name": "YouTube account" } }
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "fileId": { "mode": "id", "value": "={{ $('New Video Uploaded').item.json.id }}" },
+        "driveId": { "mode": "list", "value": "My Drive" },
+        "folderId": { "mode": "list", "value": "REPLACE_WITH_YOUR_PROCESSED_FOLDER_ID" }
+      },
+      "id": "n14-move-processed",
+      "name": "Move Original to Processed Folder",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [2920, 0],
+      "credentials": { "googleDriveOAuth2Api": { "id": "", "name": "Google Drive account" } },
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "command": "powershell -Command \"Remove-Item temp/* -Exclude input.mp4 -Force -ErrorAction SilentlyContinue\""
+      },
+      "id": "n15-cleanup",
+      "name": "Cleanup Temp Files",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [3160, 0],
+      "executeOnce": true
+    }
+  ],
+  "connections": {
+    "New Video Uploaded": { "main": [[{ "node": "Download Video", "type": "main", "index": 0 }]] },
+    "Download Video": { "main": [[{ "node": "Save Video to Local Disk", "type": "main", "index": 0 }]] },
+    "Save Video to Local Disk": { "main": [[{ "node": "Generate Transcript (Whisper)", "type": "main", "index": 0 }]] },
+    "Generate Transcript (Whisper)": { "main": [[{ "node": "Read Transcript Text", "type": "main", "index": 0 }]] },
+    "Read Transcript Text": { "main": [[{ "node": "Ask Gemini - Find Highlights", "type": "main", "index": 0 }]] },
+    "Ask Gemini - Find Highlights": { "main": [[{ "node": "Parse Gemini Response → Clip List", "type": "main", "index": 0 }]] },
+    "Parse Gemini Response → Clip List": { "main": [[{ "node": "Cut Clip (FFmpeg)", "type": "main", "index": 0 }]] },
+    "Cut Clip (FFmpeg)": { "main": [[{ "node": "Crop to Vertical 9:16", "type": "main", "index": 0 }]] },
+    "Crop to Vertical 9:16": { "main": [[{ "node": "Ask Gemini - Title & Description", "type": "main", "index": 0 }]] },
+    "Ask Gemini - Title & Description": { "main": [[{ "node": "Build Final Metadata", "type": "main", "index": 0 }]] },
+    "Build Final Metadata": { "main": [[{ "node": "Load Final Clip as Binary", "type": "main", "index": 0 }]] },
+    "Load Final Clip as Binary": { "main": [[{ "node": "Upload to YouTube (Shorts)", "type": "main", "index": 0 }]] },
+    "Upload to YouTube (Shorts)": { "main": [[{ "node": "Move Original to Processed Folder", "type": "main", "index": 0 }]] },
+    "Move Original to Processed Folder": { "main": [[{ "node": "Cleanup Temp Files", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "pinData": {}
+}
