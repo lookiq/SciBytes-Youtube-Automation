@@ -1,23 +1,10 @@
-﻿# Python
+﻿temp/
 __pycache__/
-*.pyc
-*.pyo
-
-# Sensitive Credentials
-token.json
-client_secret.json
 .env
-
-# Generated Output & Caches (kept local / produced on-the-fly in the cloud)
 output/*.mp4
-output/*.mp3
-output/*.mkv
-output/metadata.json
-temp/
-*.mp4
-*.mp3
 *.mkv
-
-# OS
-Thumbs.db
-.DS_Store
+Daily_Dose_of_Physics_Black_Hole.mp4
+nasa_jupiter_raw.mp4
+How_Fighter_Jets_Dodge_Missiles.mp4
+What_Happens_If_You_Jump_Into_Jupiter.mp4
+jet_clip.mp4.mkv

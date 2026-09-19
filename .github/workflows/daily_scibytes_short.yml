@@ -1,24 +1,22 @@
-﻿name: Daily SciBytes Short Automation
+﻿name: Daily SciBytes Shorts Generator & Uploader
 
 on:
   schedule:
-    # 14:30 UTC = 8:30 PM Bangladesh Time (BST) / 10:30 AM USA Eastern Time (EST)
-    # Perfectly timed 1.5 hours before USA lunch & afternoon peak traffic!
-    - cron: '30 14 * * *'
-  workflow_dispatch: # Allows manual trigger anytime from GitHub UI
+    # 21:30 UTC = 4:30 PM US Eastern (Prime USA Evening Window / 3:30 AM BST)
+    - cron: '30 21 * * *'
+  workflow_dispatch: # Allows manual 1-click execution anytime from GitHub web UI
 
 jobs:
   build-and-upload:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -29,16 +27,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
-      - name: Install Python Dependencies
+      - name: Install Python Requirements
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Generate Short Video & Metadata
+      - name: Build SciBytes Short (Script, Voice, Footage, Subtitles, FFmpeg)
         run: |
           python pipeline/build_short.py
 
-      - name: Upload Video to YouTube
+      - name: Upload Short to YouTube Studio
         env:
           YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
           YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
@@ -47,9 +45,10 @@ jobs:
         run: |
           python pipeline/upload_to_youtube.py
 
-      - name: Commit and Push Updated Topics Database
+      - name: Commit Topic State and History
         run: |
           git config --global user.name "SciBytes Automation Bot"
-          git config --global user.email "bot@scibytes.local"
-          git add pipeline/topics_database.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated update: mark topic as used [skip ci]" && git push)
+          git config --global user.email "bot@scibytes.internal"
+          git add pipeline/topics_database.json upload_history.log || true
+          git commit -m "Auto-update: Mark topic used and log upload [skip ci]" || echo "No changes to commit"
+          git push

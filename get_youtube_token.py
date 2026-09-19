@@ -1,29 +1,36 @@
 ﻿import os
-import json
 import sys
+import json
 from google_auth_oauthlib.flow import InstalledAppFlow
 
 SCOPES = ['https://www.googleapis.com/auth/youtube.upload']
 
 def main():
     print("=" * 60)
-    print("SciBytes - YouTube OAuth Token Generator")
+    print("SciBytes - 1-Time YouTube OAuth Setup Helper")
     print("=" * 60)
+    print("This script generates your YouTube Refresh Token so GitHub Actions")
+    print("can upload videos while your PC is OFF.\n")
 
-    client_secrets_file = "client_secret.json"
-    flow = None
+    client_id = ""
+    client_secret = ""
 
-    if os.path.exists(client_secrets_file):
-        print(f"Found {client_secrets_file}!")
-        flow = InstalledAppFlow.from_client_secrets_file(client_secrets_file, SCOPES)
+    # Check if client_secret.json exists
+    if os.path.exists("client_secret.json"):
+        print("Found client_secret.json in current directory!")
+        flow = InstalledAppFlow.from_client_secrets_file("client_secret.json", SCOPES)
+        with open("client_secret.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+            client_info = data.get("installed") or data.get("web", {})
+            client_id = client_info.get("client_id", "")
+            client_secret = client_info.get("client_secret", "")
     else:
-        print("Enter your Google Cloud OAuth Client credentials:")
-        print("(From Google Cloud Console -> APIs & Services -> Credentials)")
-        client_id = input("Client ID: ").strip()
-        client_secret = input("Client Secret: ").strip()
+        print("Enter your Google Cloud OAuth credentials:")
+        client_id = input("Enter Client ID: ").strip()
+        client_secret = input("Enter Client Secret: ").strip()
 
         if not client_id or not client_secret:
-            print("ERROR: Client ID and Client Secret are required.")
+            print("ERROR: Client ID and Client Secret cannot be empty.")
             sys.exit(1)
 
         client_config = {
@@ -32,36 +39,34 @@ def main():
                 "client_secret": client_secret,
                 "auth_uri": "https://accounts.google.com/o/oauth2/auth",
                 "token_uri": "https://oauth2.googleapis.com/token",
-                "redirect_uris": ["http://localhost:8080/"]
+                "redirect_uris": ["http://localhost"]
             }
         }
         flow = InstalledAppFlow.from_client_config(client_config, SCOPES)
 
-    print("\nOpening your browser for one-time YouTube authorization...")
-    credentials = flow.run_local_server(port=8080, prompt='consent')
+    print("\nOpening your browser for one-click authorization...")
+    credentials = flow.run_local_server(port=8088, prompt='consent', access_type='offline')
 
-    token_data = {
-        "client_id": credentials.client_id,
-        "client_secret": credentials.client_secret,
-        "refresh_token": credentials.refresh_token,
-        "token_uri": credentials.token_uri
-    }
+    refresh_token = credentials.refresh_token
+    if not refresh_token:
+        print("WARNING: No refresh token returned. Make sure to choose prompt='consent'.")
+    else:
+        print("\n" + "=" * 60)
+        print("SUCCESS! Here are your 3 GitHub Secrets:")
+        print("=" * 60)
+        print(f"YOUTUBE_CLIENT_ID     : {client_id}")
+        print(f"YOUTUBE_CLIENT_SECRET : {client_secret}")
+        print(f"YOUTUBE_REFRESH_TOKEN : {refresh_token}")
+        print("=" * 60)
 
-    with open("token.json", "w", encoding="utf-8") as f:
-        json.dump(token_data, f, indent=2)
+        # Save to local .env for optional local testing
+        with open(".env", "w", encoding="utf-8") as f:
+            f.write(f"YOUTUBE_CLIENT_ID={client_id}\n")
+            f.write(f"YOUTUBE_CLIENT_SECRET={client_secret}\n")
+            f.write(f"YOUTUBE_REFRESH_TOKEN={refresh_token}\n")
+            f.write("YOUTUBE_PRIVACY_STATUS=public\n")
+        print("Also saved to local '.env' file.")
+        print("\nPaste these into GitHub Repo -> Settings -> Secrets and variables -> Actions")
 
-    print("\n" + "=" * 60)
-    print("AUTHORIZATION SUCCESSFUL! Token saved to token.json")
-    print("=" * 60)
-    print("\nAdd these 3 values to your GitHub Repository Secrets:")
-    print("Go to: GitHub Repo -> Settings -> Secrets and variables -> Actions -> New repository secret\n")
-    print(f"Secret Name: YOUTUBE_CLIENT_ID")
-    print(f"Value:       {credentials.client_id}\n")
-    print(f"Secret Name: YOUTUBE_CLIENT_SECRET")
-    print(f"Value:       {credentials.client_secret}\n")
-    print(f"Secret Name: YOUTUBE_REFRESH_TOKEN")
-    print(f"Value:       {credentials.refresh_token}\n")
-    print("=" * 60)
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

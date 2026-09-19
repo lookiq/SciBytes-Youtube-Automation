@@ -1,48 +1,65 @@
-﻿# SciBytes - 24/7 Cloud Automated YouTube Shorts Pipeline
+﻿# SciBytes - 24/7 Automated YouTube Shorts Cloud Pipeline
 
-Automated YouTube Shorts channel pipeline for **SciBytes** (`@SciBytesDaily`).
-Runs completely in the cloud via **GitHub Actions** on a daily schedule—**even when your computer is powered off**.
-
----
-
-## Features
-- **Zero Cost:** Runs on GitHub Actions free runner (2,000 free minutes/month).
-- **Automated Research & Script:** Curated viral science/space/physics topics with high-retention hooks.
-- **Natural Voice:** Microsoft Edge-TTS Christopher Neural voice (100% free, natural tone).
-- **Authentic B-Roll:** Real NASA and public domain 1080p science footage.
-- **Dynamic Subtitles:** Scienceverse-style colored text boxes and vertical 1080x1920 layout.
-- **Cloud YouTube Upload:** Uploads directly to YouTube Studio with SEO-optimized titles, descriptions, and tags.
+Autonomous daily YouTube Shorts video generation and uploading system for **SciBytes** (`@SciBytesDaily`), designed to run completely in the cloud on **GitHub Actions** even when your local PC is turned off.
 
 ---
 
-## Daily Schedule
-- **Cron:** `30 14 * * *`
-- **Time:** 14:30 UTC
-  - **USA Eastern Time (EST):** 10:30 AM (Seeds right into USA 12:00 PM lunch-break peak!)
-  - **Bangladesh Time (BST):** 8:30 PM
+## 1. Pipeline Architecture
+
+- **Execution Schedule:** Daily at `21:30 UTC` (4:30 PM US Eastern / 5:30 PM US EDT / 3:30 AM Bangladesh BST) to capture the massive **US Evening Prime Time** peak audience.
+- **Workflow Engine:** GitHub Actions (Ubuntu 24.04 runner, 100% Free).
+- **Voiceover Synthesis:** Microsoft Neural Voice (`en-US-ChristopherNeural` via `edge-tts`).
+- **Footage Sourcing:** NASA Public Domain and Science Archives (1080p B-roll).
+- **Video Rendering:** High-performance FFmpeg 9:16 vertical broadcast layout with dynamic Scienceverse-style colored subtitles.
+- **YouTube Publishing:** Direct upload via YouTube Data API v3 with automatic access token refreshing and category `28` (Science & Technology).
 
 ---
 
-## Setup Instructions
+## 2. One-Time Setup Instructions
 
-### 1. One-Time YouTube API Token Generation
-1. Go to [Google Cloud Console](https://console.cloud.google.com/).
-2. Create an OAuth 2.0 Client ID (Desktop Application).
-3. Run the helper script on your PC:
+### Step 1: Create a Private GitHub Repository
+1. Go to [GitHub.com](https://github.com) and create a new **Private** repository (e.g., `scibytes-automation`).
+2. In your local terminal, push this project:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit: SciBytes automated pipeline"
+   git branch -M main
+   git remote add origin https://github.com/<YOUR_USERNAME>/scibytes-automation.git
+   git push -u origin main
+   ```
+
+### Step 2: Get Google Cloud YouTube OAuth Credentials
+1. Go to [Google Cloud Console](https://console.cloud.google.com).
+2. Enable **YouTube Data API v3**.
+3. Go to **APIs & Services > Credentials** > **Create Credentials** > **OAuth client ID**.
+   - Application type: **Desktop app**.
+   - Download JSON or copy the **Client ID** and **Client Secret**.
+4. Run our helper script locally on your PC:
    ```bash
    python get_youtube_token.py
    ```
-4. Sign in with your YouTube Google account and grant upload permissions.
-5. The script will display your `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET`, and `YOUTUBE_REFRESH_TOKEN`.
+   This will open your browser to authorize your YouTube account once and print your **Refresh Token**.
 
-### 2. Add Secrets to GitHub
-1. In your GitHub repository, go to **Settings** -> **Secrets and variables** -> **Actions**.
+### Step 3: Add GitHub Secrets
+In your GitHub repository:
+1. Go to **Settings > Secrets and variables > Actions**.
 2. Click **New repository secret** and add:
-   - `YOUTUBE_CLIENT_ID`
-   - `YOUTUBE_CLIENT_SECRET`
-   - `YOUTUBE_REFRESH_TOKEN`
+   - `YOUTUBE_CLIENT_ID`: Your Google OAuth Client ID
+   - `YOUTUBE_CLIENT_SECRET`: Your Google OAuth Client Secret
+   - `YOUTUBE_REFRESH_TOKEN`: The Refresh Token generated in Step 2
 
-### 3. Trigger Manually Anytime
-1. In GitHub, go to the **Actions** tab.
-2. Select **Daily SciBytes Short Automation**.
-3. Click **Run workflow** -> **Run workflow**.
+---
+
+## 3. Testing
+
+### Run Locally on Windows:
+```bash
+python run_pipeline_locally.py
+```
+This will generate the next short from `topics_database.json`, render the complete video in `output/scibytes_short_latest.mp4`, and open it in Windows Explorer.
+
+### Run on GitHub Actions (Cloud):
+1. In your GitHub repository, go to the **Actions** tab.
+2. Select **Daily SciBytes Shorts Generator & Uploader**.
+3. Click **Run workflow** to test cloud rendering and YouTube upload anytime with 1 click!
