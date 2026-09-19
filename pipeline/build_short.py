@@ -3,6 +3,7 @@ import json
 import asyncio
 import subprocess
 import requests
+import urllib.parse
 import edge_tts
 
 DATABASE_FILE = 'pipeline/topics_database.json'
@@ -63,7 +64,7 @@ def render_short(topic, footage_path, audio_path, output_path):
     print(f'Voice duration: {duration:.2f}s')
 
     font_file = get_font_file()
-    font_arg = f":fontfile='{font_file}'" if font_file else ""
+    font_opt = f"fontfile='{font_file}':" if font_file else ""
 
     top_header = topic.get('top_header', 'SCIBYTES DAILY').replace("'", "\\'").replace(':', '\\:')
     sub_header = topic.get('sub_header', topic['title'].split('#')[0].strip()).replace("'", "\\'").replace(':', '\\:')
@@ -78,7 +79,7 @@ def render_short(topic, footage_path, audio_path, output_path):
         color = sub.get('color', '#FFFFFF')
         boxcolor = sub.get('boxcolor', 'black@0.85')
         f_str = (
-            f"drawtext{font_arg}:text='{text}':fontcolor={color}:fontsize=48:"
+            f"drawtext={font_opt}text='{text}':fontcolor={color}:fontsize=48:"
             f"x=(w-text_w)/2:y=1400:enable='between(t,{start},{end})':"
             f"box=1:boxcolor={boxcolor}:boxborderw=16"
         )
@@ -90,9 +91,9 @@ def render_short(topic, footage_path, audio_path, output_path):
         f"[0:v]trim=duration={duration},setpts=PTS-STARTPTS,"
         f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
         f"eq=contrast=1.12:saturation=1.22:brightness=0.01,"
-        f"drawtext{font_arg}:text='SCIBYTES':fontcolor=#555555:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.8:shadowx=2:shadowy=2,"
-        f"drawtext{font_arg}:text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:box=1:boxcolor=black@0.8:boxborderw=14,"
-        f"drawtext{font_arg}:text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:box=1:boxcolor=black@0.9:boxborderw=18"
+        f"drawtext={font_opt}text='SCIBYTES':fontcolor=#555555:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.8:shadowx=2:shadowy=2,"
+        f"drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:box=1:boxcolor=black@0.8:boxborderw=14,"
+        f"drawtext={font_opt}text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:box=1:boxcolor=black@0.9:boxborderw=18"
         f"{subtitles_cmd_part}[outv]"
     )
 
@@ -117,6 +118,53 @@ def render_short(topic, footage_path, audio_path, output_path):
     subprocess.run(ffmpeg_cmd, check=True)
     print(f'Short rendered successfully: {output_path}')
 
+def generate_photorealistic_thumbnail(topic, output_thumbnail_path):
+    print("Generating 100% free photorealistic AI thumbnail...")
+    sub_header = topic.get('sub_header', topic['title'].split('#')[0].strip())
+    top_header = topic.get('top_header', 'SCIBYTES DAILY')
+    first_sub = topic.get('subtitles', [{}])[0].get('text', sub_header)
+
+    base_prompt = topic.get('thumb_prompt')
+    if not base_prompt:
+        base_prompt = (
+            f"raw authentic photograph, National Geographic scientific documentary, "
+            f"view of {sub_header} in deep space, NASA satellite telescope photo, "
+            f"Hasselblad H6D-100c 85mm lens, photorealistic, 8k, ultra sharp textures, "
+            f"natural lighting, zero cgi, zero cartoon, authentic astrophysics"
+        )
+
+    encoded = urllib.parse.quote(base_prompt)
+    url = f"https://image.pollinations.ai/prompt/{encoded}?width=1080&height=1920&model=flux-realism&nologo=true"
+
+    raw_path = os.path.join('temp', f"{topic['id']}_raw_thumb.jpg")
+    try:
+        r = requests.get(url, timeout=35)
+        if r.status_code == 200 and len(r.content) > 10000:
+            with open(raw_path, 'wb') as f:
+                f.write(r.content)
+
+            font_file = get_font_file()
+            font_opt = f"fontfile='{font_file}':" if font_file else ""
+
+            clean_top = top_header.replace("'", "\\'").replace(':', '\\:')
+            clean_sub = sub_header.replace("'", "\\'").replace(':', '\\:')
+            clean_first = first_sub.replace("'", "\\'").replace(':', '\\:')
+
+            filter_complex = (
+                "crop=in_w:in_h-60:0:0,scale=1080:1920,"
+                f"drawtext={font_opt}text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+                f"drawtext={font_opt}text='{clean_top}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:box=1:boxcolor=black@0.8:boxborderw=14,"
+                f"drawtext={font_opt}text='{clean_sub}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:box=1:boxcolor=black@0.9:boxborderw=18,"
+                f"drawtext={font_opt}text='{clean_first}':fontcolor=#FF3366:fontsize=46:x=(w-text_w)/2:y=1380:box=1:boxcolor=black@0.9:boxborderw=18"
+            )
+            cmd = ["ffmpeg", "-y", "-i", raw_path, "-vf", filter_complex, "-q:v", "2", output_thumbnail_path]
+            subprocess.run(cmd, check=True)
+            print(f"Photorealistic AI thumbnail saved: {output_thumbnail_path}")
+            return True
+    except Exception as e:
+        print(f"Notice: AI thumbnail fallback to video hook frame: {e}")
+    return False
+
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs('temp', exist_ok=True)
@@ -134,19 +182,21 @@ def main():
     output_video = os.path.join(OUTPUT_DIR, 'scibytes_short_latest.mp4')
     render_short(topic, footage_path, audio_path, output_video)
 
-    # Extract high-CTR thumbnail from peak hook frame (1.5s)
+    # Generate photorealistic AI thumbnail with graceful fallback
     thumbnail_path = os.path.join(OUTPUT_DIR, 'thumbnail.jpg')
-    thumb_cmd = [
-        'ffmpeg', '-y',
-        '-ss', '00:00:01.5',
-        '-i', output_video,
-        '-vframes', '1',
-        '-q:v', '2',
-        thumbnail_path
-    ]
-    print('Generating high-CTR thumbnail from peak hook frame...')
-    subprocess.run(thumb_cmd, check=True)
-    print(f'Thumbnail saved: {thumbnail_path}')
+    success = generate_photorealistic_thumbnail(topic, thumbnail_path)
+    if not success or not os.path.exists(thumbnail_path):
+        thumb_cmd = [
+            'ffmpeg', '-y',
+            '-ss', '00:00:01.5',
+            '-i', output_video,
+            '-vframes', '1',
+            '-q:v', '2',
+            thumbnail_path
+        ]
+        print('Generating fallback high-CTR thumbnail from peak hook frame...')
+        subprocess.run(thumb_cmd, check=True)
+        print(f'Thumbnail saved: {thumbnail_path}')
 
     metadata = {
         'id': topic['id'],
