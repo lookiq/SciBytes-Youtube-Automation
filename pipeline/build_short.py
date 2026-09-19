@@ -89,9 +89,10 @@ def render_short(topic, footage_path, audio_path, output_path):
     filter_complex = (
         f"[0:v]trim=duration={duration},setpts=PTS-STARTPTS,"
         f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
+        f"eq=contrast=1.12:saturation=1.22:brightness=0.01,"
         f"drawtext{font_arg}:text='SCIBYTES':fontcolor=#555555:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.8:shadowx=2:shadowy=2,"
-        f"drawtext{font_arg}:text='{top_header}':fontcolor=#FFCC00:fontsize=36:x=(w-text_w)/2:y=170:box=1:boxcolor=black@0.75:boxborderw=14,"
-        f"drawtext{font_arg}:text='{sub_header}':fontcolor=#FFFFFF:fontsize=46:x=(w-text_w)/2:y=240:box=1:boxcolor=black@0.85:boxborderw=16"
+        f"drawtext{font_arg}:text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:box=1:boxcolor=black@0.8:boxborderw=14,"
+        f"drawtext{font_arg}:text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:box=1:boxcolor=black@0.9:boxborderw=18"
         f"{subtitles_cmd_part}[outv]"
     )
 
@@ -105,14 +106,14 @@ def render_short(topic, footage_path, audio_path, output_path):
         '-map', '1:a',
         '-c:v', 'libx264',
         '-preset', 'fast',
-        '-crf', '20',
+        '-crf', '18',
         '-c:a', 'aac',
         '-b:a', '192k',
         '-shortest',
         output_path
     ]
 
-    print('Rendering vertical Short with FFmpeg...')
+    print('Rendering borderless vertical Short with FFmpeg...')
     subprocess.run(ffmpeg_cmd, check=True)
     print(f'Short rendered successfully: {output_path}')
 
@@ -132,6 +133,20 @@ def main():
 
     output_video = os.path.join(OUTPUT_DIR, 'scibytes_short_latest.mp4')
     render_short(topic, footage_path, audio_path, output_video)
+
+    # Extract high-CTR thumbnail from peak hook frame (1.5s)
+    thumbnail_path = os.path.join(OUTPUT_DIR, 'thumbnail.jpg')
+    thumb_cmd = [
+        'ffmpeg', '-y',
+        '-ss', '00:00:01.5',
+        '-i', output_video,
+        '-vframes', '1',
+        '-q:v', '2',
+        thumbnail_path
+    ]
+    print('Generating high-CTR thumbnail from peak hook frame...')
+    subprocess.run(thumb_cmd, check=True)
+    print(f'Thumbnail saved: {thumbnail_path}')
 
     metadata = {
         'id': topic['id'],

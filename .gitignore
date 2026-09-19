@@ -1,8 +1,9 @@
-﻿temp/
+temp/
 __pycache__/
 .env
 client_secret.json
 output/*.mp4
+output/*.jpg
 *.mkv
 Daily_Dose_of_Physics_Black_Hole.mp4
 nasa_jupiter_raw.mp4

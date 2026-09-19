@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import json
 from datetime import datetime
@@ -104,6 +104,20 @@ def upload_video():
     print("SUCCESS: Video uploaded successfully to YouTube!")
     print(f"Shorts URL: {video_url}")
     print("=" * 60)
+
+    # Set high-CTR custom thumbnail if available
+    thumbnail_file = 'output/thumbnail.jpg'
+    if os.path.exists(thumbnail_file):
+        try:
+            print("Setting high-CTR custom thumbnail via YouTube API...")
+            thumb_media = MediaFileUpload(thumbnail_file, mimetype='image/jpeg')
+            youtube.thumbnails().set(
+                videoId=video_id,
+                media_body=thumb_media
+            ).execute()
+            print("Custom thumbnail successfully attached!")
+        except Exception as e:
+            print(f"Notice on custom thumbnail API: {e}")
 
     mark_topic_used(metadata.get('id'))
 
