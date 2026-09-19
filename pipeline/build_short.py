@@ -76,12 +76,11 @@ def render_short(topic, footage_path, audio_path, output_path):
         if start >= duration:
             continue
         text = sub['text'].replace("'", "\\'").replace(':', '\\:')
-        color = sub.get('color', '#FFFFFF')
-        boxcolor = sub.get('boxcolor', 'black@0.85')
+        color = sub.get('color', '#FFEA00')
         f_str = (
-            f"drawtext={font_opt}text='{text}':fontcolor={color}:fontsize=48:"
-            f"x=(w-text_w)/2:y=1400:enable='between(t,{start},{end})':"
-            f"box=1:boxcolor={boxcolor}:boxborderw=16"
+            f"drawtext={font_opt}text='{text}':fontcolor={color}:fontsize=54:"
+            f"x=(w-text_w)/2:y=1380:enable='between(t,{start},{end})':"
+            f"borderw=6:bordercolor=black:shadowcolor=black@0.95:shadowx=4:shadowy=4"
         )
         subtitle_filters.append(f_str)
 
@@ -91,9 +90,9 @@ def render_short(topic, footage_path, audio_path, output_path):
         f"[0:v]trim=duration={duration},setpts=PTS-STARTPTS,"
         f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
         f"eq=contrast=1.12:saturation=1.22:brightness=0.01,"
-        f"drawtext={font_opt}text='SCIBYTES':fontcolor=#555555:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.8:shadowx=2:shadowy=2,"
-        f"drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:box=1:boxcolor=black@0.8:boxborderw=14,"
-        f"drawtext={font_opt}text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:box=1:boxcolor=black@0.9:boxborderw=18"
+        f"drawtext={font_opt}text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+        f"drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+        f"drawtext={font_opt}text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:borderw=5:bordercolor=black:shadowcolor=black@0.9:shadowx=3:shadowy=3"
         f"{subtitles_cmd_part}[outv]"
     )
 
@@ -153,9 +152,9 @@ def generate_photorealistic_thumbnail(topic, output_thumbnail_path):
             filter_complex = (
                 "crop=in_w:in_h-60:0:0,scale=1080:1920,"
                 f"drawtext={font_opt}text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
-                f"drawtext={font_opt}text='{clean_top}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:box=1:boxcolor=black@0.8:boxborderw=14,"
-                f"drawtext={font_opt}text='{clean_sub}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:box=1:boxcolor=black@0.9:boxborderw=18,"
-                f"drawtext={font_opt}text='{clean_first}':fontcolor=#FF3366:fontsize=46:x=(w-text_w)/2:y=1380:box=1:boxcolor=black@0.9:boxborderw=18"
+                f"drawtext={font_opt}text='{clean_top}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+                f"drawtext={font_opt}text='{clean_sub}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:borderw=5:bordercolor=black:shadowcolor=black@0.9:shadowx=3:shadowy=3,"
+                f"drawtext={font_opt}text='{clean_first}':fontcolor=#FF3366:fontsize=54:x=(w-text_w)/2:y=1380:borderw=6:bordercolor=black:shadowcolor=black@0.95:shadowx=4:shadowy=4"
             )
             cmd = ["ffmpeg", "-y", "-i", raw_path, "-vf", filter_complex, "-q:v", "2", output_thumbnail_path]
             subprocess.run(cmd, check=True)
