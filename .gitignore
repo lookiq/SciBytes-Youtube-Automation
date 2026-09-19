@@ -1,6 +1,7 @@
 ﻿temp/
 __pycache__/
 .env
+client_secret.json
 output/*.mp4
 *.mkv
 Daily_Dose_of_Physics_Black_Hole.mp4

@@ -11,13 +11,24 @@ METADATA_FILE = 'output/metadata.json'
 VIDEO_FILE = 'output/scibytes_short_latest.mp4'
 DATABASE_FILE = 'pipeline/topics_database.json'
 
+def load_env_file():
+    if os.path.exists('.env'):
+        with open('.env', 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    if k not in os.environ:
+                        os.environ[k] = v
+
 def get_authenticated_service():
+    load_env_file()
     client_id = os.environ.get('YOUTUBE_CLIENT_ID')
     client_secret = os.environ.get('YOUTUBE_CLIENT_SECRET')
     refresh_token = os.environ.get('YOUTUBE_REFRESH_TOKEN')
 
     if not (client_id and client_secret and refresh_token):
-        print("ERROR: Missing YouTube OAuth credentials in environment variables.")
+        print("ERROR: Missing YouTube OAuth credentials in environment variables or .env file.")
         print("Please ensure YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET, and YOUTUBE_REFRESH_TOKEN are set.")
         sys.exit(1)
 
@@ -54,6 +65,7 @@ def upload_video():
     with open(METADATA_FILE, 'r', encoding='utf-8') as f:
         metadata = json.load(f)
 
+    load_env_file()
     privacy_status = os.environ.get('YOUTUBE_PRIVACY_STATUS', 'public')
 
     youtube = get_authenticated_service()
@@ -88,8 +100,10 @@ def upload_video():
 
     video_id = response.get('id')
     video_url = f"https://www.youtube.com/shorts/{video_id}"
-    print("SUCCESS: Video uploaded successfully!")
+    print("=" * 60)
+    print("SUCCESS: Video uploaded successfully to YouTube!")
     print(f"Shorts URL: {video_url}")
+    print("=" * 60)
 
     mark_topic_used(metadata.get('id'))
 
