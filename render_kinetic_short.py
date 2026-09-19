@@ -1,4 +1,4 @@
-﻿import os
+import os
 import subprocess
 
 voice_file = "temp/scibytes_kinetic_voice.mp3"
@@ -13,13 +13,15 @@ print(f"Target duration: {duration:.2f}s")
 filter_complex = (
     f"[0:v]trim=duration={duration},setpts=PTS-STARTPTS,"
     f"crop=1080:1530:0:0,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
-    f"drawtext=fontfile='{font}':text='SCIBYTES':fontcolor=#555555:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.8:shadowx=2:shadowy=2,"
-    f"drawtext=fontfile='{font}':text='IMPOSSIBLE OPTICAL ILLUSION':fontcolor=#FFCC00:fontsize=36:x=(w-text_w)/2:y=170:box=1:boxcolor=black@0.75:boxborderw=14,"
-    f"drawtext=fontfile='{font}':text='TWO RINGS PASSING THROUGH?':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=1400:enable='between(t,0,4.5)':box=1:boxcolor=black@0.85:boxborderw=16,"
-    f"drawtext=fontfile='{font}':text='IT IS A SINGLE STRAND!':fontcolor=#00FFFF:fontsize=50:x=(w-text_w)/2:y=1400:enable='between(t,4.5,9.5)':box=1:boxcolor=black@0.85:boxborderw=16,"
-    f"drawtext=fontfile='{font}':text='3D HELICAL KINETIC WAVE':fontcolor=#FFFF00:fontsize=48:x=(w-text_w)/2:y=1400:enable='between(t,9.5,15.0)':box=1:boxcolor=black@0.85:boxborderw=16,"
-    f"drawtext=fontfile='{font}':text='YOUR BRAIN CANT TRACK DEPTH!':fontcolor=#FF3366:fontsize=46:x=(w-text_w)/2:y=1400:enable='between(t,15.0,20.5)':box=1:boxcolor=black@0.85:boxborderw=16,"
-    f"drawtext=fontfile='{font}':text='SUBSCRIBE FOR MORE MIND-BENDING SCIENCE':fontcolor=#00FF66:fontsize=38:x=(w-text_w)/2:y=1400:enable='between(t,20.5,{duration})':box=1:boxcolor=black@0.9:boxborderw=16[outv]"
+    f"eq=contrast=1.10:saturation=1.18:brightness=0.01,"
+    f"drawtext=fontfile='{font}':text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+    f"drawtext=fontfile='{font}':text='MIND-BENDING PHYSICS':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+    f"drawtext=fontfile='{font}':text='IMPOSSIBLE OPTICAL ILLUSION':fontcolor=#FFFFFF:fontsize=46:x=(w-text_w)/2:y=240:borderw=5:bordercolor=black:shadowcolor=black@0.9:shadowx=3:shadowy=3,"
+    f"drawtext=fontfile='{font}':text='TWO RINGS PASSING THROUGH?':fontcolor=#FFFFFF:fontsize=52:x=(w-text_w)/2:y=1380:enable='between(t,0,4.5)':borderw=6:bordercolor=black:shadowcolor=black@0.95:shadowx=4:shadowy=4,"
+    f"drawtext=fontfile='{font}':text='IT IS A SINGLE STRAND!':fontcolor=#00FFFF:fontsize=52:x=(w-text_w)/2:y=1380:enable='between(t,4.5,9.5)':borderw=6:bordercolor=black:shadowcolor=black@0.95:shadowx=4:shadowy=4,"
+    f"drawtext=fontfile='{font}':text='3D HELICAL KINETIC WAVE':fontcolor=#FFEA00:fontsize=52:x=(w-text_w)/2:y=1380:enable='between(t,9.5,15.0)':borderw=6:bordercolor=black:shadowcolor=black@0.95:shadowx=4:shadowy=4,"
+    f"drawtext=fontfile='{font}':text='BRAIN CANT TRACK DEPTH!':fontcolor=#FF2A55:fontsize=52:x=(w-text_w)/2:y=1380:enable='between(t,15.0,20.5)':borderw=6:bordercolor=black:shadowcolor=black@0.95:shadowx=4:shadowy=4,"
+    f"drawtext=fontfile='{font}':text='SUBSCRIBE TO SCIBYTES!':fontcolor=#00FF66:fontsize=52:x=(w-text_w)/2:y=1380:enable='between(t,20.5,{duration})':borderw=6:bordercolor=black:shadowcolor=black@0.95:shadowx=4:shadowy=4[outv]"
 )
 
 ffmpeg_cmd = [
