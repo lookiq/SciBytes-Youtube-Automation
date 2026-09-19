@@ -1,4 +1,4 @@
-﻿import os
+import os
 import json
 import asyncio
 import subprocess
@@ -8,6 +8,22 @@ import edge_tts
 DATABASE_FILE = 'pipeline/topics_database.json'
 OUTPUT_DIR = 'output'
 VOICE = 'en-US-ChristopherNeural'
+
+def get_font_file():
+    # Windows font
+    win_font = 'C:/Windows/Fonts/ariblk.ttf'
+    if os.path.exists(win_font):
+        return 'C\\:/Windows/Fonts/ariblk.ttf'
+    # Linux fonts for GitHub Actions runner
+    linux_fonts = [
+        '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
+        '/usr/share/fonts/truetype/freefont/FreeSansBold.ttf',
+        '/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf'
+    ]
+    for lf in linux_fonts:
+        if os.path.exists(lf):
+            return lf
+    return None
 
 def get_next_topic():
     with open(DATABASE_FILE, 'r', encoding='utf-8') as f:
@@ -46,8 +62,11 @@ def render_short(topic, footage_path, audio_path, output_path):
     duration = get_media_duration(audio_path)
     print(f'Voice duration: {duration:.2f}s')
 
-    top_header = topic.get('top_header', 'SCIBYTES DAILY').replace("'", "\\'")
-    sub_header = topic.get('sub_header', topic['title'].split('#')[0].strip()).replace("'", "\\'")
+    font_file = get_font_file()
+    font_arg = f":fontfile='{font_file}'" if font_file else ""
+
+    top_header = topic.get('top_header', 'SCIBYTES DAILY').replace("'", "\\'").replace(':', '\\:')
+    sub_header = topic.get('sub_header', topic['title'].split('#')[0].strip()).replace("'", "\\'").replace(':', '\\:')
 
     subtitle_filters = []
     for sub in topic.get('subtitles', []):
@@ -55,29 +74,25 @@ def render_short(topic, footage_path, audio_path, output_path):
         end = min(sub['end'], duration)
         if start >= duration:
             continue
-        text = sub['text'].replace("'", "\\'")
+        text = sub['text'].replace("'", "\\'").replace(':', '\\:')
         color = sub.get('color', '#FFFFFF')
-        boxcolor = sub.get('boxcolor', 'black@0.9')
+        boxcolor = sub.get('boxcolor', 'black@0.85')
         f_str = (
-            f"drawtext=text='{text}':fontcolor={color}:fontsize=52:"
-            f"x=(w-text_w)/2:y=1380:enable='between(t,{start},{end})':"
-            f"box=1:boxcolor={boxcolor}:boxborderw=20"
+            f"drawtext{font_arg}:text='{text}':fontcolor={color}:fontsize=48:"
+            f"x=(w-text_w)/2:y=1400:enable='between(t,{start},{end})':"
+            f"box=1:boxcolor={boxcolor}:boxborderw=16"
         )
         subtitle_filters.append(f_str)
 
-    subtitles_cmd_part = ', '.join(subtitle_filters)
-    if subtitles_cmd_part:
-        subtitles_cmd_part = ', ' + subtitles_cmd_part
+    subtitles_cmd_part = ', ' + ', '.join(subtitle_filters) if subtitle_filters else ''
 
     filter_complex = (
-        f'[0:v]trim=duration={duration},setpts=PTS-STARTPTS,split=2[orig1][orig2]; '
-        f'[orig1]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=25:10,eq=brightness=-0.15[bg]; '
-        f'[orig2]scale=1080:-1[fg]; '
-        f'[bg][fg]overlay=0:(1920-overlay_h)/2[vid]; '
-        f'[vid]drawtext=text=\'SCIBYTES\':fontcolor=#FFCC00:fontsize=40:x=(w-text_w)/2:y=170:box=1:boxcolor=black@0.85:boxborderw=14, '
-        f'drawtext=text=\'{top_header}\':fontcolor=#AAAAAA:fontsize=32:x=(w-text_w)/2:y=240:box=1:boxcolor=black@0.8:boxborderw=12, '
-        f'drawtext=text=\'{sub_header}\':fontcolor=white:fontsize=46:x=(w-text_w)/2:y=310:box=1:boxcolor=black@0.9:boxborderw=16'
-        f'{subtitles_cmd_part}[outv]'
+        f"[0:v]trim=duration={duration},setpts=PTS-STARTPTS,"
+        f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
+        f"drawtext{font_arg}:text='SCIBYTES':fontcolor=#555555:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.8:shadowx=2:shadowy=2,"
+        f"drawtext{font_arg}:text='{top_header}':fontcolor=#FFCC00:fontsize=36:x=(w-text_w)/2:y=170:box=1:boxcolor=black@0.75:boxborderw=14,"
+        f"drawtext{font_arg}:text='{sub_header}':fontcolor=#FFFFFF:fontsize=46:x=(w-text_w)/2:y=240:box=1:boxcolor=black@0.85:boxborderw=16"
+        f"{subtitles_cmd_part}[outv]"
     )
 
     ffmpeg_cmd = [
