@@ -317,43 +317,43 @@
     "subtitles": [
       {
         "start": 0.0,
-        "end": 2.5,
+        "end": 2.8,
         "text": "EARTH STOPS FOR 1 SECOND?",
         "color": "#FF2A55"
       },
       {
-        "start": 2.5,
-        "end": 5.5,
-        "text": "1000 MPH SUPERSONIC WINDS!",
+        "start": 2.8,
+        "end": 6.2,
+        "text": "ATMOSPHERE MOVES AT 1000 MPH!",
         "color": "#FFEA00"
       },
       {
-        "start": 5.5,
-        "end": 9.0,
-        "text": "MILE-HIGH OCEAN TSUNAMIS!",
+        "start": 6.2,
+        "end": 9.8,
+        "text": "SUPERSONIC WINDS LEVEL CITIES!",
         "color": "#FFFFFF"
       },
       {
-        "start": 9.0,
-        "end": 13.0,
-        "text": "CITIES LEVELED INSTANTLY!",
+        "start": 9.8,
+        "end": 13.5,
+        "text": "MILE-HIGH OCEAN TSUNAMIS!",
         "color": "#FF2A55"
       },
       {
-        "start": 13.0,
-        "end": 17.5,
+        "start": 13.5,
+        "end": 18.0,
         "text": "LAUNCHED EASTWARD INTO SKY!",
         "color": "#00FFFF"
       },
       {
-        "start": 17.5,
+        "start": 18.0,
         "end": 99.0,
         "text": "SUBSCRIBE TO SCIBYTES!",
         "color": "#00FF66"
       }
     ],
     "thumb_prompt": "raw authentic photograph, view of Earth from deep space with massive hurricane spirals and supersonic atmospheric shockwaves obliterating continents, extreme detail, NASA satellite imagery, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/Earth Views from the International Space Station/Earth Views from the International Space Station~orig.mp4",
+    "footage_url": "http://images-assets.nasa.gov/video/Earth Views from the International Space Station/Earth Views from the International Space Station~medium.mp4",
     "tags": [
       "what if earth stopped spinning",
       "earth physics",
@@ -363,7 +363,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "did_you_know_cloud_weight",
@@ -412,7 +412,7 @@
       }
     ],
     "thumb_prompt": "raw authentic photograph, extreme high altitude aerial photo of colossal towering cumulus cloud suspended above Earth, dramatic cinematic golden hour lighting, Hasselblad H6D-100c, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/Earth Views from the International Space Station/Earth Views from the International Space Station~orig.mp4",
+    "footage_url": "http://images-assets.nasa.gov/video/Earth Views from the International Space Station/Earth Views from the International Space Station~medium.mp4",
     "tags": [
       "did you know",
       "cloud weight",
