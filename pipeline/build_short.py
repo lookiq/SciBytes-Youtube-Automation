@@ -26,17 +26,64 @@ def get_font_file():
             return lf
     return None
 
+def get_uploaded_history():
+    history_titles = set()
+    history_footages = set()
+    if os.path.exists('upload_history.log'):
+        with open('upload_history.log', 'r', encoding='utf-8') as f:
+            for line in f:
+                if 'Title: ' in line:
+                    parts = line.split('Title: ')
+                    if len(parts) > 1:
+                        title_part = parts[1].split(' | ')[0].strip().lower()
+                        history_titles.add(title_part)
+                if 'Footage: ' in line:
+                    parts = line.split('Footage: ')
+                    if len(parts) > 1:
+                        footage_part = parts[1].split(' | ')[0].strip()
+                        if footage_part and footage_part != 'N/A':
+                            history_footages.add(footage_part)
+    return history_titles, history_footages
+
 def get_next_topic():
     with open(DATABASE_FILE, 'r', encoding='utf-8') as f:
         topics = json.load(f)
+
+    uploaded_titles, uploaded_footages = get_uploaded_history()
+
+    # Collect all footage URLs that have already been marked used
+    used_footage_urls = set(uploaded_footages)
     for topic in topics:
-        if not topic.get('used', False):
-            return topic
+        if topic.get('used', False):
+            used_footage_urls.add(topic.get('footage_url'))
+
     for topic in topics:
-        topic['used'] = False
-    with open(DATABASE_FILE, 'w', encoding='utf-8') as f:
-        json.dump(topics, f, indent=2)
-    return topics[0]
+        t_title = topic.get('title', '').strip().lower()
+        f_url = topic.get('footage_url')
+
+        # Guard 1: Must not already be marked used
+        if topic.get('used', False):
+            continue
+
+        # Guard 2: Footage URL must NOT match any already-used topic or uploaded footage
+        if f_url in used_footage_urls:
+            print(f"Skipping topic '{topic.get('title')}' - duplicate footage URL detected: {f_url}")
+            continue
+
+        # Guard 3: Title must NOT exist in upload_history.log
+        if t_title in uploaded_titles:
+            print(f"Skipping topic '{topic.get('title')}' - title already uploaded in history!")
+            topic['used'] = True
+            continue
+
+        return topic
+
+    # NEVER reset and loop duplicates automatically!
+    raise RuntimeError(
+        "CRITICAL ERROR: No unused topics with unique footage available in topics_database.json! "
+        "All topics or their footage have already been used or uploaded. "
+        "Please add new unique topics to pipeline/topics_database.json to prevent duplicate uploads."
+    )
 
 def download_footage(url, dest_path):
     print(f'Downloading real footage from: {url}')
@@ -89,8 +136,8 @@ def render_short(topic, footage_path, audio_path, output_path):
     font_file = get_font_file()
     font_opt = f"fontfile='{font_file}':" if font_file else ""
 
-    top_header = topic.get('top_header', 'SCIBYTES DAILY').replace("'", "\\'").replace(':', '\\:')
-    sub_header = topic.get('sub_header', topic['title'].split('#')[0].strip()).replace("'", "\\'").replace(':', '\\:')
+    top_header = topic.get('top_header', 'SCIBYTES DAILY').replace("'", "’").replace(':', ' - ').replace(',', '')
+    sub_header = topic.get('sub_header', topic['title'].split('#')[0].strip()).replace("'", "’").replace(':', ' - ').replace(',', '')
 
     subtitle_filters = []
     for sub in topic.get('subtitles', []):
@@ -98,7 +145,7 @@ def render_short(topic, footage_path, audio_path, output_path):
         end = min(sub['end'], duration)
         if start >= duration:
             continue
-        text = sub['text'].replace("'", "\\'").replace(':', '\\:')
+        text = sub['text'].replace("'", "’").replace(':', ' - ').replace(',', '')
         color = sub.get('color', '#FFEA00')
         f_str = (
             f"drawtext={font_opt}text='{text}':fontcolor={color}:fontsize=54:"
@@ -224,6 +271,7 @@ def main():
     metadata = {
         'id': topic['id'],
         'title': topic['title'],
+        'footage_url': topic.get('footage_url', ''),
         'description': (
             f"{topic['script']}\n\n"
             "Subscribe to SciBytes for quick, mind-bending science, space mysteries, and physics facts explained in seconds.\n\n"

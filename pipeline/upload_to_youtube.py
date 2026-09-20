@@ -121,7 +121,7 @@ def upload_video():
 
     mark_topic_used(metadata.get('id'))
 
-    log_entry = f"[{datetime.now().isoformat()}] ID: {video_id} | Title: {metadata['title']} | URL: {video_url}\n"
+    log_entry = f"[{datetime.now().isoformat()}] ID: {video_id} | Title: {metadata['title']} | Footage: {metadata.get('footage_url', 'N/A')} | URL: {video_url}\n"
     with open('upload_history.log', 'a', encoding='utf-8') as f:
         f.write(log_entry)
 

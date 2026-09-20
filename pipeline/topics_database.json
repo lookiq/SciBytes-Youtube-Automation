@@ -431,102 +431,173 @@
     "used": true
   },
   {
-    "id": "did_you_know_cloud_weight",
-    "type": "DID_YOU_KNOW",
-    "title": "Did You Know a Cloud Weighs 1.1 Million Pounds? #Shorts",
-    "top_header": "SURPRISING NATURE FACT",
-    "sub_header": "A CLOUD WEIGHS 1 MILLION POUNDS!",
-    "script": "A single fluffy cumulus cloud looks completely weightless, but it actually weighs over one point one million pounds. That is equivalent to one hundred full-grown elephants floating directly above your head. The only reason it does not crash down is because that colossal weight is dispersed into trillions of microscopic droplets suspended on warm updrafts. Subscribe to SciBytes for more crazy physics!",
-    "start_offset": 32.0,
+    "id": "mars_perseverance_landing",
+    "type": "SPACE_EXPLORATION",
+    "title": "NASA's 7 Minutes of Terror on Mars #Shorts",
+    "top_header": "7 MINUTES OF TERROR",
+    "sub_header": "HOW NASA LANDED ON MARS!",
+    "script": "Entering the Martian atmosphere at twelve thousand miles per hour, spacecraft endure temperatures hotter than the surface of the Sun. In just seven minutes, a supersonic parachute deploys, rocket thrusters ignite, and a hovering Sky Crane lowers the rover directly onto the red soil. Because radio signals take eleven minutes to reach Earth, the entire landing is controlled autonomously by artificial intelligence. Subscribe to SciBytes for more mind-blowing space exploration!",
+    "start_offset": 78.0,
     "subtitles": [
       {
         "start": 0.0,
-        "end": 2.5,
-        "text": "A CLOUD WEIGHS 1 MILLION LBS!",
-        "color": "#FFEA00"
-      },
-      {
-        "start": 2.5,
-        "end": 5.5,
-        "text": "EQUAL TO 100 ELEPHANTS!",
+        "end": 3.0,
+        "text": "12,000 MPH ATMOSPHERIC ENTRY!",
         "color": "#FF2A55"
       },
       {
-        "start": 5.5,
-        "end": 9.0,
-        "text": "FLOATING OVER YOUR HEAD!",
-        "color": "#FFFFFF"
-      },
-      {
-        "start": 9.0,
-        "end": 13.0,
-        "text": "TRILLIONS OF MICRO DROPLETS!",
-        "color": "#00FFFF"
-      },
-      {
-        "start": 13.0,
-        "end": 17.5,
-        "text": "BUOYED BY WARM UPDRAFTS!",
+        "start": 3.0,
+        "end": 6.5,
+        "text": "HOTTER THAN SUN'S SURFACE!",
         "color": "#FFEA00"
       },
       {
+        "start": 6.5,
+        "end": 10.0,
+        "text": "SUPERSONIC PARACHUTE OPENS!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.0,
+        "end": 13.5,
+        "text": "ROCKET SKY CRANE IGNITES!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "AUTONOMOUS AI LANDING!",
+        "color": "#00FFFF"
+      },
+      {
         "start": 17.5,
+        "end": 21.5,
+        "text": "TOUCHDOWN ON MARTIAN SOIL!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 21.5,
         "end": 99.0,
         "text": "SUBSCRIBE TO SCIBYTES!",
         "color": "#00FF66"
       }
     ],
-    "thumb_prompt": "raw authentic photograph, extreme high altitude aerial photo of colossal towering cumulus cloud suspended above Earth, dramatic cinematic golden hour lighting, Hasselblad H6D-100c, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/Earth Views from the International Space Station/Earth Views from the International Space Station~medium.mp4",
+    "thumb_prompt": "raw authentic photograph, NASA Perseverance rover descending on nylon cables from rocket-powered Sky Crane onto red Martian surface, Jezero crater, rocket exhaust blast kicking up dust, extreme detail, Hasselblad space camera, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/JPL-20201221-M2020f-0002-EDL%20Full%20Version%20w%20SFX/JPL-20201221-M2020f-0002-EDL%20Full%20Version%20w%20SFX~large.mp4",
     "tags": [
-      "did you know",
-      "cloud weight",
-      "atmospheric physics",
-      "cumulus cloud",
-      "science facts",
+      "mars landing",
+      "perseverance rover",
+      "sky crane",
+      "7 minutes of terror",
+      "nasa mars",
+      "space exploration",
+      "mars 2020",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": true
+  },
+  {
+    "id": "sls_artemis_launch",
+    "type": "ROCKETRY",
+    "title": "NASA's Most Powerful Rocket Launch in History #Shorts",
+    "top_header": "NASA MEGA ROCKET",
+    "sub_header": "THE MOST POWERFUL LAUNCH!",
+    "script": "NASA's Space Launch System is the most powerful rocket ever built, generating eight point eight million pounds of thrust. Standing over three hundred feet tall, its twin solid rocket boosters burn five tons of propellant every single second, propelling astronauts past the Moon and breaking Earth orbit faster than any human-rated spacecraft in history. Subscribe to SciBytes for daily aerospace and space exploration wonders!",
+    "start_offset": 12.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "8.8 MILLION LBS OF THRUST!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 3.0,
+        "end": 6.5,
+        "text": "BURNS 5 TONS OF FUEL A SECOND!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.5,
+        "end": 10.0,
+        "text": "BOOSTERS SEPARATE IN SPACE!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.0,
+        "end": 14.0,
+        "text": "BREAKING EARTH ORBIT!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 14.0,
+        "end": 18.0,
+        "text": "SLINGSHOT TO THE MOON!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 18.0,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, NASA Space Launch System mega rocket ascending into upper atmosphere, massive solid rocket booster separation with dramatic fire and smoke plumes, Earth curvature below, extreme detail, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/MSFC_SLS_01142021_SLS_Orion_Animation_0034/MSFC_SLS_01142021_SLS_Orion_Animation_0034~orig.mp4",
+    "tags": [
+      "artemis 1",
+      "sls rocket",
+      "space launch system",
+      "most powerful rocket",
+      "nasa launch",
+      "orion spacecraft",
+      "moon mission",
+      "rocket launch",
       "SciBytes",
       "shorts"
     ],
     "used": false
   },
   {
-    "id": "what_if_moon_vanished",
-    "type": "WHAT_IF",
-    "title": "What If the Moon Vanished Tonight? #Shorts",
-    "top_header": "COSMIC INSTABILITY",
-    "sub_header": "WHAT IF THE MOON VANISHED?",
-    "script": "If the Moon vanished tonight, global ocean tides would collapse by two-thirds, causing massive destruction to marine ecosystems. Without the Moon acting as a gravitational anchor, Earths rotational tilt would wildly destabilize, triggering extreme planetary ice ages, while our 24-hour day would rapidly accelerate into a dizzying six-hour blur. Subscribe to SciBytes for daily cosmic science!",
-    "start_offset": 1.0,
+    "id": "jwst_gold_mirrors",
+    "type": "ASTRONOMY",
+    "title": "Why James Webb's Mirrors Are Made of Pure Gold #Shorts",
+    "top_header": "JAMES WEBB SECRET",
+    "sub_header": "WHY THE MIRRORS ARE GOLD!",
+    "script": "The James Webb Space Telescope features eighteen giant hexagonal mirrors coated in pure vaporized gold. Gold reflects ninety-eight percent of infrared light, allowing Webb to peer over thirteen point five billion years back in time to capture the very first stars ever formed after the Big Bang. A golf-ball sized chunk of gold was enough to coat the entire twenty-one foot array. Subscribe to SciBytes for more mind-blowing cosmic science!",
+    "start_offset": 8.0,
     "subtitles": [
       {
         "start": 0.0,
-        "end": 2.5,
-        "text": "IF THE MOON VANISHED!",
-        "color": "#FF2A55"
-      },
-      {
-        "start": 2.5,
-        "end": 5.5,
-        "text": "GLOBAL TIDES COLLAPSE!",
+        "end": 2.8,
+        "text": "18 MIRRORS COATED IN GOLD!",
         "color": "#FFEA00"
       },
       {
-        "start": 5.5,
-        "end": 9.0,
-        "text": "EARTH TILTS WILDLY!",
-        "color": "#FFFFFF"
-      },
-      {
-        "start": 9.0,
-        "end": 13.0,
-        "text": "EXTREME ICE AGES TRIGGER!",
+        "start": 2.8,
+        "end": 6.0,
+        "text": "REFLECTS 98% INFRARED LIGHT!",
         "color": "#FF2A55"
       },
       {
-        "start": 13.0,
-        "end": 17.5,
-        "text": "24-HR DAY SHRINKS TO 6 HRS!",
+        "start": 6.0,
+        "end": 9.5,
+        "text": "PEERING 13.5 BILLION YEARS BACK!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.5,
+        "end": 13.5,
+        "text": "FIRST STARS AFTER BIG BANG!",
         "color": "#00FFFF"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "COATED BY GOLF-BALL OF GOLD!",
+        "color": "#FFEA00"
       },
       {
         "start": 17.5,
@@ -535,132 +606,78 @@
         "color": "#00FF66"
       }
     ],
-    "thumb_prompt": "raw authentic photograph, night sky view with an empty dark celestial ring where the Moon suddenly disappeared, distorted tidal oceans, starry cosmos, National Geographic astronomy photography, 8k, photorealistic, zero cgi, zero cartoon",
+    "thumb_prompt": "raw authentic photograph, James Webb Space Telescope giant golden hexagonal mirrors gleaming in the dark void of deep space, cosmic nebula reflection, extreme macro sharp details, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20101028_JWST_m10660_Webb%20Deploy_Short/GSFC_20101028_JWST_m10660_Webb%20Deploy_Short~orig.mp4",
+    "tags": [
+      "james webb",
+      "jwst",
+      "gold mirrors",
+      "infrared astronomy",
+      "big bang",
+      "first stars",
+      "space telescope",
+      "nasa jwst",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "supernova_cosmic_blast",
+    "type": "COSMIC_DISASTER",
+    "title": "What Happens When a Giant Star Explodes? #Shorts",
+    "top_header": "SUPERNOVA EXPLOSION",
+    "sub_header": "WHAT HAPPENS WHEN A STAR DIES?",
+    "script": "When a massive star runs out of nuclear fuel, its core collapses in a fraction of a second at twenty-three percent the speed of light. The resulting rebound shockwave unleashes a supernova explosion so violent it outshines entire galaxies containing hundreds of billions of stars. In that single blast, heavy elements like gold, platinum, and uranium are forged and scattered across the cosmos. Subscribe to SciBytes for daily mind-bending physics!",
+    "start_offset": 3.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "CORE COLLAPSES IN MILLISECONDS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 2.8,
+        "end": 6.2,
+        "text": "23% THE SPEED OF LIGHT!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.2,
+        "end": 9.8,
+        "text": "OUTSHINES ENTIRE GALAXIES!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.8,
+        "end": 13.5,
+        "text": "FORGES GOLD AND PLATINUM!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "SCATTERED ACROSS THE UNIVERSE!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, titanic cosmic supernova explosion bursting outward into deep space, glowing filaments of crimson and gold ionized gas, brilliant blinding core shockwave, NASA Chandra X-ray observatory, 8k, photorealistic, zero cgi, zero cartoon",
     "footage_url": "http://images-assets.nasa.gov/video/GSFC_20100126_Nova_m10547_SuperNova/GSFC_20100126_Nova_m10547_SuperNova~orig.mp4",
     "tags": [
-      "what if moon disappeared",
-      "moon facts",
-      "space mystery",
-      "lunar tides",
-      "astronomy",
-      "SciBytes",
-      "shorts"
-    ],
-    "used": false
-  },
-  {
-    "id": "did_you_know_time_feet",
-    "type": "DID_YOU_KNOW",
-    "title": "Did You Know Time Moves Slower on Your Feet? #Shorts",
-    "top_header": "EINSTEINS RELATIVITY",
-    "sub_header": "TIME MOVES SLOWER ON FEET!",
-    "script": "According to Einsteins theory of general relativity, the closer you are to a gravitational mass, the slower time ticks. Because your feet are closer to Earths center of gravity than your head, time moves measurably slower at ground level. Over an entire human lifetime, your feet are literally a tiny fraction of a second younger than your brain. Subscribe to SciBytes for more mind-bending physics!",
-    "start_offset": 6.0,
-    "subtitles": [
-      {
-        "start": 0.0,
-        "end": 2.5,
-        "text": "TIME MOVES SLOWER ON FEET!",
-        "color": "#FFEA00"
-      },
-      {
-        "start": 2.5,
-        "end": 5.5,
-        "text": "GRAVITATIONAL TIME DILATION!",
-        "color": "#FF2A55"
-      },
-      {
-        "start": 5.5,
-        "end": 9.0,
-        "text": "CLOSER TO EARTHS CORE!",
-        "color": "#FFFFFF"
-      },
-      {
-        "start": 9.0,
-        "end": 13.0,
-        "text": "TIME TICKS MEASURABLY SLOWER!",
-        "color": "#00FFFF"
-      },
-      {
-        "start": 13.0,
-        "end": 17.5,
-        "text": "FEET YOUNGER THAN BRAIN!",
-        "color": "#FFEA00"
-      },
-      {
-        "start": 17.5,
-        "end": 99.0,
-        "text": "SUBSCRIBE TO SCIBYTES!",
-        "color": "#00FF66"
-      }
-    ],
-    "thumb_prompt": "raw authentic photograph, Einstein gravitational time dilation visual, spacetime curvature bending around a heavy planetary sphere, glowing light geodesics, NASA physics simulation, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20181010_FERMI_m13058_Pulsar4K/GSFC_20181010_FERMI_m13058_Pulsar4K~orig.mp4",
-    "tags": [
-      "did you know",
-      "time dilation",
-      "einstein relativity",
-      "general relativity",
+      "supernova",
+      "star explosion",
+      "cosmic blast",
+      "stellar core collapse",
+      "astronomy facts",
+      "gold created in space",
       "physics facts",
-      "SciBytes",
-      "shorts"
-    ],
-    "used": false
-  },
-  {
-    "id": "what_if_bullet_in_space",
-    "type": "WHAT_IF",
-    "title": "What Happens If You Fire a Gun in Space? #Shorts",
-    "top_header": "ZERO GRAVITY BALLISTICS",
-    "sub_header": "FIRING A GUN IN SPACE!",
-    "script": "If you fired a gun in the cold vacuum of space, the bullet would ignite instantly because modern gunpowder contains its own internal oxidizer. With zero air resistance and no atmospheric drag, the bullet would travel at supersonic speed across the cosmos forever. Even wilder, Newtons third law of recoil would propel you backward into the void. Subscribe to SciBytes for more insane physics!",
-    "start_offset": 14.0,
-    "subtitles": [
-      {
-        "start": 0.0,
-        "end": 2.5,
-        "text": "FIRING A GUN IN SPACE!",
-        "color": "#FF2A55"
-      },
-      {
-        "start": 2.5,
-        "end": 5.5,
-        "text": "GUNPOWDER HAS OWN OXYGEN!",
-        "color": "#FFEA00"
-      },
-      {
-        "start": 5.5,
-        "end": 9.0,
-        "text": "ZERO AIR RESISTANCE OR DRAG!",
-        "color": "#FFFFFF"
-      },
-      {
-        "start": 9.0,
-        "end": 13.0,
-        "text": "BULLET TRAVELS FOREVER!",
-        "color": "#FF2A55"
-      },
-      {
-        "start": 13.0,
-        "end": 17.5,
-        "text": "RECOIL LAUNCHES YOU BACKWARD!",
-        "color": "#00FFFF"
-      },
-      {
-        "start": 17.5,
-        "end": 99.0,
-        "text": "SUBSCRIBE TO SCIBYTES!",
-        "color": "#00FF66"
-      }
-    ],
-    "thumb_prompt": "raw authentic photograph, extreme macro photo of a glowing supersonic bullet traveling through the pitch black vacuum of space against a backdrop of distant stars, zero gravity recoil, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/What is a Black Hole/What is a Black Hole~orig.mp4",
-    "tags": [
-      "what if you fire a gun in space",
-      "space ballistics",
-      "physics facts",
-      "bullet in space",
-      "astronomy",
       "SciBytes",
       "shorts"
     ],
