@@ -59,9 +59,32 @@ def get_media_duration(file_path):
     out = subprocess.check_output(cmd, shell=True, text=True).strip()
     return float(out)
 
+def get_bright_start_offset(footage_path, base_offset=0.0):
+    import re
+    current = float(base_offset)
+    for step in range(15):
+        t = current + (step * 2.0)
+        try:
+            cmd = ['ffmpeg', '-ss', str(t), '-i', footage_path, '-vframes', '1', '-vf', 'signalstats', '-f', 'null', '-']
+            res = subprocess.run(cmd, stderr=subprocess.PIPE, text=True, timeout=10)
+            m = re.search(r'YAVG=([0-9\.]+)', res.stderr)
+            if m:
+                luma = float(m.group(1))
+                if luma > 18.0:
+                    print(f'Detected vibrant visual start at {t:.1f}s (Luma: {luma:.1f})')
+                    return t
+        except Exception as e:
+            print(f'Notice in bright start offset: {e}')
+            break
+    return current
+
 def render_short(topic, footage_path, audio_path, output_path):
     duration = get_media_duration(audio_path)
     print(f'Voice duration: {duration:.2f}s')
+
+    base_offset = topic.get('start_offset', 0.0)
+    start_offset = get_bright_start_offset(footage_path, base_offset)
+    print(f'Using verified footage start offset: {start_offset:.2f}s')
 
     font_file = get_font_file()
     font_opt = f"fontfile='{font_file}':" if font_file else ""
@@ -98,6 +121,7 @@ def render_short(topic, footage_path, audio_path, output_path):
 
     ffmpeg_cmd = [
         'ffmpeg', '-y',
+        '-ss', str(start_offset),
         '-stream_loop', '-1',
         '-i', footage_path,
         '-i', audio_path,

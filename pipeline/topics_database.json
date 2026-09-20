@@ -313,43 +313,46 @@
     "top_header": "PLANETARY CATASTROPHE",
     "sub_header": "IF EARTH STOPPED FOR 1 SECOND",
     "script": "If the Earth stopped spinning for just one second, the atmosphere would continue moving at one thousand miles per hour. A supersonic wall of wind would instantly obliterate cities, oceans would surge into towering mile-high tsunamis, and everything not anchored to bedrock would be violently launched eastward into the sky. Subscribe to SciBytes for more mind-bending physics!",
+    "start_offset": 28.0,
     "subtitles": [
       {
         "start": 0.0,
-        "end": 4.5,
+        "end": 2.5,
+        "text": "EARTH STOPS FOR 1 SECOND?",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 2.5,
+        "end": 5.5,
         "text": "1000 MPH SUPERSONIC WINDS!",
-        "color": "#FFFFFF",
-        "boxcolor": "red@0.9"
+        "color": "#FFEA00"
       },
       {
-        "start": 4.5,
-        "end": 9.5,
+        "start": 5.5,
+        "end": 9.0,
         "text": "MILE-HIGH OCEAN TSUNAMIS!",
-        "color": "#FFFF00",
-        "boxcolor": "black@0.9"
+        "color": "#FFFFFF"
       },
       {
-        "start": 9.5,
-        "end": 15.0,
-        "text": "CITIES LEVELED IN SECONDS!",
-        "color": "#FF3366",
-        "boxcolor": "black@0.9"
+        "start": 9.0,
+        "end": 13.0,
+        "text": "CITIES LEVELED INSTANTLY!",
+        "color": "#FF2A55"
       },
       {
-        "start": 15.0,
-        "end": 20.5,
-        "text": "LAUNCHED EASTWARD INTO THE VOID!",
-        "color": "#00FFFF",
-        "boxcolor": "black@0.9"
+        "start": 13.0,
+        "end": 17.5,
+        "text": "LAUNCHED EASTWARD INTO SKY!",
+        "color": "#00FFFF"
       },
       {
-        "start": 20.5,
+        "start": 17.5,
         "end": 99.0,
         "text": "SUBSCRIBE TO SCIBYTES!",
-        "color": "#00FF66",
-        "boxcolor": "black@0.9"
+        "color": "#00FF66"
       }
     ],
+    "thumb_prompt": "raw authentic photograph, view of Earth from deep space with massive hurricane spirals and supersonic atmospheric shockwaves obliterating continents, extreme detail, NASA satellite imagery, 8k, photorealistic, zero cgi, zero cartoon",
     "footage_url": "http://images-assets.nasa.gov/video/Earth Views from the International Space Station/Earth Views from the International Space Station~orig.mp4",
     "tags": [
       "what if earth stopped spinning",
@@ -369,43 +372,46 @@
     "top_header": "SURPRISING NATURE FACT",
     "sub_header": "A CLOUD WEIGHS 1 MILLION POUNDS!",
     "script": "A single fluffy cumulus cloud looks completely weightless, but it actually weighs over one point one million pounds. That is equivalent to one hundred full-grown elephants floating directly above your head. The only reason it does not crash down is because that colossal weight is dispersed into trillions of microscopic droplets suspended on warm updrafts. Subscribe to SciBytes for more crazy physics!",
+    "start_offset": 32.0,
     "subtitles": [
       {
         "start": 0.0,
-        "end": 4.2,
-        "text": "1.1 MILLION POUNDS FLOATING!",
-        "color": "#FFFFFF",
-        "boxcolor": "red@0.9"
+        "end": 2.5,
+        "text": "A CLOUD WEIGHS 1 MILLION LBS!",
+        "color": "#FFEA00"
       },
       {
-        "start": 4.2,
+        "start": 2.5,
+        "end": 5.5,
+        "text": "EQUAL TO 100 ELEPHANTS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 5.5,
         "end": 9.0,
-        "text": "WEIGHT OF 100 ELEPHANTS!",
-        "color": "#FFFF00",
-        "boxcolor": "black@0.9"
+        "text": "FLOATING OVER YOUR HEAD!",
+        "color": "#FFFFFF"
       },
       {
         "start": 9.0,
-        "end": 14.5,
+        "end": 13.0,
         "text": "TRILLIONS OF MICRO DROPLETS!",
-        "color": "#FF3366",
-        "boxcolor": "black@0.9"
+        "color": "#00FFFF"
       },
       {
-        "start": 14.5,
-        "end": 19.5,
+        "start": 13.0,
+        "end": 17.5,
         "text": "BUOYED BY WARM UPDRAFTS!",
-        "color": "#00FFFF",
-        "boxcolor": "black@0.9"
+        "color": "#FFEA00"
       },
       {
-        "start": 19.5,
+        "start": 17.5,
         "end": 99.0,
         "text": "SUBSCRIBE TO SCIBYTES!",
-        "color": "#00FF66",
-        "boxcolor": "black@0.9"
+        "color": "#00FF66"
       }
     ],
+    "thumb_prompt": "raw authentic photograph, extreme high altitude aerial photo of colossal towering cumulus cloud suspended above Earth, dramatic cinematic golden hour lighting, Hasselblad H6D-100c, 8k, photorealistic, zero cgi, zero cartoon",
     "footage_url": "http://images-assets.nasa.gov/video/Earth Views from the International Space Station/Earth Views from the International Space Station~orig.mp4",
     "tags": [
       "did you know",
@@ -425,44 +431,47 @@
     "top_header": "COSMIC INSTABILITY",
     "sub_header": "WHAT IF THE MOON VANISHED?",
     "script": "If the Moon vanished tonight, global ocean tides would collapse by two-thirds, causing massive destruction to marine ecosystems. Without the Moon acting as a gravitational anchor, Earths rotational tilt would wildly destabilize, triggering extreme planetary ice ages, while our 24-hour day would rapidly accelerate into a dizzying six-hour blur. Subscribe to SciBytes for daily cosmic science!",
+    "start_offset": 1.0,
     "subtitles": [
       {
         "start": 0.0,
-        "end": 4.5,
-        "text": "GLOBAL OCEAN TIDES COLLAPSE!",
-        "color": "#FFFFFF",
-        "boxcolor": "red@0.9"
+        "end": 2.5,
+        "text": "IF THE MOON VANISHED!",
+        "color": "#FF2A55"
       },
       {
-        "start": 4.5,
-        "end": 9.5,
-        "text": "EARTHS AXIS WILDLY DESTABILIZES!",
-        "color": "#FFFF00",
-        "boxcolor": "black@0.9"
+        "start": 2.5,
+        "end": 5.5,
+        "text": "GLOBAL TIDES COLLAPSE!",
+        "color": "#FFEA00"
       },
       {
-        "start": 9.5,
-        "end": 14.5,
-        "text": "CATASTROPHIC CLIMATE SHIFTS!",
-        "color": "#FF3366",
-        "boxcolor": "black@0.9"
+        "start": 5.5,
+        "end": 9.0,
+        "text": "EARTH TILTS WILDLY!",
+        "color": "#FFFFFF"
       },
       {
-        "start": 14.5,
-        "end": 19.5,
-        "text": "24-HOUR DAY SHRINKS TO 6 HOURS!",
-        "color": "#00FFFF",
-        "boxcolor": "black@0.9"
+        "start": 9.0,
+        "end": 13.0,
+        "text": "EXTREME ICE AGES TRIGGER!",
+        "color": "#FF2A55"
       },
       {
-        "start": 19.5,
+        "start": 13.0,
+        "end": 17.5,
+        "text": "24-HR DAY SHRINKS TO 6 HRS!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 17.5,
         "end": 99.0,
         "text": "SUBSCRIBE TO SCIBYTES!",
-        "color": "#00FF66",
-        "boxcolor": "black@0.9"
+        "color": "#00FF66"
       }
     ],
-    "footage_url": "http://images-assets.nasa.gov/video/What is a Black Hole/What is a Black Hole~orig.mp4",
+    "thumb_prompt": "raw authentic photograph, night sky view with an empty dark celestial ring where the Moon suddenly disappeared, distorted tidal oceans, starry cosmos, National Geographic astronomy photography, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20100126_Nova_m10547_SuperNova/GSFC_20100126_Nova_m10547_SuperNova~orig.mp4",
     "tags": [
       "what if moon disappeared",
       "moon facts",
@@ -481,43 +490,46 @@
     "top_header": "EINSTEINS RELATIVITY",
     "sub_header": "TIME MOVES SLOWER ON FEET!",
     "script": "According to Einsteins theory of general relativity, the closer you are to a gravitational mass, the slower time ticks. Because your feet are closer to Earths center of gravity than your head, time moves measurably slower at ground level. Over an entire human lifetime, your feet are literally a tiny fraction of a second younger than your brain. Subscribe to SciBytes for more mind-bending physics!",
+    "start_offset": 6.0,
     "subtitles": [
       {
         "start": 0.0,
-        "end": 4.5,
+        "end": 2.5,
+        "text": "TIME MOVES SLOWER ON FEET!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 2.5,
+        "end": 5.5,
         "text": "GRAVITATIONAL TIME DILATION!",
-        "color": "#FFFFFF",
-        "boxcolor": "red@0.9"
+        "color": "#FF2A55"
       },
       {
-        "start": 4.5,
-        "end": 9.5,
-        "text": "FEET ARE CLOSER TO EARTHS CORE!",
-        "color": "#FFFF00",
-        "boxcolor": "black@0.9"
+        "start": 5.5,
+        "end": 9.0,
+        "text": "CLOSER TO EARTHS CORE!",
+        "color": "#FFFFFF"
       },
       {
-        "start": 9.5,
-        "end": 14.5,
-        "text": "TIME TICKS SLOWER AT GROUND LEVEL!",
-        "color": "#FF3366",
-        "boxcolor": "black@0.9"
+        "start": 9.0,
+        "end": 13.0,
+        "text": "TIME TICKS MEASURABLY SLOWER!",
+        "color": "#00FFFF"
       },
       {
-        "start": 14.5,
-        "end": 19.5,
-        "text": "YOUR FEET ARE YOUNGER THAN BRAIN!",
-        "color": "#00FFFF",
-        "boxcolor": "black@0.9"
+        "start": 13.0,
+        "end": 17.5,
+        "text": "FEET YOUNGER THAN BRAIN!",
+        "color": "#FFEA00"
       },
       {
-        "start": 19.5,
+        "start": 17.5,
         "end": 99.0,
         "text": "SUBSCRIBE TO SCIBYTES!",
-        "color": "#00FF66",
-        "boxcolor": "black@0.9"
+        "color": "#00FF66"
       }
     ],
+    "thumb_prompt": "raw authentic photograph, Einstein gravitational time dilation visual, spacetime curvature bending around a heavy planetary sphere, glowing light geodesics, NASA physics simulation, 8k, photorealistic, zero cgi, zero cartoon",
     "footage_url": "http://images-assets.nasa.gov/video/GSFC_20181010_FERMI_m13058_Pulsar4K/GSFC_20181010_FERMI_m13058_Pulsar4K~orig.mp4",
     "tags": [
       "did you know",
@@ -537,43 +549,46 @@
     "top_header": "ZERO GRAVITY BALLISTICS",
     "sub_header": "FIRING A GUN IN SPACE!",
     "script": "If you fired a gun in the cold vacuum of space, the bullet would ignite instantly because modern gunpowder contains its own internal oxidizer. With zero air resistance and no atmospheric drag, the bullet would travel at supersonic speed across the cosmos forever. Even wilder, Newtons third law of recoil would propel you backward into the void. Subscribe to SciBytes for more insane physics!",
+    "start_offset": 14.0,
     "subtitles": [
       {
         "start": 0.0,
-        "end": 4.5,
-        "text": "GUNPOWDER NEEDS NO OXYGEN!",
-        "color": "#FFFFFF",
-        "boxcolor": "red@0.9"
+        "end": 2.5,
+        "text": "FIRING A GUN IN SPACE!",
+        "color": "#FF2A55"
       },
       {
-        "start": 4.5,
-        "end": 9.5,
-        "text": "BULLET TRAVELS FOREVER IN VOID!",
-        "color": "#FFFF00",
-        "boxcolor": "black@0.9"
+        "start": 2.5,
+        "end": 5.5,
+        "text": "GUNPOWDER HAS OWN OXYGEN!",
+        "color": "#FFEA00"
       },
       {
-        "start": 9.5,
-        "end": 14.5,
+        "start": 5.5,
+        "end": 9.0,
         "text": "ZERO AIR RESISTANCE OR DRAG!",
-        "color": "#FF3366",
-        "boxcolor": "black@0.9"
+        "color": "#FFFFFF"
       },
       {
-        "start": 14.5,
-        "end": 19.5,
-        "text": "RECOIL SENDS YOU FLYING BACKWARD!",
-        "color": "#00FFFF",
-        "boxcolor": "black@0.9"
+        "start": 9.0,
+        "end": 13.0,
+        "text": "BULLET TRAVELS FOREVER!",
+        "color": "#FF2A55"
       },
       {
-        "start": 19.5,
+        "start": 13.0,
+        "end": 17.5,
+        "text": "RECOIL LAUNCHES YOU BACKWARD!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 17.5,
         "end": 99.0,
         "text": "SUBSCRIBE TO SCIBYTES!",
-        "color": "#00FF66",
-        "boxcolor": "black@0.9"
+        "color": "#00FF66"
       }
     ],
+    "thumb_prompt": "raw authentic photograph, extreme macro photo of a glowing supersonic bullet traveling through the pitch black vacuum of space against a backdrop of distant stars, zero gravity recoil, 8k, photorealistic, zero cgi, zero cartoon",
     "footage_url": "http://images-assets.nasa.gov/video/What is a Black Hole/What is a Black Hole~orig.mp4",
     "tags": [
       "what if you fire a gun in space",
@@ -593,43 +608,46 @@
     "top_header": "GRAVITATIONAL PARADOX",
     "sub_header": "IF THE SUN WAS A BLACK HOLE",
     "script": "If the Sun instantly collapsed into a black hole of the exact same mass, Earth would not get sucked in. Because the gravitational pull remains completely identical, our planet would continue orbiting at the exact same distance. But without solar radiation, global temperatures would plummet to minus one hundred degrees in weeks, freezing the oceans into solid ice. Subscribe to SciBytes for more mind-bending science!",
+    "start_offset": 1.0,
     "subtitles": [
       {
         "start": 0.0,
-        "end": 4.5,
-        "text": "EARTH WOULD NOT BE SUCKED IN!",
-        "color": "#FFFFFF",
-        "boxcolor": "red@0.9"
+        "end": 2.5,
+        "text": "SUN COLLAPSED TO BLACK HOLE?",
+        "color": "#FF2A55"
       },
       {
-        "start": 4.5,
-        "end": 9.5,
-        "text": "GRAVITATIONAL MASS IS IDENTICAL!",
-        "color": "#FFFF00",
-        "boxcolor": "black@0.9"
+        "start": 2.5,
+        "end": 5.5,
+        "text": "EARTH IS NOT SUCKED IN!",
+        "color": "#FFEA00"
       },
       {
-        "start": 9.5,
-        "end": 14.5,
-        "text": "ORBIT REMAINS COMPLETELY UNCHANGED!",
-        "color": "#FF3366",
-        "boxcolor": "black@0.9"
+        "start": 5.5,
+        "end": 9.0,
+        "text": "GRAVITY REMAINS IDENTICAL!",
+        "color": "#FFFFFF"
       },
       {
-        "start": 14.5,
-        "end": 19.5,
-        "text": "GLOBAL TEMPERATURE PLUMMETS TO -100\u00b0!",
-        "color": "#00FFFF",
-        "boxcolor": "black@0.9"
+        "start": 9.0,
+        "end": 13.0,
+        "text": "ORBIT REMAINS UNCHANGED!",
+        "color": "#00FFFF"
       },
       {
-        "start": 19.5,
+        "start": 13.0,
+        "end": 17.5,
+        "text": "PLUMMETS TO -100 DEGREES!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 17.5,
         "end": 99.0,
         "text": "SUBSCRIBE TO SCIBYTES!",
-        "color": "#00FF66",
-        "boxcolor": "black@0.9"
+        "color": "#00FF66"
       }
     ],
+    "thumb_prompt": "raw authentic photograph, supermassive black hole with solar mass replacing the Sun in the solar system, frozen icy Earth in foreground, gravitational lensing, NASA James Webb space telescope, 8k, photorealistic, zero cgi, zero cartoon",
     "footage_url": "http://images-assets.nasa.gov/video/GSFC_20140911_SDO_m11651_Flare/GSFC_20140911_SDO_m11651_Flare~orig.mp4",
     "tags": [
       "what if sun became a black hole",
