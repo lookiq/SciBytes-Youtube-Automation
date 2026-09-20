@@ -366,6 +366,71 @@
     "used": true
   },
   {
+    "id": "what_if_sun_black_hole",
+    "type": "WHAT_IF",
+    "title": "What If the Sun Became a Black Hole? #Shorts",
+    "top_header": "GRAVITATIONAL PARADOX",
+    "sub_header": "IF THE SUN WAS A BLACK HOLE",
+    "script": "If the Sun instantly collapsed into a black hole of the exact same mass, Earth would not get sucked in. Because the gravitational pull remains completely identical, our planet would continue orbiting at the exact same distance. But without solar radiation, global temperatures would plummet to minus one hundred degrees in weeks, freezing the oceans into solid ice. Subscribe to SciBytes for more mind-bending science!",
+    "start_offset": 0.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.8,
+        "text": "SUN TURNS TO BLACK HOLE?",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 3.8,
+        "end": 6.5,
+        "text": "EARTH IS NOT SUCKED IN!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 6.5,
+        "end": 10.0,
+        "text": "GRAVITY REMAINS IDENTICAL!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 10.0,
+        "end": 13.5,
+        "text": "ORBIT REMAINS UNCHANGED!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 13.5,
+        "end": 18.0,
+        "text": "TEMPS PLUMMET TO -100 DEGREES!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 18.0,
+        "end": 21.8,
+        "text": "OCEANS FREEZE TO SOLID ICE!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 21.8,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, supermassive black hole with solar mass replacing the Sun in the solar system, frozen icy Earth in foreground, gravitational lensing, NASA James Webb space telescope, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20140911_SDO_m11651_Flare/GSFC_20140911_SDO_m11651_Flare~large.mp4",
+    "tags": [
+      "what if sun became a black hole",
+      "black hole gravity",
+      "solar system",
+      "astronomy facts",
+      "physics mystery",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": true
+  },
+  {
     "id": "did_you_know_cloud_weight",
     "type": "DID_YOU_KNOW",
     "title": "Did You Know a Cloud Weighs 1.1 Million Pounds? #Shorts",
@@ -596,65 +661,6 @@
       "physics facts",
       "bullet in space",
       "astronomy",
-      "SciBytes",
-      "shorts"
-    ],
-    "used": false
-  },
-  {
-    "id": "what_if_sun_black_hole",
-    "type": "WHAT_IF",
-    "title": "What If the Sun Became a Black Hole? #Shorts",
-    "top_header": "GRAVITATIONAL PARADOX",
-    "sub_header": "IF THE SUN WAS A BLACK HOLE",
-    "script": "If the Sun instantly collapsed into a black hole of the exact same mass, Earth would not get sucked in. Because the gravitational pull remains completely identical, our planet would continue orbiting at the exact same distance. But without solar radiation, global temperatures would plummet to minus one hundred degrees in weeks, freezing the oceans into solid ice. Subscribe to SciBytes for more mind-bending science!",
-    "start_offset": 1.0,
-    "subtitles": [
-      {
-        "start": 0.0,
-        "end": 2.5,
-        "text": "SUN COLLAPSED TO BLACK HOLE?",
-        "color": "#FF2A55"
-      },
-      {
-        "start": 2.5,
-        "end": 5.5,
-        "text": "EARTH IS NOT SUCKED IN!",
-        "color": "#FFEA00"
-      },
-      {
-        "start": 5.5,
-        "end": 9.0,
-        "text": "GRAVITY REMAINS IDENTICAL!",
-        "color": "#FFFFFF"
-      },
-      {
-        "start": 9.0,
-        "end": 13.0,
-        "text": "ORBIT REMAINS UNCHANGED!",
-        "color": "#00FFFF"
-      },
-      {
-        "start": 13.0,
-        "end": 17.5,
-        "text": "PLUMMETS TO -100 DEGREES!",
-        "color": "#FF2A55"
-      },
-      {
-        "start": 17.5,
-        "end": 99.0,
-        "text": "SUBSCRIBE TO SCIBYTES!",
-        "color": "#00FF66"
-      }
-    ],
-    "thumb_prompt": "raw authentic photograph, supermassive black hole with solar mass replacing the Sun in the solar system, frozen icy Earth in foreground, gravitational lensing, NASA James Webb space telescope, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20140911_SDO_m11651_Flare/GSFC_20140911_SDO_m11651_Flare~orig.mp4",
-    "tags": [
-      "what if sun became a black hole",
-      "black hole gravity",
-      "solar system",
-      "astronomy facts",
-      "physics mystery",
       "SciBytes",
       "shorts"
     ],
