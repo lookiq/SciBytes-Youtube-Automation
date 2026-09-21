@@ -103,14 +103,15 @@ def generate_seo_metadata(topic):
         if clean_t and clean_t not in [x.lower() for x in base_tags]:
             base_tags.append(clean_t)
 
-    # Keep total length <= 475 characters (YouTube max is 500)
+    # Keep total length <= 400 characters for YouTube compliance
+    # YouTube formula: len(tag) + 2 (for quotes if tag contains spaces) + 1 (comma) <= 500
     final_tags = []
     total_tag_chars = 0
     for tag in base_tags:
-        # tag + 1 for comma separator
-        if total_tag_chars + len(tag) + 1 <= 475:
+        tag_cost = len(tag) + (2 if ' ' in tag else 0) + 1
+        if total_tag_chars + tag_cost <= 400:
             final_tags.append(tag)
-            total_tag_chars += len(tag) + 1
+            total_tag_chars += tag_cost
 
     # 4. Offline SEO Filenames (Keyword rich slug)
     clean_slug = re.sub(r'[^a-zA-Z0-9]+', '_', raw_title.lower()).strip('_')

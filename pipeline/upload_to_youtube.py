@@ -82,11 +82,21 @@ def upload_video():
 
     youtube = get_authenticated_service()
 
+    # Sanitize tags to strictly ensure <= 400 YouTube character cost (accounting for quotes and commas)
+    raw_tags = metadata.get('tags', [])
+    safe_tags = []
+    total_cost = 0
+    for t in raw_tags:
+        cost = len(t) + (2 if ' ' in t else 0) + 1
+        if total_cost + cost <= 400:
+            safe_tags.append(t)
+            total_cost += cost
+
     body = {
         'snippet': {
             'title': metadata['title'],
             'description': metadata['description'],
-            'tags': metadata.get('tags', []),
+            'tags': safe_tags,
             'categoryId': metadata.get('category_id', '28'),
             'defaultLanguage': metadata.get('default_language', 'en'),
             'defaultAudioLanguage': metadata.get('default_audio_language', 'en')
@@ -109,10 +119,27 @@ def upload_video():
     )
 
     response = None
-    while response is None:
-        status, response = request.next_chunk()
-        if status:
-            print(f"Uploaded {int(status.progress() * 100)}%")
+    try:
+        while response is None:
+            status, response = request.next_chunk()
+            if status:
+                print(f"Uploaded {int(status.progress() * 100)}%")
+    except Exception as e:
+        if 'invalidTags' in str(e):
+            print("WARNING: Encountered invalidTags from YouTube API. Retrying with essential core tags...")
+            body['snippet']['tags'] = ['science facts', 'space facts', 'astronomy', 'physics', 'shorts']
+            request = youtube.videos().insert(
+                part='snippet,status',
+                body=body,
+                media_body=MediaFileUpload(video_to_upload, mimetype='video/mp4', resumable=True)
+            )
+            response = None
+            while response is None:
+                status, response = request.next_chunk()
+                if status:
+                    print(f"Uploaded {int(status.progress() * 100)}%")
+        else:
+            raise e
 
     video_id = response.get('id')
     video_url = f"https://www.youtube.com/shorts/{video_id}"
