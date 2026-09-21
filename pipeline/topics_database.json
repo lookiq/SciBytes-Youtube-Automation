@@ -1476,5 +1476,315 @@
       "shorts"
     ],
     "used": false
+  },
+  {
+    "id": "quantum_supercomputers_speed",
+    "type": "COMPUTER_SCIENCE",
+    "title": "Why Quantum Computers Will Change Everything #Shorts",
+    "top_header": "NEXT-GEN COMPUTING",
+    "sub_header": "HOW QUANTUM COMPUTERS WORK!",
+    "script": "Traditional computers process information using binary bits: ones and zeros. Quantum computers use quantum bits called qubits, which can exist as both a one and a zero simultaneously thanks to quantum superposition. A calculation that would take the fastest supercomputer ten thousand years can be solved by a quantum processor in just two hundred seconds. Subscribe to SciBytes for more mind-bending science!",
+    "start_offset": 5.0,
+    "framing_mode": "smart_canvas",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "BINARY BITS VS QUBITS!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "QUANTUM SUPERPOSITION POWER!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "BOTH 1 AND 0 AT ONCE!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "10,000 YEARS IN 200 SECONDS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "FUTURE OF COMPUTING IS HERE!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, glowing golden cryogenic quantum computer chandelier hanging in dark advanced cleanroom laboratory, glowing blue neon fiber optics, extreme macro detail, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/ARC-20190821-AAV3214-ModularSupercomputer-BRollResource-NASAWeb/ARC-20190821-AAV3214-ModularSupercomputer-BRollResource-NASAWeb~orig.mp4",
+    "tags": [
+      "quantum computer",
+      "qubits",
+      "supercomputer",
+      "quantum physics",
+      "computer science",
+      "artificial intelligence",
+      "tech breakthrough",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "mariana_trench_bottom",
+    "type": "OCEANOGRAPHY",
+    "title": "What Lurks at the Bottom of the Ocean? #Shorts",
+    "top_header": "DEEPEST POINT ON EARTH",
+    "sub_header": "THE MYSTERY OF MARIANA TRENCH!",
+    "script": "Plunging nearly thirty-six thousand feet below the Pacific, the Mariana Trench Challenger Deep is deeper than Mount Everest is tall. At the bottom, crushing hydrostatic pressure exceeds one thousand atmospheres: the equivalent of an elephant standing on your thumb. Yet in perpetual freezing darkness, alien translucent creatures thrive without sunlight. Subscribe to SciBytes for daily mind-bending science!",
+    "start_offset": 6.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "36,000 FEET BENEATH THE WAVES!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "DEEPER THAN MOUNT EVEREST!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "CRUSHING PRESSURE OF 1000 ATMS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "ELEPHANT ON YOUR THUMB!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "ALIENT LIFE IN PITCH BLACK!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, deep sea submersible robotic arms exploring jagged hydrothermal ocean trench abyss, bioluminescent alien sea creatures glowing in pitch black water, 8k photorealistic, Hasselblad lens, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20111012_BF_m10849_Bottom_Ocean/GSFC_20111012_BF_m10849_Bottom_Ocean~orig.mp4",
+    "tags": [
+      "mariana trench",
+      "deep sea",
+      "ocean abyss",
+      "challenger deep",
+      "marine biology",
+      "earth science",
+      "ocean mystery",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "laser_speed_of_light",
+    "type": "OPTICS_PHYSICS",
+    "title": "Why Nothing Can Travel Faster Than Light #Shorts",
+    "top_header": "COSMIC SPEED LIMIT",
+    "sub_header": "WHY LIGHT SPEED IS THE LIMIT!",
+    "script": "As an object accelerates toward the speed of light, Albert Einstein equations show that its relativistic mass increases infinitely. To push that object to the actual speed of light would require infinite energy, which is impossible in our universe. Only massless particles like photons of laser light can travel at one hundred and eighty-six thousand miles per second. Subscribe to SciBytes for daily physics breakthroughs!",
+    "start_offset": 5.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "186,000 MILES PER SECOND!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "MASS BECOMES INFINITE!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "REQUIRES INFINITE ENERGY!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "EINSTEIN'S UNIVERSAL LIMIT!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "ONLY PHOTONS CAN REACH IT!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, intense emerald green and ruby laser beam cutting through optic prism in high tech quantum physics lab, light refraction beam dispersion, extreme sharp detail, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20150107_ATLAS_m11726_Transmitter/GSFC_20150107_ATLAS_m11726_Transmitter~orig.mp4",
+    "tags": [
+      "speed of light",
+      "einstein relativity",
+      "photon laser",
+      "physics paradox",
+      "quantum optics",
+      "cosmic speed limit",
+      "physics facts",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "supervolcano_yellowstone_eruption",
+    "type": "EARTH_SCIENCE",
+    "title": "What Happens If a Supervolcano Erupts? #Shorts",
+    "top_header": "PLANETARY DISASTER",
+    "sub_header": "WHEN A SUPERVOLCANO EXPLODES!",
+    "script": "Unlike normal volcanoes, a supervolcano does not form a mountain. It is a gigantic subterranean magma chamber hundreds of miles across. If the Yellowstone supervolcano erupted, it would blast thousands of cubic miles of toxic ash and sulfur dioxide into the stratosphere, blocking sunlight and triggering a decade-long volcanic winter across the globe. Subscribe to SciBytes for daily earth science wonders!",
+    "start_offset": 4.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "SUBTERRANEAN MAGMA CHAMBER!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "HUNDREDS OF MILES ACROSS!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "THOUSANDS OF TONS OF ASH!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "BLOCKS SUNLIGHT GLOBALLY!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "DECADE-LONG VOLCANIC WINTER!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, colossal caldera volcanic eruption plume billowing into upper atmosphere with dramatic orange volcanic lightning, dark ash clouds, USGS satellite extreme detail, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20141113_Volcanoes_m10183_Degassing/GSFC_20141113_Volcanoes_m10183_Degassing~orig.mp4",
+    "tags": [
+      "supervolcano",
+      "yellowstone volcano",
+      "volcanic winter",
+      "earth science",
+      "geology facts",
+      "planetary catastrophe",
+      "volcano eruption",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "ball_lightning_plasma_mystery",
+    "type": "CHEMISTRY_PLASMA",
+    "title": "The Mysterious Plasma Fire Called Ball Lightning #Shorts",
+    "top_header": "BIZARRE NATURAL ANOMALY",
+    "sub_header": "THE ENIGMA OF BALL LIGHTNING!",
+    "script": "Ball lightning is one of the strangest unexplained phenomena in physics and chemistry. Witnesses describe glowing spheres of fiery plasma that float through closed glass windows, hover silently above the ground, and suddenly detonate with a deafening bang. Scientists believe vaporized silicon soil reacting with oxygen creates these glowing fiery plasma balls. Subscribe to SciBytes for more mind-bending science!",
+    "start_offset": 5.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "FIERY GLOWING PLASMA SPHERES!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "FLOATS THROUGH SOLID GLASS!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "HOVERS SILENTLY OVER GROUND!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "VAPORIZED SILICON REACTIONS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "DETONATES WITH A BANG!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, glowing electric blue and orange sphere of ball lightning hovering inside a thunderstorm over a darkened field, intense electrical corona sparks, high contrast 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20100915_Firefly_m10645_Mission/GSFC_20100915_Firefly_m10645_Mission~orig.mp4",
+    "tags": [
+      "ball lightning",
+      "plasma physics",
+      "atmospheric electricity",
+      "chemistry reaction",
+      "natural mystery",
+      "strange science",
+      "physics phenomena",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
   }
 ]
