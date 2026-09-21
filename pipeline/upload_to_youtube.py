@@ -58,12 +58,24 @@ def mark_topic_used(topic_id):
             json.dump(topics, f, indent=2)
 
 def upload_video():
-    if not os.path.exists(METADATA_FILE) or not os.path.exists(VIDEO_FILE):
-        print("ERROR: Video or metadata file not found. Run build_short.py first.")
+    if not os.path.exists(METADATA_FILE):
+        print("ERROR: Metadata file not found. Run build_short.py first.")
         sys.exit(1)
 
     with open(METADATA_FILE, 'r', encoding='utf-8') as f:
         metadata = json.load(f)
+
+    # Use SEO offline keyword video file if present, else fallback
+    seo_video_name = metadata.get('offline_video_name')
+    seo_video_path = os.path.join('output', seo_video_name) if seo_video_name else None
+    if seo_video_path and os.path.exists(seo_video_path):
+        video_to_upload = seo_video_path
+        print(f"Using offline SEO video file: {video_to_upload}")
+    elif os.path.exists(VIDEO_FILE):
+        video_to_upload = VIDEO_FILE
+    else:
+        print("ERROR: No video file found to upload. Run build_short.py first.")
+        sys.exit(1)
 
     load_env_file()
     privacy_status = os.environ.get('YOUTUBE_PRIVACY_STATUS', 'public')
@@ -75,16 +87,20 @@ def upload_video():
             'title': metadata['title'],
             'description': metadata['description'],
             'tags': metadata.get('tags', []),
-            'categoryId': '28'
+            'categoryId': metadata.get('category_id', '28'),
+            'defaultLanguage': metadata.get('default_language', 'en'),
+            'defaultAudioLanguage': metadata.get('default_audio_language', 'en')
         },
         'status': {
             'privacyStatus': privacy_status,
-            'selfDeclaredMadeForKids': False
+            'selfDeclaredMadeForKids': False,
+            'license': metadata.get('license', 'youtube'),
+            'embeddable': True
         }
     }
 
-    print(f"Uploading '{metadata['title']}' to YouTube...")
-    media = MediaFileUpload(VIDEO_FILE, mimetype='video/mp4', resumable=True)
+    print(f"Uploading '{metadata['title']}' to YouTube (SEO Mode: 100% VidIQ Optimized)...")
+    media = MediaFileUpload(video_to_upload, mimetype='video/mp4', resumable=True)
 
     request = youtube.videos().insert(
         part='snippet,status',
@@ -105,11 +121,17 @@ def upload_video():
     print(f"Shorts URL: {video_url}")
     print("=" * 60)
 
-    # Set high-CTR custom thumbnail if available
-    thumbnail_file = 'output/thumbnail.jpg'
+    # Set high-CTR custom thumbnail (use offline SEO thumbnail if available)
+    seo_thumb_name = metadata.get('offline_thumb_name')
+    seo_thumb_path = os.path.join('output', seo_thumb_name) if seo_thumb_name else None
+    if seo_thumb_path and os.path.exists(seo_thumb_path):
+        thumbnail_file = seo_thumb_path
+    else:
+        thumbnail_file = 'output/thumbnail.jpg'
+
     if os.path.exists(thumbnail_file):
         try:
-            print("Setting high-CTR custom thumbnail via YouTube API...")
+            print(f"Setting high-CTR custom thumbnail via YouTube API: {thumbnail_file}...")
             thumb_media = MediaFileUpload(thumbnail_file, mimetype='image/jpeg')
             youtube.thumbnails().set(
                 videoId=video_id,

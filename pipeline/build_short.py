@@ -1,10 +1,17 @@
 import os
+import sys
 import json
+import shutil
 import asyncio
 import subprocess
 import requests
 import urllib.parse
 import edge_tts
+
+try:
+    from pipeline.seo_engine import generate_seo_metadata
+except ImportError:
+    from seo_engine import generate_seo_metadata
 
 DATABASE_FILE = 'pipeline/topics_database.json'
 OUTPUT_DIR = 'output'
@@ -261,6 +268,16 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
     else:
         audio_maps = ['-map', '1:a']
 
+    safe_title = topic.get('title', 'SciBytes Short').replace('"', '').replace("'", "")
+    safe_comment = topic.get('sub_header', 'SciBytes Science Facts').replace('"', '').replace("'", "")
+    container_metadata = [
+        '-metadata', f'title={safe_title}',
+        '-metadata', 'artist=SciBytes',
+        '-metadata', 'album=SciBytes Shorts',
+        '-metadata', 'genre=Science & Technology',
+        '-metadata', f'comment={safe_comment}'
+    ]
+
     ffmpeg_cmd = [
         'ffmpeg', '-y',
         '-ss', str(start_offset),
@@ -270,6 +287,7 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
         '-filter_complex', filter_complex,
         '-map', '[outv]',
         *audio_maps,
+        *container_metadata,
         '-c:v', 'libx264',
         '-preset', 'fast',
         '-crf', '18',
@@ -364,25 +382,45 @@ def main():
         subprocess.run(thumb_cmd, check=True)
         print(f'Thumbnail saved: {thumbnail_path}')
 
+    # Generate 100% SEO-Compliant Metadata (VidIQ & TubeBuddy standards)
+    seo = generate_seo_metadata(topic)
+
+    # Save offline SEO keyword-rich files
+    seo_video_path = os.path.join(OUTPUT_DIR, seo['offline_video_name'])
+    shutil.copy2(output_video, seo_video_path)
+    print(f"Offline SEO Video saved: {seo_video_path}")
+
+    seo_thumb_path = os.path.join(OUTPUT_DIR, seo['offline_thumb_name'])
+    if os.path.exists(thumbnail_path):
+        shutil.copy2(thumbnail_path, seo_thumb_path)
+        print(f"Offline SEO Thumbnail saved: {seo_thumb_path}")
+
     metadata = {
         'id': topic['id'],
-        'title': topic['title'],
+        'title': seo['title'],
+        'description': seo['description'],
+        'tags': seo['tags'],
+        'offline_video_name': seo['offline_video_name'],
+        'offline_thumb_name': seo['offline_thumb_name'],
+        'category_id': seo['category_id'],
+        'default_language': seo['default_language'],
+        'default_audio_language': seo['default_audio_language'],
+        'license': seo['license'],
         'footage_url': topic.get('footage_url', ''),
-        'description': (
-            f"{topic['script']}\n\n"
-            "Subscribe to SciBytes for quick, mind-bending science, space mysteries, and physics facts explained in seconds.\n\n"
-            "Copyright Notice:\n"
-            "This video contains educational content created under the Fair Use doctrine (Section 107 of the US Copyright Act).\n\n"
-            "#SciBytes #Science #Physics #SpaceFacts #Shorts #Astronomy #DidYouKnow"
-        ),
-        'tags': topic['tags'] + ['SciBytes', 'science', 'physics', 'space facts', 'shorts']
+        'seo_audit': {
+            'title_length': seo['title_length'],
+            'description_length': seo['description_length'],
+            'tag_characters': seo['tag_characters'],
+            'tag_count': seo['tag_count'],
+            'vidiq_score_target': '100/100'
+        }
     }
 
     metadata_file = os.path.join(OUTPUT_DIR, 'metadata.json')
     with open(metadata_file, 'w', encoding='utf-8') as f:
         json.dump(metadata, f, indent=2)
 
-    print(f'Metadata saved: {metadata_file}')
+    print(f'SEO Metadata saved: {metadata_file} (Title: {seo["title_length"]} chars | Tags: {seo["tag_characters"]} chars | Desc: {seo["description_length"]} chars)')
     print('Pipeline build complete!')
 
 if __name__ == '__main__':
