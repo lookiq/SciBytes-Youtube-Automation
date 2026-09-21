@@ -683,7 +683,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "mars_ingenuity_helicopter",
