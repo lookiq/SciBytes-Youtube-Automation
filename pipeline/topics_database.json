@@ -621,7 +621,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "supernova_cosmic_blast",
