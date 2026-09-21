@@ -93,7 +93,8 @@ def generate_seo_metadata(topic):
         "science shorts",
         "physics shorts",
         "educational shorts",
-        "daily dose of science",
+        "scibytes science",
+        "scibytes shorts",
         "SciBytes"
     ]
 
