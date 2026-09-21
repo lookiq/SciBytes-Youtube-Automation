@@ -86,8 +86,9 @@ def get_next_topic():
     )
 
 def download_footage(url, dest_path):
-    print(f'Downloading real footage from: {url}')
-    res = requests.get(url, stream=True, timeout=60)
+    norm_url = urllib.parse.quote(urllib.parse.unquote(url), safe=':/?=~')
+    print(f'Downloading real footage from: {norm_url}')
+    res = requests.get(norm_url, stream=True, timeout=60)
     res.raise_for_status()
     with open(dest_path, 'wb') as f:
         for chunk in res.iter_content(chunk_size=1024*1024):
@@ -95,16 +96,83 @@ def download_footage(url, dest_path):
                 f.write(chunk)
     print(f'Footage saved to: {dest_path}')
 
-async def generate_voice(text, dest_path):
-    print('Generating Christopher neural voice...')
+def format_ass_time(seconds):
+    hours = int(seconds // 3600)
+    minutes = int((seconds % 3600) // 60)
+    secs = int(seconds % 60)
+    centis = int((seconds - int(seconds)) * 100)
+    return f"{hours:01d}:{minutes:02d}:{secs:02d}.{centis:02d}"
+
+def create_dynamic_ass_subtitles(sentences, dest_ass_path, words_per_chunk=3):
+    header = """[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,56,&H0000FFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,3,2,40,40,460,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""
+    dialogues = []
+    for s in sentences:
+        start_sec = s['offset'] / 10_000_000
+        dur_sec = s['duration'] / 10_000_000
+        end_sec = start_sec + dur_sec
+        clean_text = s['text'].strip().replace('\\', '').replace('{', '').replace('}', '')
+        words = clean_text.split()
+        if not words:
+            continue
+        total_chars = sum(len(w) for w in words)
+        curr_time = start_sec
+        for i in range(0, len(words), words_per_chunk):
+            chunk = words[i:i+words_per_chunk]
+            chunk_text = ' '.join(chunk).upper()
+            chunk_chars = sum(len(w) for w in chunk)
+            chunk_dur = (chunk_chars / total_chars) * dur_sec
+            c_start = curr_time
+            c_end = min(curr_time + chunk_dur, end_sec)
+            dialogues.append(
+                f"Dialogue: 0,{format_ass_time(c_start)},{format_ass_time(c_end)},Default,,0,0,0,,{chunk_text}"
+            )
+            curr_time = c_end
+
+    with open(dest_ass_path, 'w', encoding='utf-8') as f:
+        f.write(header + "\n".join(dialogues) + "\n")
+
+async def generate_voice(text, dest_audio_path, dest_ass_path=None):
+    print('Generating Christopher neural voice and verbatim timestamps...')
     communicate = edge_tts.Communicate(text, VOICE, rate='+4%')
-    await communicate.save(dest_path)
-    print(f'Voice saved to: {dest_path}')
+    audio_bytes = bytearray()
+    sentences = []
+    async for chunk in communicate.stream():
+        if chunk['type'] == 'audio':
+            audio_bytes.extend(chunk['data'])
+        elif chunk['type'] == 'SentenceBoundary':
+            sentences.append(chunk)
+
+    with open(dest_audio_path, 'wb') as f:
+        f.write(audio_bytes)
+    print(f'Voice saved to: {dest_audio_path}')
+
+    if dest_ass_path and sentences:
+        create_dynamic_ass_subtitles(sentences, dest_ass_path)
+        print(f'Verbatim ASS subtitles saved to: {dest_ass_path}')
 
 def get_media_duration(file_path):
     cmd = f'ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "{file_path}"'
     out = subprocess.check_output(cmd, shell=True, text=True).strip()
     return float(out)
+
+def has_audio_stream(file_path):
+    try:
+        cmd = ['ffprobe', '-v', 'error', '-select_streams', 'a', '-show_entries', 'stream=codec_type', '-of', 'csv=p=0', file_path]
+        res = subprocess.run(cmd, capture_output=True, text=True)
+        return bool(res.stdout.strip())
+    except Exception:
+        return False
 
 def get_bright_start_offset(footage_path, base_offset=0.0):
     import re
@@ -125,7 +193,7 @@ def get_bright_start_offset(footage_path, base_offset=0.0):
             break
     return current
 
-def render_short(topic, footage_path, audio_path, output_path):
+def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
     duration = get_media_duration(audio_path)
     print(f'Voice duration: {duration:.2f}s')
 
@@ -139,32 +207,59 @@ def render_short(topic, footage_path, audio_path, output_path):
     top_header = topic.get('top_header', 'SCIBYTES DAILY').replace("'", "’").replace(':', ' - ').replace(',', '')
     sub_header = topic.get('sub_header', topic['title'].split('#')[0].strip()).replace("'", "’").replace(':', ' - ').replace(',', '')
 
-    subtitle_filters = []
-    for sub in topic.get('subtitles', []):
-        start = sub['start']
-        end = min(sub['end'], duration)
-        if start >= duration:
-            continue
-        text = sub['text'].replace("'", "’").replace(':', ' - ').replace(',', '')
-        color = sub.get('color', '#FFEA00')
-        f_str = (
-            f"drawtext={font_opt}text='{text}':fontcolor={color}:fontsize=54:"
-            f"x=(w-text_w)/2:y=1380:enable='between(t,{start},{end})':"
-            f"borderw=6:bordercolor=black:shadowcolor=black@0.95:shadowx=4:shadowy=4"
+    framing_mode = topic.get('framing_mode', 'fullscreen')
+    print(f'Framing mode: {framing_mode}')
+
+    sub_filter = ""
+    if ass_path and os.path.exists(ass_path):
+        rel_ass = os.path.relpath(ass_path).replace('\\', '/')
+        sub_filter = f",ass={rel_ass}"
+    else:
+        subtitle_filters = []
+        for sub in topic.get('subtitles', []):
+            start = sub['start']
+            end = min(sub['end'], duration)
+            if start >= duration:
+                continue
+            text = sub['text'].replace("'", "’").replace(':', ' - ').replace(',', '')
+            color = sub.get('color', '#FFEA00')
+            f_str = (
+                f"drawtext={font_opt}text='{text}':fontcolor={color}:fontsize=54:"
+                f"x=(w-text_w)/2:y=1380:enable='between(t,{start},{end})':"
+                f"borderw=6:bordercolor=black:shadowcolor=black@0.95:shadowx=4:shadowy=4"
+            )
+            subtitle_filters.append(f_str)
+        if subtitle_filters:
+            sub_filter = ', ' + ', '.join(subtitle_filters)
+
+    if framing_mode == 'smart_canvas':
+        filter_complex = (
+            f"[0:v]trim=duration={duration},setpts=PTS-STARTPTS,split=2[bg_raw][fg_raw];"
+            f"[bg_raw]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=25:5,eq=brightness=-0.25:contrast=1.1[bg];"
+            f"[fg_raw]scale=1080:-2,eq=contrast=1.1:saturation=1.2[fg];"
+            f"[bg][fg]overlay=(W-w)/2:(H-h)/2[basev];"
+            f"[basev]drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+            f"drawtext={font_opt}text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:borderw=5:bordercolor=black:shadowcolor=black@0.9:shadowx=3:shadowy=3,"
+            f"drawtext={font_opt}text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2"
+            f"{sub_filter}[outv]"
         )
-        subtitle_filters.append(f_str)
+    else:
+        filter_complex = (
+            f"[0:v]trim=duration={duration},setpts=PTS-STARTPTS,"
+            f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
+            f"eq=contrast=1.12:saturation=1.22:brightness=0.01,"
+            f"drawtext={font_opt}text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+            f"drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+            f"drawtext={font_opt}text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:borderw=5:bordercolor=black:shadowcolor=black@0.9:shadowx=3:shadowy=3"
+            f"{sub_filter}[outv]"
+        )
 
-    subtitles_cmd_part = ', ' + ', '.join(subtitle_filters) if subtitle_filters else ''
-
-    filter_complex = (
-        f"[0:v]trim=duration={duration},setpts=PTS-STARTPTS,"
-        f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
-        f"eq=contrast=1.12:saturation=1.22:brightness=0.01,"
-        f"drawtext={font_opt}text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
-        f"drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
-        f"drawtext={font_opt}text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:borderw=5:bordercolor=black:shadowcolor=black@0.9:shadowx=3:shadowy=3"
-        f"{subtitles_cmd_part}[outv]"
-    )
+    has_audio = has_audio_stream(footage_path)
+    if has_audio:
+        filter_complex += f";[0:a]volume=0.18[foot_a];[1:a]volume=1.0[voice_a];[voice_a][foot_a]amix=inputs=2:duration=first[outa]"
+        audio_maps = ['-map', '[outa]']
+    else:
+        audio_maps = ['-map', '1:a']
 
     ffmpeg_cmd = [
         'ffmpeg', '-y',
@@ -174,7 +269,7 @@ def render_short(topic, footage_path, audio_path, output_path):
         '-i', audio_path,
         '-filter_complex', filter_complex,
         '-map', '[outv]',
-        '-map', '1:a',
+        *audio_maps,
         '-c:v', 'libx264',
         '-preset', 'fast',
         '-crf', '18',
@@ -184,7 +279,7 @@ def render_short(topic, footage_path, audio_path, output_path):
         output_path
     ]
 
-    print('Rendering borderless vertical Short with FFmpeg...')
+    print(f'Rendering {framing_mode} vertical Short with FFmpeg...')
     subprocess.run(ffmpeg_cmd, check=True)
     print(f'Short rendered successfully: {output_path}')
 
@@ -247,10 +342,11 @@ def main():
         download_footage(topic['footage_url'], footage_path)
 
     audio_path = os.path.join('temp', f"{topic['id']}_voice.mp3")
-    asyncio.run(generate_voice(topic['script'], audio_path))
+    ass_path = os.path.join('temp', f"{topic['id']}_subs.ass")
+    asyncio.run(generate_voice(topic['script'], audio_path, ass_path))
 
     output_video = os.path.join(OUTPUT_DIR, 'scibytes_short_latest.mp4')
-    render_short(topic, footage_path, audio_path, output_video)
+    render_short(topic, footage_path, audio_path, output_video, ass_path)
 
     # Generate photorealistic AI thumbnail with graceful fallback
     thumbnail_path = os.path.join(OUTPUT_DIR, 'thumbnail.jpg')

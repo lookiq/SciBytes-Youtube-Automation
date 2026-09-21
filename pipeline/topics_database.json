@@ -607,7 +607,8 @@
       }
     ],
     "thumb_prompt": "raw authentic photograph, James Webb Space Telescope giant golden hexagonal mirrors gleaming in the dark void of deep space, cosmic nebula reflection, extreme macro sharp details, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20101028_JWST_m10660_Webb%20Deploy_Short/GSFC_20101028_JWST_m10660_Webb%20Deploy_Short~orig.mp4",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20101028_JWST_m10660_Webb Deploy_Short/GSFC_20101028_JWST_m10660_Webb Deploy_Short~orig.mp4",
+    "framing_mode": "fullscreen",
     "tags": [
       "james webb",
       "jwst",
@@ -629,6 +630,7 @@
     "top_header": "SUPERNOVA EXPLOSION",
     "sub_header": "WHAT HAPPENS WHEN A STAR DIES?",
     "script": "When a massive star runs out of nuclear fuel, its core collapses in a fraction of a second at twenty-three percent the speed of light. The resulting rebound shockwave unleashes a supernova explosion so violent it outshines entire galaxies containing hundreds of billions of stars. In that single blast, heavy elements like gold, platinum, and uranium are forged and scattered across the cosmos. Subscribe to SciBytes for daily mind-bending physics!",
+    "framing_mode": "fullscreen",
     "start_offset": 3.0,
     "subtitles": [
       {
@@ -678,6 +680,54 @@
       "astronomy facts",
       "gold created in space",
       "physics facts",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "mars_ingenuity_helicopter",
+    "type": "SPACE_EXPLORATION",
+    "title": "How NASA Flew a Helicopter on Another Planet #Shorts",
+    "top_header": "MARS FIRST FLIGHT",
+    "sub_header": "HOW INGENUITY CONQUERED MARS",
+    "script": "Flying on Mars is nearly impossible because Mars atmosphere is less than one percent as dense as Earth. To generate lift in such thin air, NASA Ingenuity helicopter spun its carbon-fiber blades at an astonishing twenty-four hundred RPM, five times faster than an Earth helicopter. Designed for just five test flights, it completed seventy-two historic aerial missions across Jezero Crater. Subscribe to SciBytes for more mind-bending physics!",
+    "framing_mode": "smart_canvas",
+    "start_offset": 5.0,
+    "thumb_prompt": "raw authentic photograph, NASA Ingenuity helicopter hovering over rugged red Martian desert, Jezero crater dunes in background, high contrast sunlight, Hasselblad 85mm lens, photorealistic 8k, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/JPL-20230406-TECHf-0001-Ingenuity Flight Update Media Reel 1080/JPL-20230406-TECHf-0001-Ingenuity Flight Update Media Reel 1080~medium.mp4",
+    "tags": [
+      "mars helicopter",
+      "ingenuity",
+      "nasa mars",
+      "perseverance rover",
+      "flight on mars",
+      "space engineering",
+      "aerospace",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "mars_sample_return",
+    "type": "SPACE_EXPLORATION",
+    "title": "How NASA Will Launch a Rocket From Mars #Shorts",
+    "top_header": "MARS ROCKET LAUNCH",
+    "sub_header": "FIRST LAUNCH FROM ANOTHER PLANET",
+    "script": "Humanity has landed rovers on Mars, but we have never launched a rocket off the Martian surface back into space. NASA and ESA are developing the Mars Ascent Vehicle, a two-stage solid rocket that will blast off from Jezero Crater carrying rock samples gathered by the Perseverance rover. It will be the first rocket launch from another planet in human history. Subscribe to SciBytes for daily space science!",
+    "framing_mode": "smart_canvas",
+    "start_offset": 6.0,
+    "thumb_prompt": "raw authentic photograph, Mars Ascent Vehicle rocket blasting off from a robotic lander on the red Martian surface, plume of orange flame kicking up red dust, Jezero Crater horizon, 8k photorealistic, Hasselblad lens, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/Mars Sample Return Media Reel/Mars Sample Return Media Reel~large.mp4",
+    "tags": [
+      "mars sample return",
+      "mars ascent vehicle",
+      "rocket launch from mars",
+      "perseverance rover",
+      "nasa jpl",
+      "space mission",
+      "aerospace engineering",
       "SciBytes",
       "shorts"
     ],
