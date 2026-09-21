@@ -2,12 +2,14 @@ name: Daily SciBytes Shorts Generator & Uploader
 
 on:
   schedule:
-    # Slot 1: USA Morning Peak (7:15 AM EST / 11:15 UTC / 5:15 PM Bangladesh BST)
+    # Slot 1: USA Lunch Break (12:15 PM EST / 16:15 UTC / 10:15 PM Bangladesh BST)
+    - cron: '15 16 * * *'
+    # Slot 2: USA Evening Peak (7:15 PM EST / 23:15 UTC / 5:15 AM Bangladesh BST)
+    - cron: '15 23 * * *'
+    # Slot 3: USA Morning Commute (7:15 AM EST / 11:15 UTC / 5:15 PM Bangladesh BST)
     - cron: '15 11 * * *'
-    # Slot 2: USA Midday / Lunch Peak (11:45 AM EST / 15:45 UTC / 9:45 PM Bangladesh BST)
-    - cron: '45 15 * * *'
-    # Slot 3: USA Evening Prime Time (5:15 PM EST / 21:15 UTC / 3:15 AM Bangladesh BST)
-    - cron: '15 21 * * *'
+    # Slot 4: USA Bedtime Scrolling (10:45 PM EST / 02:45 UTC / 8:45 AM Bangladesh BST)
+    - cron: '45 2 * * *'
   workflow_dispatch: # Allows manual 1-click execution anytime from GitHub web UI
 
 jobs:

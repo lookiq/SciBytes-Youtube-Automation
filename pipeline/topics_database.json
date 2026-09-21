@@ -732,5 +732,749 @@
       "shorts"
     ],
     "used": false
+  },
+  {
+    "id": "saturn_rings_vanishing",
+    "type": "ASTRONOMY",
+    "title": "Why Saturn's Rings Are Disappearing Fast #Shorts",
+    "top_header": "SATURN'S COSMIC SECRET",
+    "sub_header": "WHY SATURN IS LOSING ITS RINGS!",
+    "script": "Saturn is losing its iconic rings at a terrifying rate. NASA Cassini spacecraft revealed a cosmic downpour known as ring rain, where intense ultraviolet radiation and Saturn magnetic field pull billions of tons of water and ice straight into the atmosphere every day. In just three hundred million years, Saturn rings will completely vanish. Subscribe to SciBytes for more mind-bending science!",
+    "start_offset": 5.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "SATURN'S RINGS ARE VANISHING!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "BILLIONS OF TONS OF RING RAIN!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "PULLED BY GRAVITY & MAGNETISM!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "ICE POURING INTO ATMOSPHERE!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "GONE IN 300 MILLION YEARS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, Saturn glowing golden rings dissolving into atmospheric haze, giant gas planet curvature from space, NASA Cassini spacecraft high resolution telescopic photography, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20181217_Saturn_m12672_Rings/GSFC_20181217_Saturn_m12672_Rings~orig.mp4",
+    "tags": [
+      "saturn rings",
+      "saturn facts",
+      "ring rain",
+      "cassini nasa",
+      "space mystery",
+      "astronomy facts",
+      "physics",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "solar_flare_power",
+    "type": "SOLAR_PHYSICS",
+    "title": "How Powerful Is an X-Class Solar Flare? #Shorts",
+    "top_header": "SOLAR SUPERSTORM",
+    "sub_header": "THE POWER OF AN X-CLASS FLARE!",
+    "script": "A single X-class solar flare releases the equivalent energy of one billion hydrogen bombs exploding simultaneously. When tangled magnetic field lines on the Sun snap and reconnect, billions of tons of superheated plasma are catapulted into space at millions of miles per hour. If a direct superflare struck Earth today, it could permanently wipe out global power grids. Subscribe to SciBytes for daily solar science!",
+    "start_offset": 8.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.2,
+        "text": "1 BILLION HYDROGEN BOMBS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 3.2,
+        "end": 6.8,
+        "text": "SUPERHEATED PLASMA CATAPULT!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "MAGNETIC FIELDS SNAP IN SPACE!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "MILLIONS OF MILES PER HOUR!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "COULD WIPE OUT GLOBAL GRIDS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, massive solar flare prominence erupting from surface of the sun, blinding magnetic plasma loops, NASA Solar Dynamics Observatory 4k extreme closeup, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20160426_SDO_m12224_SolarFlare_4K/GSFC_20160426_SDO_m12224_SolarFlare_4K~orig.mp4",
+    "tags": [
+      "solar flare",
+      "x class flare",
+      "sun explosion",
+      "solar storm",
+      "coronal mass ejection",
+      "nasa sdo",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "europa_alien_ocean",
+    "type": "SPACE_EXPLORATION",
+    "title": "Why NASA Is Hunting for Life on Europa #Shorts",
+    "top_header": "ALIEN OCEAN MOON",
+    "sub_header": "CAN LIFE SURVIVE ON EUROPA?",
+    "script": "Beneath Europa frozen ice shell lies an ocean containing more liquid water than all of Earth oceans combined. Heated by Jupiter immense tidal gravitational flexing, hydrothermal vents on Europa seafloor may provide the exact chemical ingredients and energy needed for alien life to thrive in perpetual darkness. NASA Europa Clipper is traveling there right now. Subscribe to SciBytes for daily cosmic science!",
+    "start_offset": 12.0,
+    "framing_mode": "smart_canvas",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "OCEAN DEEPER THAN EARTH'S!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 3.0,
+        "end": 6.5,
+        "text": "HEATED BY JUPITER'S TIDAL FORCES!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.5,
+        "end": 10.0,
+        "text": "HYDROTHERMAL VENTS ON SEABED!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.0,
+        "end": 14.0,
+        "text": "PERFECT CONDITIONS FOR LIFE!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 14.0,
+        "end": 18.0,
+        "text": "EUROPA CLIPPER EN ROUTE!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 18.0,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, Jupiter's icy moon Europa with cracked red and blue fissures, massive Jupiter rising in the black background, NASA Galileo spacecraft high resolution photography, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/Europa Clipper - NASAs Mission to Jupiter's Ocean Moon - Mission Trailer/Europa Clipper - NASAs Mission to Jupiter's Ocean Moon - Mission Trailer~orig.mp4",
+    "tags": [
+      "europa clipper",
+      "alien life",
+      "jupiter moon europa",
+      "underwater ocean",
+      "nasa mission",
+      "space exploration",
+      "astrobiology",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "cannonball_pulsar_speed",
+    "type": "ASTROPHYSICS",
+    "title": "The Dead Star That Spins 700 Times a Second #Shorts",
+    "top_header": "DEADLIEST COSMIC LIGHTHOUSE",
+    "sub_header": "SPINNING 700 TIMES A SECOND!",
+    "script": "A millisecond pulsar is a dead stellar core that can spin over seven hundred times every single second. Its equator travels at nearly twenty-five percent the speed of light. These extreme objects generate magnetic fields trillions of times stronger than Earth, blasting deadly beams of gamma radiation across the cosmos like a hyperactive cosmic lighthouse. Subscribe to SciBytes for more mind-bending physics!",
+    "start_offset": 6.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "700 ROTATIONS A SECOND!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "EQUATOR AT 25% LIGHT SPEED!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "TRILLIONS OF TIMES EARTH GRAVITY!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "DEADLY GAMMA RAY BEAMS!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "THE DEADLIEST LIGHTHOUSE!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, rapidly spinning millisecond pulsar with blinding twin beams of violet and blue radiation sweeping through space, relativistic jet, NASA Fermi telescope visualization, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20190319_Fermi_m13156_Pulsar/GSFC_20190319_Fermi_m13156_Pulsar~orig.mp4",
+    "tags": [
+      "pulsar",
+      "neutron star",
+      "fastest spinning star",
+      "fermi telescope",
+      "gamma rays",
+      "astronomy facts",
+      "physics mystery",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "parker_touching_the_sun",
+    "type": "SPACE_EXPLORATION",
+    "title": "How NASA Touched the Surface of the Sun #Shorts",
+    "top_header": "HISTORIC NASA BREAKTHROUGH",
+    "sub_header": "HOW A SPACECRAFT TOUCHED THE SUN!",
+    "script": "Traveling at four hundred and thirty thousand miles per hour, NASA Parker Solar Probe is the fastest human-made object in history. To survive diving directly into the Sun corona, its eight-foot carbon-composite heat shield endures temperatures above two thousand five hundred degrees Fahrenheit, while keeping instruments inside at room temperature. Subscribe to SciBytes for daily aerospace engineering wonders!",
+    "start_offset": 7.0,
+    "framing_mode": "smart_canvas",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "430,000 MILES PER HOUR!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "DIVING INTO SOLAR CORONA!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "ENDURES 2,500 DEGREES HEAT!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "REVOLUTIONARY HEAT SHIELD!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "FASTEST SPACECRAFT IN HISTORY!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, NASA Parker Solar Probe with glowing carbon heat shield grazing blistering golden solar corona, solar flares erupting in background, high contrast extreme detail, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20180720_Parker_m12911_trailer.en_US/GSFC_20180720_Parker_m12911_trailer.en_US~orig.mp4",
+    "tags": [
+      "parker solar probe",
+      "touch the sun",
+      "fastest spacecraft",
+      "nasa probe",
+      "solar corona",
+      "space exploration",
+      "engineering",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "earth_lights_at_night",
+    "type": "PLANETARY_SCIENCE",
+    "title": "What Earth Looks Like at Midnight From Space #Shorts",
+    "top_header": "BREATHTAKING ORBIT VIEW",
+    "sub_header": "WHAT EARTH LOOKS LIKE AT NIGHT!",
+    "script": "When viewed from the black void of orbit, Earth night side reveals the true footprint of human civilization. Brilliant spiderwebs of golden city lights trace our coastlines and rivers, while thunderous lightning storms flash silently inside hurricane clouds below. It is a stunning visual reminder that our planet is alive with energy. Subscribe to SciBytes for more breathtaking space wonders!",
+    "start_offset": 4.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "MIDNIGHT OVER PLANET EARTH!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "GOLDEN WEBS OF HUMAN CITIES!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "COASTLINES GLOWING IN SPACE!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "SILENT LIGHTNING IN CLOUDS!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "OUR LIVING GLOWING PLANET!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, high resolution satellite view of planet Earth at night with glowing city lights across continents and dark blue ocean horizons, atmospheric glow, NASA satellite imagery, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20170412_Lights_m12573_EarthAtNight/GSFC_20170412_Lights_m12573_EarthAtNight~orig.mp4",
+    "tags": [
+      "earth at night",
+      "city lights from space",
+      "iss view",
+      "planet earth",
+      "nasa imagery",
+      "space photography",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "artemis_orion_moon_flyby",
+    "type": "ROCKETRY",
+    "title": "NASA's Closest View of the Far Side of Moon #Shorts",
+    "top_header": "HISTORIC LUNAR MISSION",
+    "sub_header": "CLOSING IN ON THE MOON'S FAR SIDE!",
+    "script": "During the Artemis One mission, NASA Orion spacecraft flew just eighty miles above the cratered surface of the Moon. From this vantage point, astronauts will soon witness Earthrise: our entire blue world appearing as a tiny marble rising behind ancient lunar mountain ranges. Humanity is officially returning to the Moon to stay. Subscribe to SciBytes for daily lunar breakthroughs!",
+    "start_offset": 5.0,
+    "framing_mode": "smart_canvas",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "80 MILES ABOVE THE MOON!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "ANCIENT CRATERS IN SHADOW!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "BREATHTAKING EARTHRISE MOMENT!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "EARTH AS A TINY BLUE MARBLE!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "RETURNING TO THE MOON TO STAY!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, NASA Orion spacecraft solar arrays with lunar surface craters below and Earth hanging in black space beyond, extreme sharp details, NASA Artemis mission photography, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/Artemis I FD15 Orion Moon/Artemis I FD15 Orion Moon~orig.mp4",
+    "tags": [
+      "artemis 1",
+      "orion spacecraft",
+      "moon flyby",
+      "earthrise",
+      "nasa moon mission",
+      "lunar exploration",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "magnetic_reconnection_blasts",
+    "type": "ASTROPHYSICS",
+    "title": "The Invisible Cosmic Explosions in Earth's Orbit #Shorts",
+    "top_header": "INVISIBLE COSMIC BLAST",
+    "sub_header": "EXPLOSIVE MAGNETIC RECONNECTION!",
+    "script": "High above our atmosphere, invisible cosmic explosions are detonating right now. Known as magnetic reconnection, magnetic field lines from the Sun collide with Earth magnetic shield, violently breaking and snapping together like rubber bands. This explosive reaction accelerates electrons to near the speed of light, igniting brilliant polar auroras. Subscribe to SciBytes for daily space physics!",
+    "start_offset": 6.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "INVISIBLE EXPLOSIONS IN ORBIT!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "MAGNETIC FIELDS SNAP LIKE RUBBER!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "ELECTRONS HURLED AT LIGHT SPEED!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "DEFENDS EARTH FROM SOLAR WINDS!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "IGNITES GLOWING POLAR AURORAS!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, Earth magnetosphere deflecting energetic solar wind particles with vibrant magnetic force field lines glowing electric blue and cyan, NASA MMS spacecraft mission visualization, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20180509_MMS_m12901_Turbulent/GSFC_20180509_MMS_m12901_Turbulent~orig.mp4",
+    "tags": [
+      "magnetic reconnection",
+      "earth magnetosphere",
+      "solar wind",
+      "aurora borealis",
+      "plasma physics",
+      "nasa mms",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "supermassive_black_hole_growth",
+    "type": "ASTROPHYSICS",
+    "title": "How Supermassive Black Holes Eat Entire Stars #Shorts",
+    "top_header": "MONSTERS OF THE COSMOS",
+    "sub_header": "HOW BLACK HOLES DEVOUR STARS!",
+    "script": "At the center of almost every massive galaxy lurks a supermassive black hole weighing millions or billions of times our Sun. When an unfortunate star wanders too close, extreme gravitational tidal forces rip it apart into a stream of superheated gas in a violent event known as a tidal disruption flare. Subscribe to SciBytes for more mind-bending physics!",
+    "start_offset": 8.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "BILLIONS OF TIMES OUR SUN!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "LURKING AT GALAXY CENTERS!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "STARS RIPPED TO SHREDS!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "TIDAL DISRUPTION EXPLOSIONS!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "FEASTING ON COSMIC PLASMA!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, supermassive black hole tearing apart a glowing blue giant star, accretion disk spiraling with superheated orange and crimson plasma, gravitational lensing, 8k, photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/301_BlackHoles/301_BlackHoles~orig.mp4",
+    "tags": [
+      "supermassive black hole",
+      "tidal disruption event",
+      "black hole eats star",
+      "astronomy facts",
+      "galaxy center",
+      "physics",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "jwst_deep_field_galaxies",
+    "type": "ASTRONOMY",
+    "title": "NASA's Deepest Image of the Universe Ever #Shorts",
+    "top_header": "OLDEST LIGHT IN TIME",
+    "sub_header": "WEBB'S DEEPEST IMAGE OF SPACE!",
+    "script": "Covering a patch of sky no larger than a grain of sand held at arm length, James Webb First Deep Field revealed thousands of ancient galaxies shining across thirteen billion light years of space. Gravitational lensing by massive foreground clusters bends and magnifies the light of the first galaxies born right after the cosmic dawn. Subscribe to SciBytes for daily astronomy wonders!",
+    "start_offset": 6.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "TINY AS A GRAIN OF SAND!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "THOUSANDS OF ANCIENT GALAXIES!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "13 BILLION YEARS IN THE PAST!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "GRAVITATIONAL LENSING EFFECT!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "THE DAWN OF THE UNIVERSE!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, James Webb Space Telescope First Deep Field showing glittering field of swirling cosmic spiral galaxies and gravitational lens arcs on obsidian void, extreme infrared sharpness, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/First Images from the James Webb Space Telescope (Official NASA Highlights)/First Images from the James Webb Space Telescope (Official NASA Highlights)~orig.mp4",
+    "tags": [
+      "jwst deep field",
+      "james webb",
+      "first galaxies",
+      "oldest light",
+      "big bang",
+      "cosmic dawn",
+      "nasa jwst",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "voyager_interstellar_journey",
+    "type": "SPACE_EXPLORATION",
+    "title": "The Farthest Object Ever Built by Humans #Shorts",
+    "top_header": "VOYAGER INTERSTELLAR",
+    "sub_header": "THE FARTHEST SPACECRAFT EVER!",
+    "script": "Launched in 1977, NASA Voyager 1 has traveled over fifteen billion miles into deep space, making it the most distant human-made object in history. Powered by decaying plutonium, it crossed the heliopause into interstellar space, carrying a golden phonograph record with sounds and images of Earth into eternity. Subscribe to SciBytes for more mind-blowing space exploration!",
+    "start_offset": 4.0,
+    "framing_mode": "smart_canvas",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "15 BILLION MILES FROM EARTH!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "FARTHEST OBJECT IN HISTORY!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "POWERED BY PLUTONIUM ENGINES!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "CRUISING INTERSTELLAR VOID!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "OUR MESSAGE TO THE ALIEN STARS!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, NASA Voyager 1 spacecraft with high-gain antenna floating in obsidian interstellar space outside the solar system, faint distant pinpoint Sun in background, extreme detail, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/JPL-20240425-VOYAGEf-0001-Voyager 1 Team Reacts to Receiving Engineering Data From Spacecraft/JPL-20240425-VOYAGEf-0001-Voyager 1 Team Reacts to Receiving Engineering Data From Spacecraft~orig.mp4",
+    "tags": [
+      "voyager 1",
+      "interstellar space",
+      "golden record",
+      "farthest spacecraft",
+      "deep space",
+      "nasa voyager",
+      "space exploration",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "moon_ice_craters_artemis",
+    "type": "LUNAR_SCIENCE",
+    "title": "Why NASA Is Landing on the Moon's South Pole #Shorts",
+    "top_header": "LUNAR SOUTH POLE",
+    "sub_header": "THE SECRET WATER ON THE MOON!",
+    "script": "At the Moon south pole, craters plunge into perpetual shadow that have not seen sunlight for two billion years. Frozen inside these craters are hundreds of millions of tons of water ice. NASA Artemis astronauts will mine this ice to drink and split into hydrogen and oxygen to fuel rockets bound for Mars. Subscribe to SciBytes for daily lunar science!",
+    "start_offset": 5.0,
+    "framing_mode": "fullscreen",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 3.0,
+        "text": "DARK FOR 2 BILLION YEARS!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 3.0,
+        "end": 6.8,
+        "text": "MILLIONS OF TONS OF PURE ICE!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 6.8,
+        "end": 10.5,
+        "text": "LUNAR SOUTH POLE SECRET!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 10.5,
+        "end": 14.5,
+        "text": "WATER TO FUEL MARS ROCKETS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 14.5,
+        "end": 18.5,
+        "text": "ARTEMIS LUNAR BASE CAMP!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 18.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, dramatic jagged rim of Shackleton crater at Moon South pole with gleaming ice deposits in pitch black shadows, Earth glowing faintly on horizon, NASA LRO imagery, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20110617_LRO_m10794_Temp/GSFC_20110617_LRO_m10794_Temp~orig.mp4",
+    "tags": [
+      "moon water ice",
+      "moon south pole",
+      "artemis base camp",
+      "lunar exploration",
+      "nasa moon",
+      "shackleton crater",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
   }
 ]
