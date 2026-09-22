@@ -1,0 +1,67 @@
+name: Emergency Breaking Space Short Generator & Uploader
+
+on:
+  workflow_dispatch:
+    inputs:
+      headline:
+        description: 'Breaking Space Headline (Short, Punchy)'
+        required: true
+        default: 'SpaceX Starship Lands Successfully on Earth'
+      summary:
+        description: '2-3 sentence breaking news summary (used for voiceover & subtitles)'
+        required: true
+        default: 'SpaceX has just completed a historic flight test. The giant rocket successfully returned through the atmosphere and was caught by the mechanical tower arms in Texas. Subscribe to SciBytes for live breaking space news!'
+      footage_url:
+        description: 'NASA or Rocket Launch MP4 Footage URL'
+        required: false
+        default: 'https://images-assets.nasa.gov/video/KSC-20220427-VP-MWC01-0001-SpaceX_Crew_4_highlights-3301760/KSC-20220427-VP-MWC01-0001-SpaceX_Crew_4_highlights-3301760~orig.mp4'
+
+jobs:
+  breaking-upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install System Dependencies (FFmpeg & Fonts)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+
+      - name: Install Python Requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build Breaking Space Short
+        run: |
+          python pipeline/build_breaking_short.py \
+            --headline "${{ inputs.headline }}" \
+            --summary "${{ inputs.summary }}" \
+            --footage_url "${{ inputs.footage_url }}"
+
+      - name: Upload Breaking Short to YouTube Studio
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          YOUTUBE_PRIVACY_STATUS: 'public'
+        run: |
+          python pipeline/upload_to_youtube.py
+
+      - name: Commit Breaking Upload Log
+        run: |
+          git config --global user.name "SciBytes Breaking Bot"
+          git config --global user.email "bot@scibytes.internal"
+          git add upload_history.log || true
+          git commit -m "Auto-upload: [BREAKING] ${{ inputs.headline }} [skip ci]" || echo "No changes to commit"
+          git push

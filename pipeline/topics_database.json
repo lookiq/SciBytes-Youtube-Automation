@@ -2281,5 +2281,131 @@
       "shorts"
     ],
     "used": false
+  },
+  {
+    "id": "harvest_moon_neptune_opposition",
+    "type": "ASTRONOMY",
+    "priority": "EVENT_ALERT",
+    "title": "Rare Celestial Double: Harvest Moon & Neptune Tonight #Shorts",
+    "top_header": "RARE CELESTIAL EVENT",
+    "sub_header": "HARVEST MOON & NEPTUNE TONIGHT!",
+    "script": "Tonight, skywatchers will witness a rare celestial alignment. As the brilliant Harvest Moon lights up the autumn sky, the ice giant planet Neptune reaches opposition, making its closest approach to Earth of the entire year. Through binoculars, you can spot the faint blue dot of Neptune shining just beneath the glowing lunar horizon. Subscribe to SciBytes for daily celestial alerts!",
+    "framing_mode": "fullscreen",
+    "start_offset": 4.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "RARE CELESTIAL ALIGNMENT!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 2.8,
+        "end": 6.0,
+        "text": "HARVEST MOON RISES TONIGHT!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.0,
+        "end": 9.5,
+        "text": "NEPTUNE CLOSEST TO EARTH!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.5,
+        "end": 13.5,
+        "text": "FAINT BLUE ICE GIANT VISIBLE!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "LOOK AT THE SKY TONIGHT!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, giant brilliant golden Harvest Moon rising on horizon with deep dark blue night sky, faint blue pinpoint of planet Neptune glowing beside lunar halo, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "https://images-assets.nasa.gov/video/302_EyeOnNeptune/302_EyeOnNeptune~orig.mp4",
+    "tags": [
+      "harvest moon",
+      "neptune opposition",
+      "astronomy news",
+      "skywatching",
+      "stargazing",
+      "celestial event",
+      "space news",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "spacex_starship_flight_14",
+    "type": "ROCKETRY",
+    "priority": "EVENT_ALERT",
+    "title": "SpaceX Mega Rocket Launch in 48 Hours #Shorts",
+    "top_header": "HISTORIC ROCKET LAUNCH",
+    "sub_header": "SPACEX STARSHIP IMMINENT!",
+    "script": "In forty-eight hours, SpaceX is preparing to launch the most powerful rocket in human history from Starbase Texas. Standing nearly four hundred feet tall, the Super Heavy booster generates over sixteen million pounds of thrust: more than double the Apollo Saturn Five. Engineers will attempt another historic mid-air catch with the giant launch tower arms. Subscribe to SciBytes for live breaking space news!",
+    "framing_mode": "smart_canvas",
+    "start_offset": 8.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "MEGAROCKET LAUNCH IN 48 HOURS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 2.8,
+        "end": 6.0,
+        "text": "SPACEX STARSHIP FLIGHT IMMINENT!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.0,
+        "end": 9.5,
+        "text": "16 MILLION LBS OF THRUST!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.5,
+        "end": 13.5,
+        "text": "DOUBLE THE APOLLO SATURN V!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "HISTORIC TOWER CATCH ATTEMPT!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, massive SpaceX Starship Super Heavy rocket ascending on blinding column of orange flame and vapor from coastal launchpad, extreme detail, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "https://images-assets.nasa.gov/video/KSC-20220427-VP-MWC01-0001-SpaceX_Crew_4_highlights-3301760/KSC-20220427-VP-MWC01-0001-SpaceX_Crew_4_highlights-3301760~orig.mp4",
+    "tags": [
+      "spacex",
+      "starship",
+      "super heavy",
+      "rocket launch",
+      "elon musk",
+      "space exploration",
+      "aerospace",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
   }
 ]

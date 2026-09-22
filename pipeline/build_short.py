@@ -64,6 +64,20 @@ def get_next_topic():
         if topic.get('used', False):
             used_footage_urls.add(topic.get('footage_url'))
 
+    # Pass 1: Check for high-priority event alerts (e.g. EVENT_ALERT, BREAKING, HIGH)
+    for topic in topics:
+        if not topic.get('used', False) and topic.get('priority') in ['EVENT_ALERT', 'BREAKING', 'HIGH']:
+            t_title = topic.get('title', '').strip().lower()
+            f_url = topic.get('footage_url')
+            if f_url in used_footage_urls:
+                continue
+            if t_title in uploaded_titles:
+                topic['used'] = True
+                continue
+            print(f"[PRIORITY EVENT ALERT DETECTED] Next topic: {topic.get('title')}")
+            return topic
+
+    # Pass 2: Regular sequential scan
     for topic in topics:
         t_title = topic.get('title', '').strip().lower()
         f_url = topic.get('footage_url')
