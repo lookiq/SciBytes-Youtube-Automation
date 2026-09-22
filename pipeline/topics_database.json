@@ -717,7 +717,7 @@
     "sub_header": "FIRST LAUNCH FROM ANOTHER PLANET",
     "script": "Humanity has landed rovers on Mars, but we have never launched a rocket off the Martian surface back into space. NASA and ESA are developing the Mars Ascent Vehicle, a two-stage solid rocket that will blast off from Jezero Crater carrying rock samples gathered by the Perseverance rover. It will be the first rocket launch from another planet in human history. Subscribe to SciBytes for daily space science!",
     "framing_mode": "smart_canvas",
-    "start_offset": 6.0,
+    "start_offset": 268.0,
     "thumb_prompt": "raw authentic photograph, Mars Ascent Vehicle rocket blasting off from a robotic lander on the red Martian surface, plume of orange flame kicking up red dust, Jezero Crater horizon, 8k photorealistic, Hasselblad lens, zero cgi, zero cartoon",
     "footage_url": "http://images-assets.nasa.gov/video/Mars Sample Return Media Reel/Mars Sample Return Media Reel~large.mp4",
     "tags": [
@@ -2354,7 +2354,7 @@
     "sub_header": "SPACEX STARSHIP IMMINENT!",
     "script": "In forty-eight hours, SpaceX is preparing to launch the most powerful rocket in human history from Starbase Texas. Standing nearly four hundred feet tall, the Super Heavy booster generates over sixteen million pounds of thrust: more than double the Apollo Saturn Five. Engineers will attempt another historic mid-air catch with the giant launch tower arms. Subscribe to SciBytes for live breaking space news!",
     "framing_mode": "smart_canvas",
-    "start_offset": 8.0,
+    "start_offset": 58.0,
     "subtitles": [
       {
         "start": 0.0,
