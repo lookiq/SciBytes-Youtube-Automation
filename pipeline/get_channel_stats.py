@@ -27,19 +27,6 @@ def get_stats():
 
     youtube = build('youtube', 'v3', credentials=credentials)
 
-    # 1. Channel overall stats
-    ch_resp = youtube.channels().list(part='snippet,statistics', mine=True).execute()
-    if ch_resp.get('items'):
-        ch = ch_resp['items'][0]
-        print("=" * 60)
-        print("CHANNEL OVERVIEW:")
-        print(f"Title: {ch['snippet']['title']}")
-        print(f"Custom URL: {ch['snippet'].get('customUrl', 'N/A')}")
-        print(f"Subscribers: {ch['statistics'].get('subscriberCount', 'Hidden/0')}")
-        print(f"Total Channel Views: {ch['statistics'].get('viewCount', '0')}")
-        print(f"Total Videos: {ch['statistics'].get('videoCount', '0')}")
-        print("=" * 60)
-
     # 2. Extract video IDs from upload_history.log
     video_ids = []
     if os.path.exists('upload_history.log'):
