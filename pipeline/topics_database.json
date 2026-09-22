@@ -1786,5 +1786,500 @@
       "shorts"
     ],
     "used": false
+  },
+  {
+    "id": "black_hole_spiral_collision",
+    "type": "ASTROPHYSICS",
+    "title": "When Two Supermassive Black Holes Collide #Shorts",
+    "top_header": "TITANIC COSMIC COLLISION",
+    "sub_header": "SUPERMASSIVE BLACK HOLES MERGE!",
+    "script": "When two supermassive black holes orbit each other at nearly the speed of light, their gargantuan gravity warps the very fabric of space and time. As they spiral toward collision, they unleash violent gravitational waves that ripple across the entire universe, releasing more energy in one millisecond than all the stars in the cosmos combined. Subscribe to SciBytes for more mind-bending physics!",
+    "framing_mode": "fullscreen",
+    "start_offset": 8.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "TWO BLACK HOLES COLLIDING!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 2.8,
+        "end": 6.2,
+        "text": "WARPING FABRIC OF SPACETIME!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.2,
+        "end": 9.8,
+        "text": "ORBITING AT SPEED OF LIGHT!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.8,
+        "end": 13.5,
+        "text": "TITANIC GRAVITATIONAL WAVES!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "MORE POWER THAN ENTIRE COSMOS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, two supermassive black holes spiraling in collision with glowing accretion disks bending space and light, gravitational lensing, NASA Chandra visualization, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "https://images-assets.nasa.gov/video/GSFC_20181002_SMBH_m13043_Simulation/GSFC_20181002_SMBH_m13043_Simulation~orig.mp4",
+    "tags": [
+      "black hole collision",
+      "gravitational waves",
+      "supermassive black hole",
+      "general relativity",
+      "einstein",
+      "astrophysics",
+      "universe",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "jupiter_great_red_spot_storm",
+    "type": "PLANETARY_SCIENCE",
+    "title": "The 400-Year-Old Monster Storm on Jupiter #Shorts",
+    "top_header": "MONSTER JUPITER STORM",
+    "sub_header": "THE 400-YEAR GREAT RED SPOT!",
+    "script": "Jupiter Great Red Spot is a colossal swirling hurricane so massive it could swallow our entire Earth whole. Raging for over four hundred years with supersonic winds exceeding four hundred miles per hour, this atmospheric monster plunges two hundred miles deep into Jupiter crushing ammonia clouds. Subscribe to SciBytes for daily planetary wonders!",
+    "framing_mode": "fullscreen",
+    "start_offset": 5.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "400-YEAR MONSTER HURRICANE!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 2.8,
+        "end": 6.0,
+        "text": "COULD SWALLOW ENTIRE EARTH!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.0,
+        "end": 9.5,
+        "text": "400 MPH SUPERSONIC WINDS!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.5,
+        "end": 13.5,
+        "text": "PLUNGING 200 MILES DEEP!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "CRUSHING AMMONIA CLOUDS!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, extreme high resolution telescopic photo of Jupiter Great Red Spot swirling violently with orange and crimson storm clouds, NASA Juno spacecraft, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "https://images-assets.nasa.gov/video/GSFC_20180313_Jupiter_m12878_GreatRedSpot/GSFC_20180313_Jupiter_m12878_GreatRedSpot~orig.mp4",
+    "tags": [
+      "jupiter great red spot",
+      "jupiter storm",
+      "gas giant",
+      "juno spacecraft",
+      "planetary science",
+      "astronomy",
+      "solar system",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "firework_solar_flare_eruption",
+    "type": "SOLAR_PHYSICS",
+    "title": "The Terrifying Firework Flare on the Sun #Shorts",
+    "top_header": "SOLAR FIREWORK EXPLOSION",
+    "sub_header": "MILLIONS OF TONS OF PLASMA BLAST!",
+    "script": "Captured in extreme ultraviolet light by NASA Solar Dynamics Observatory, this rare firework flare erupted with the power of billions of megatons of TNT. Tangled magnetic fields snapped over the solar corona, launching colossal loops of incandescent plasma hundreds of thousands of miles into space. Subscribe to SciBytes for daily cosmic science!",
+    "framing_mode": "fullscreen",
+    "start_offset": 6.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "RARE SOLAR FIREWORK FLARE!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 2.8,
+        "end": 6.0,
+        "text": "BILLIONS OF MEGATONS OF TNT!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.0,
+        "end": 9.5,
+        "text": "MAGNETIC FIELDS SNAP ON SUN!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.5,
+        "end": 13.5,
+        "text": "INCANDESCENT PLASMA LOOPS!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "BLASTING INTO DEEP SPACE!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, massive solar flare prominence erupting from surface of the sun, blinding magnetic plasma loops, NASA Solar Dynamics Observatory 4k extreme closeup, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "https://images-assets.nasa.gov/video/GSFC_20140709_SDO_m11605_Firework_Flare/GSFC_20140709_SDO_m11605_Firework_Flare~orig.mp4",
+    "tags": [
+      "solar flare",
+      "solar dynamics observatory",
+      "sun explosion",
+      "coronal mass ejection",
+      "solar storm",
+      "space weather",
+      "astrophysics",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "pillars_of_creation_infrared",
+    "type": "ASTRONOMY",
+    "title": "NASA Unveils the Hidden Stars of Creation #Shorts",
+    "top_header": "PILLARS OF CREATION",
+    "sub_header": "INFRARED STARS IN COSMIC DUST!",
+    "script": "Towering four light years into the cosmos, the iconic Pillars of Creation are giant stalagmites of interstellar gas. Using powerful infrared vision, NASA space telescopes pierced straight through the dense dust curtains, unveiling thousands of newborn baby stars firing their first nuclear fusion blasts. Subscribe to SciBytes for daily astronomy wonders!",
+    "framing_mode": "fullscreen",
+    "start_offset": 5.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "4 LIGHT YEARS TALL SPIRES!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 2.8,
+        "end": 6.0,
+        "text": "TOWERS OF COSMIC GAS & DUST!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.0,
+        "end": 9.5,
+        "text": "PIERCING INFRARED VISION!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.5,
+        "end": 13.5,
+        "text": "THOUSANDS OF BABY STARS BORN!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "DETONATING NUCLEAR FUSION!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, Pillars of Creation in Eagle Nebula glowing in infrared light, star-forming dust towers, NASA James Webb and Hubble space telescope, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "https://images-assets.nasa.gov/video/JPL-20231222-SOLSYSf-0001-NASA%20Telescopes%20Reveal%20Hidden%20Universe/JPL-20231222-SOLSYSf-0001-NASA%20Telescopes%20Reveal%20Hidden%20Universe~orig.mp4",
+    "tags": [
+      "pillars of creation",
+      "james webb",
+      "spitzer telescope",
+      "star birth",
+      "eagle nebula",
+      "deep space",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "earth_solar_eclipse_from_space",
+    "type": "ASTRONOMY",
+    "title": "What a Total Solar Eclipse Looks Like From Space #Shorts",
+    "top_header": "ECLIPSE SEEN FROM SPACE",
+    "sub_header": "THE MOON'S SHADOW FROM ORBIT!",
+    "script": "From one million miles away in deep space, NASA DSCOVR satellite captured this mesmerizing view of a total solar eclipse. The Moon dark umbral shadow races across planet Earth at over two thousand miles per hour, turning bright daylight into sudden eerie twilight for millions of people below. Subscribe to SciBytes for more breathtaking space wonders!",
+    "framing_mode": "fullscreen",
+    "start_offset": 4.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "TOTAL ECLIPSE FROM 1M MILES!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 2.8,
+        "end": 6.0,
+        "text": "MOON SHADOW RACING AT 2000 MPH!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.0,
+        "end": 9.5,
+        "text": "SWEEPING OVER CONTINENTS!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.5,
+        "end": 13.5,
+        "text": "SUDDEN EERIE DAYTIME TWILIGHT!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "BREATHTAKING ORBIT PERSPECTIVE!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, Earth seen from deep space with Moon circular dark umbral shadow cast across the Pacific ocean and continents, NASA EPIC camera on DSCOVR, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "https://images-assets.nasa.gov/video/GSFC_20170720_August_m12669_EPICEclipse/GSFC_20170720_August_m12669_EPICEclipse~orig.mp4",
+    "tags": [
+      "solar eclipse from space",
+      "moon shadow earth",
+      "dscovr satellite",
+      "space photography",
+      "astronomy facts",
+      "earth from space",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "mars_curiosity_ancient_water",
+    "type": "SPACE_EXPLORATION",
+    "title": "NASA Rover Found Ancient Water Waves on Mars #Shorts",
+    "top_header": "ANCIENT MARS DISCOVERY",
+    "sub_header": "WATER WAVES ON THE RED PLANET!",
+    "script": "Climbing Mount Sharp inside Gale Crater, NASA Curiosity rover discovered preserved ripple rocks formed billions of years ago by waves in a shallow Martian lake. This is the clearest evidence ever found that liquid water once flowed across Mars for millions of years, creating a habitat suitable for ancient microbial life. Subscribe to SciBytes for daily space science!",
+    "framing_mode": "smart_canvas",
+    "start_offset": 8.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "ANCIENT WATER WAVES ON MARS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 2.8,
+        "end": 6.0,
+        "text": "PRESERVED RIPPLE ROCK LAYERS!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.0,
+        "end": 9.5,
+        "text": "SHALLOW MARTIAN LAKES EXISTED!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.5,
+        "end": 13.5,
+        "text": "WATER FLOWED FOR MILLIONS OF YEARS!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "PERFECT ENVIRONMENT FOR LIFE!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, NASA Curiosity rover robotic mast inspecting ancient wave-rippled stone layers on red Martian mountainside, Gale crater horizon, Hasselblad lens, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "https://images-assets.nasa.gov/video/JPL-20230208-MSLf-0001-Curiosity_Finds_New_Clues_to_Mars_Watery_Past/JPL-20230208-MSLf-0001-Curiosity_Finds_New_Clues_to_Mars_Watery_Past~orig.mp4",
+    "tags": [
+      "mars water",
+      "curiosity rover",
+      "gale crater",
+      "life on mars",
+      "nasa mars",
+      "space exploration",
+      "astrobiology",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "moon_viper_south_pole",
+    "type": "ROCKETRY",
+    "title": "NASA's Robotic Rover Mission to Moon's South Pole #Shorts",
+    "top_header": "LUNAR SOUTH POLE ROVER",
+    "sub_header": "EXPLORING THE ICE CRATERS!",
+    "script": "NASA is sending robotic explorers to the mountainous rim of Nobile Crater at the Moon south pole. Navigating treacherous razor-sharp boulders and pitch-black permanent shadows, this rover will drill deep into the lunar permafrost to search for pure water ice to support future human astronauts. Subscribe to SciBytes for daily lunar breakthroughs!",
+    "framing_mode": "smart_canvas",
+    "start_offset": 12.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "ROVER TO MOON SOUTH POLE!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 2.8,
+        "end": 6.0,
+        "text": "PERMANENT SHADOWS & ICE!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 6.0,
+        "end": 9.5,
+        "text": "DRILLING LUNAR PERMAFROST!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 9.5,
+        "end": 13.5,
+        "text": "PURE WATER TO FUEL ROCKETS!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "PREPARING FOR HUMAN BASE!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, NASA robotic rover exploring the jagged rim of Moon South pole crater in harsh sunlight and long black shadows, ice drill glowing, Earth on horizon, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "https://images-assets.nasa.gov/video/ARC-20210920-AAV3366-VIPER-LandingSiteAnnouncement-YouTubeHD/ARC-20210920-AAV3366-VIPER-LandingSiteAnnouncement-YouTubeHD~orig.mp4",
+    "tags": [
+      "artemis moon",
+      "moon rover",
+      "lunar south pole",
+      "moon ice",
+      "nasa artemis",
+      "space exploration",
+      "lunar mission",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "hubble_southern_crab_nebula",
+    "type": "ASTROPHYSICS",
+    "title": "The Cosmic Hourglass That Defies Physics #Shorts",
+    "top_header": "SOUTHERN CRAB NEBULA",
+    "sub_header": "COSMIC HOURGLASS EXPLOSION!",
+    "script": "Seven thousand light years away in the southern sky sits the mesmerizing Southern Crab Nebula. Shaped like a giant glowing hourglass, this cosmic structure was created by a dying red giant star dumping hydrogen onto an ultra-dense white dwarf companion, triggering explosive twin jets of gas racing into deep space. Subscribe to SciBytes for daily astrophysics wonders!",
+    "framing_mode": "fullscreen",
+    "start_offset": 6.0,
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 2.8,
+        "text": "7,000 LIGHT YEARS AWAY!",
+        "color": "#FF2A55"
+      },
+      {
+        "start": 2.8,
+        "end": 6.0,
+        "text": "THE SOUTHERN CRAB NEBULA!",
+        "color": "#00FFFF"
+      },
+      {
+        "start": 6.0,
+        "end": 9.5,
+        "text": "GIANT GLOWING COSMIC HOURGLASS!",
+        "color": "#FFEA00"
+      },
+      {
+        "start": 9.5,
+        "end": 13.5,
+        "text": "RED GIANT & WHITE DWARF DANCE!",
+        "color": "#FFFFFF"
+      },
+      {
+        "start": 13.5,
+        "end": 17.5,
+        "text": "EXPLOSIVE TWIN JETS IN SPACE!",
+        "color": "#00FF66"
+      },
+      {
+        "start": 17.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE TO SCIBYTES!",
+        "color": "#00FF66"
+      }
+    ],
+    "thumb_prompt": "raw authentic photograph, Southern Crab Nebula glowing in nested symmetrical hourglass bubbles of crimson and electric cyan gas, NASA Hubble space telescope, 8k photorealistic, zero cgi, zero cartoon",
+    "footage_url": "https://images-assets.nasa.gov/video/GSFC_20190424_HST_m13189_Hubble29/GSFC_20190424_HST_m13189_Hubble29~orig.mp4",
+    "tags": [
+      "southern crab nebula",
+      "hubble space telescope",
+      "white dwarf",
+      "red giant",
+      "planetary nebula",
+      "astronomy facts",
+      "astrophysics",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
   }
 ]
