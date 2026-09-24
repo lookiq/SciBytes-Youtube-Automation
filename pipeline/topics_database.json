@@ -1165,7 +1165,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "magnetic_reconnection_blasts",
