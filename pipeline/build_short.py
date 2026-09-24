@@ -6,6 +6,7 @@ import asyncio
 import subprocess
 import requests
 import urllib.parse
+import re
 import edge_tts
 
 try:
@@ -374,6 +375,17 @@ def generate_photorealistic_thumbnail(topic, output_thumbnail_path):
         print(f"Notice: AI thumbnail fallback to video hook frame: {e}")
     return False
 
+def normalize_script_cta(script_text):
+    cleaned = re.sub(
+        r'\s*Subscribe to\s+SciBytes\s+for\s+[^.!?]+[.!?]*\s*$',
+        ' Subscribe to SciBytes for more interesting videos!',
+        script_text,
+        flags=re.IGNORECASE
+    )
+    if 'Subscribe to SciBytes' not in cleaned:
+        cleaned = cleaned.rstrip() + ' Subscribe to SciBytes for more interesting videos!'
+    return cleaned.strip()
+
 def build_short_pipeline(topic):
     footage_path = os.path.join('temp', f"{topic['id']}_raw.mp4")
     if not os.path.exists(footage_path) or os.path.getsize(footage_path) == 0:
@@ -381,8 +393,9 @@ def build_short_pipeline(topic):
 
     audio_path = os.path.join('temp', f"{topic['id']}_voice.mp3")
     ass_path = os.path.join('temp', f"{topic['id']}_subs.ass")
+    spoken_script = normalize_script_cta(topic.get('script', ''))
     print(f"Generating voiceover and subtitles for '{topic['title']}'...")
-    asyncio.run(generate_voice(topic['script'], audio_path, ass_path))
+    asyncio.run(generate_voice(spoken_script, audio_path, ass_path))
 
     output_video = os.path.join(OUTPUT_DIR, 'scibytes_short_latest.mp4')
     print("Rendering vertical Short video with FFmpeg...")
