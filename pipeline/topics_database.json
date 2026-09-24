@@ -1103,7 +1103,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "artemis_orion_moon_flyby",
