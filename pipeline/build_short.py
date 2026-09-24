@@ -374,42 +374,18 @@ def generate_photorealistic_thumbnail(topic, output_thumbnail_path):
         print(f"Notice: AI thumbnail fallback to video hook frame: {e}")
     return False
 
-def main():
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    os.makedirs('temp', exist_ok=True)
-
-    exclude_ids = set()
-    topic = None
-    footage_path = None
-
-    while True:
-        try:
-            topic = get_next_topic(exclude_ids=exclude_ids)
-        except RuntimeError:
-            if not topic:
-                raise
-            break
-
-        print(f'Selected Topic: {topic["title"]}')
-        footage_path = os.path.join('temp', f"{topic['id']}_raw.mp4")
-        if not os.path.exists(footage_path) or os.path.getsize(footage_path) == 0:
-            try:
-                download_footage(topic['footage_url'], footage_path)
-                break
-            except Exception as e:
-                print(f"Warning: Failed to download footage for {topic['id']} ({e}). Falling back to next topic in queue...")
-                exclude_ids.add(topic['id'])
-                if os.path.exists(footage_path):
-                    os.remove(footage_path)
-                continue
-        else:
-            break
+def build_short_pipeline(topic):
+    footage_path = os.path.join('temp', f"{topic['id']}_raw.mp4")
+    if not os.path.exists(footage_path) or os.path.getsize(footage_path) == 0:
+        download_footage(topic['footage_url'], footage_path)
 
     audio_path = os.path.join('temp', f"{topic['id']}_voice.mp3")
     ass_path = os.path.join('temp', f"{topic['id']}_subs.ass")
+    print(f"Generating voiceover and subtitles for '{topic['title']}'...")
     asyncio.run(generate_voice(topic['script'], audio_path, ass_path))
 
     output_video = os.path.join(OUTPUT_DIR, 'scibytes_short_latest.mp4')
+    print("Rendering vertical Short video with FFmpeg...")
     render_short(topic, footage_path, audio_path, output_video, ass_path)
 
     # Generate photorealistic AI thumbnail with graceful fallback
@@ -468,6 +444,50 @@ def main():
 
     print(f'SEO Metadata saved: {metadata_file} (Title: {seo["title_length"]} chars | Tags: {seo["tag_characters"]} chars | Desc: {seo["description_length"]} chars)')
     print('Pipeline build complete!')
+    return True
+
+def main():
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    os.makedirs('temp', exist_ok=True)
+
+    exclude_ids = set()
+    max_candidates = 5
+    attempt = 0
+
+    while attempt < max_candidates:
+        attempt += 1
+        try:
+            topic = get_next_topic(exclude_ids=exclude_ids)
+        except RuntimeError as e:
+            print(f"CRITICAL: No more usable topics found in database: {e}")
+            sys.exit(1)
+
+        print("=" * 60)
+        print(f"Attempt #{attempt}: Selected topic '{topic['title']}' (ID: {topic['id']})")
+        print("=" * 60)
+
+        try:
+            build_short_pipeline(topic)
+            print(f"SUCCESS: Topic '{topic['id']}' built completely and ready for upload!")
+            return
+        except Exception as e:
+            print(f"WARNING: Issue encountered while building '{topic['id']}': {e}")
+            print(f"Setting '{topic['id']}' aside and immediately switching to next queued topic for this upload slot...")
+            exclude_ids.add(topic['id'])
+            # Clean temporary files for this failed candidate
+            raw_p = os.path.join('temp', f"{topic['id']}_raw.mp4")
+            voice_p = os.path.join('temp', f"{topic['id']}_voice.mp3")
+            subs_p = os.path.join('temp', f"{topic['id']}_subs.ass")
+            for p in [raw_p, voice_p, subs_p]:
+                if os.path.exists(p):
+                    try:
+                        os.remove(p)
+                    except Exception:
+                        pass
+            continue
+
+    print(f"ERROR: Failed to build a short after trying {max_candidates} consecutive candidate topics.")
+    sys.exit(1)
 
 if __name__ == '__main__':
     main()

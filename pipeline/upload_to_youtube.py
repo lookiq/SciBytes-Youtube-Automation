@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import time
 from datetime import datetime
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
@@ -119,27 +120,35 @@ def upload_video():
     )
 
     response = None
-    try:
-        while response is None:
+    retry_count = 0
+    max_chunk_retries = 5
+
+    while response is None:
+        try:
             status, response = request.next_chunk()
             if status:
                 print(f"Uploaded {int(status.progress() * 100)}%")
-    except Exception as e:
-        if 'invalidTags' in str(e):
-            print("WARNING: Encountered invalidTags from YouTube API. Retrying with essential core tags...")
-            body['snippet']['tags'] = ['science facts', 'space facts', 'astronomy', 'physics', 'shorts']
-            request = youtube.videos().insert(
-                part='snippet,status',
-                body=body,
-                media_body=MediaFileUpload(video_to_upload, mimetype='video/mp4', resumable=True)
-            )
-            response = None
-            while response is None:
-                status, response = request.next_chunk()
-                if status:
-                    print(f"Uploaded {int(status.progress() * 100)}%")
-        else:
-            raise e
+            retry_count = 0  # reset on successful progress
+        except Exception as e:
+            if 'invalidTags' in str(e):
+                print("WARNING: Encountered invalidTags from YouTube API. Retrying with essential core tags...")
+                body['snippet']['tags'] = ['science facts', 'space facts', 'astronomy', 'physics', 'shorts']
+                request = youtube.videos().insert(
+                    part='snippet,status',
+                    body=body,
+                    media_body=MediaFileUpload(video_to_upload, mimetype='video/mp4', resumable=True)
+                )
+                response = None
+                continue
+
+            retry_count += 1
+            if retry_count > max_chunk_retries:
+                print(f"FATAL: YouTube upload failed after {max_chunk_retries} retries: {e}")
+                raise e
+
+            wait_sec = 2 ** retry_count
+            print(f"Notice: Temporary upload network issue ({e}). Retrying chunk in {wait_sec}s (Attempt {retry_count}/{max_chunk_retries})...")
+            time.sleep(wait_sec)
 
     video_id = response.get('id')
     video_url = f"https://www.youtube.com/shorts/{video_id}"
