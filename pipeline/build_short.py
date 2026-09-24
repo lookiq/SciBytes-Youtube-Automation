@@ -52,7 +52,10 @@ def get_uploaded_history():
                             history_footages.add(footage_part)
     return history_titles, history_footages
 
-def get_next_topic():
+def get_next_topic(exclude_ids=None):
+    if exclude_ids is None:
+        exclude_ids = set()
+
     with open(DATABASE_FILE, 'r', encoding='utf-8') as f:
         topics = json.load(f)
 
@@ -66,6 +69,8 @@ def get_next_topic():
 
     # Pass 1: Check for high-priority event alerts (e.g. EVENT_ALERT, BREAKING, HIGH)
     for topic in topics:
+        if topic.get('id') in exclude_ids:
+            continue
         if not topic.get('used', False) and topic.get('priority') in ['EVENT_ALERT', 'BREAKING', 'HIGH']:
             t_title = topic.get('title', '').strip().lower()
             f_url = topic.get('footage_url')
@@ -79,6 +84,8 @@ def get_next_topic():
 
     # Pass 2: Regular sequential scan
     for topic in topics:
+        if topic.get('id') in exclude_ids:
+            continue
         t_title = topic.get('title', '').strip().lower()
         f_url = topic.get('footage_url')
 
@@ -107,9 +114,14 @@ def get_next_topic():
     )
 
 def download_footage(url, dest_path):
-    norm_url = urllib.parse.quote(urllib.parse.unquote(url), safe=':/?=~')
+    p = urllib.parse.urlsplit(url)
+    clean_path = urllib.parse.quote(urllib.parse.unquote(p.path))
+    norm_url = urllib.parse.urlunsplit((p.scheme or 'https', p.netloc, clean_path, p.query, p.fragment))
+    if norm_url.startswith('http://'):
+        norm_url = 'https://' + norm_url[7:]
     print(f'Downloading real footage from: {norm_url}')
-    res = requests.get(norm_url, stream=True, timeout=60)
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+    res = requests.get(norm_url, headers=headers, stream=True, timeout=60)
     res.raise_for_status()
     with open(dest_path, 'wb') as f:
         for chunk in res.iter_content(chunk_size=1024*1024):
@@ -366,12 +378,32 @@ def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs('temp', exist_ok=True)
 
-    topic = get_next_topic()
-    print(f'Selected Topic: {topic["title"]}')
+    exclude_ids = set()
+    topic = None
+    footage_path = None
 
-    footage_path = os.path.join('temp', f"{topic['id']}_raw.mp4")
-    if not os.path.exists(footage_path) or os.path.getsize(footage_path) == 0:
-        download_footage(topic['footage_url'], footage_path)
+    while True:
+        try:
+            topic = get_next_topic(exclude_ids=exclude_ids)
+        except RuntimeError:
+            if not topic:
+                raise
+            break
+
+        print(f'Selected Topic: {topic["title"]}')
+        footage_path = os.path.join('temp', f"{topic['id']}_raw.mp4")
+        if not os.path.exists(footage_path) or os.path.getsize(footage_path) == 0:
+            try:
+                download_footage(topic['footage_url'], footage_path)
+                break
+            except Exception as e:
+                print(f"Warning: Failed to download footage for {topic['id']} ({e}). Falling back to next topic in queue...")
+                exclude_ids.add(topic['id'])
+                if os.path.exists(footage_path):
+                    os.remove(footage_path)
+                continue
+        else:
+            break
 
     audio_path = os.path.join('temp', f"{topic['id']}_voice.mp3")
     ass_path = os.path.join('temp', f"{topic['id']}_subs.ass")

@@ -237,7 +237,7 @@
       }
     ],
     "thumb_prompt": "raw authentic photograph, extreme high resolution telescopic photo of supermassive black hole with glowing fiery accretion disk bending space and light, gravitational lensing, captured by Event Horizon Telescope and NASA James Webb, deep space cosmos, ultra sharp detail, cinematic lighting, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/What is a Black Hole/What is a Black Hole~orig.mp4",
+    "footage_url": "https://images-assets.nasa.gov/video/What%20is%20a%20Black%20Hole/What%20is%20a%20Black%20Hole~orig.mp4",
     "tags": [
       "black hole",
       "spaghettification",
@@ -293,7 +293,7 @@
         "boxcolor": "black@0.9"
       }
     ],
-    "footage_url": "http://images-assets.nasa.gov/video/Earth Views from the International Space Station/Earth Views from the International Space Station~orig.mp4",
+    "footage_url": "https://images-assets.nasa.gov/video/Earth%20Views%20from%20the%20International%20Space%20Station/Earth%20Views%20from%20the%20International%20Space%20Station~orig.mp4",
     "tags": [
       "airglow",
       "iss earth view",
@@ -353,7 +353,7 @@
       }
     ],
     "thumb_prompt": "raw authentic photograph, view of Earth from deep space with massive hurricane spirals and supersonic atmospheric shockwaves obliterating continents, extreme detail, NASA satellite imagery, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/Earth Views from the International Space Station/Earth Views from the International Space Station~medium.mp4",
+    "footage_url": "https://images-assets.nasa.gov/video/Earth%20Views%20from%20the%20International%20Space%20Station/Earth%20Views%20from%20the%20International%20Space%20Station~medium.mp4",
     "tags": [
       "what if earth stopped spinning",
       "earth physics",
@@ -607,7 +607,7 @@
       }
     ],
     "thumb_prompt": "raw authentic photograph, James Webb Space Telescope giant golden hexagonal mirrors gleaming in the dark void of deep space, cosmic nebula reflection, extreme macro sharp details, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20101028_JWST_m10660_Webb Deploy_Short/GSFC_20101028_JWST_m10660_Webb Deploy_Short~orig.mp4",
+    "footage_url": "https://images-assets.nasa.gov/video/GSFC_20101028_JWST_m10660_Webb%20Deploy_Short/GSFC_20101028_JWST_m10660_Webb%20Deploy_Short~orig.mp4",
     "framing_mode": "fullscreen",
     "tags": [
       "james webb",
@@ -695,7 +695,7 @@
     "framing_mode": "smart_canvas",
     "start_offset": 5.0,
     "thumb_prompt": "raw authentic photograph, NASA Ingenuity helicopter hovering over rugged red Martian desert, Jezero crater dunes in background, high contrast sunlight, Hasselblad 85mm lens, photorealistic 8k, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/JPL-20230406-TECHf-0001-Ingenuity Flight Update Media Reel 1080/JPL-20230406-TECHf-0001-Ingenuity Flight Update Media Reel 1080~medium.mp4",
+    "footage_url": "https://images-assets.nasa.gov/video/JPL-20230406-TECHf-0001-Ingenuity%20Flight%20Update%20Media%20Reel%201080/JPL-20230406-TECHf-0001-Ingenuity%20Flight%20Update%20Media%20Reel%201080~medium.mp4",
     "tags": [
       "mars helicopter",
       "ingenuity",
@@ -719,7 +719,7 @@
     "framing_mode": "smart_canvas",
     "start_offset": 268.0,
     "thumb_prompt": "raw authentic photograph, Mars Ascent Vehicle rocket blasting off from a robotic lander on the red Martian surface, plume of orange flame kicking up red dust, Jezero Crater horizon, 8k photorealistic, Hasselblad lens, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/Mars Sample Return Media Reel/Mars Sample Return Media Reel~large.mp4",
+    "footage_url": "https://images-assets.nasa.gov/video/Mars%20Sample%20Return%20Media%20Reel/Mars%20Sample%20Return%20Media%20Reel~large.mp4",
     "tags": [
       "mars sample return",
       "mars ascent vehicle",
@@ -905,7 +905,7 @@
       }
     ],
     "thumb_prompt": "raw authentic photograph, Jupiter's icy moon Europa with cracked red and blue fissures, massive Jupiter rising in the black background, NASA Galileo spacecraft high resolution photography, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/Europa Clipper - NASAs Mission to Jupiter's Ocean Moon - Mission Trailer/Europa Clipper - NASAs Mission to Jupiter's Ocean Moon - Mission Trailer~orig.mp4",
+    "footage_url": "https://images-assets.nasa.gov/video/GSFC_El%20lanzamiento%20de%20Europa%20Clipper/GSFC_El%20lanzamiento%20de%20Europa%20Clipper~orig.mp4",
     "tags": [
       "europa clipper",
       "alien life",
@@ -1153,7 +1153,7 @@
       }
     ],
     "thumb_prompt": "raw authentic photograph, NASA Orion spacecraft solar arrays with lunar surface craters below and Earth hanging in black space beyond, extreme sharp details, NASA Artemis mission photography, 8k, photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/Artemis I FD15 Orion Moon/Artemis I FD15 Orion Moon~orig.mp4",
+    "footage_url": "https://images-assets.nasa.gov/video/Artemis%20I%20FD15%20Orion%20Moon/Artemis%20I%20FD15%20Orion%20Moon~orig.mp4",
     "tags": [
       "artemis 1",
       "orion spacecraft",
@@ -1338,7 +1338,7 @@
       }
     ],
     "thumb_prompt": "raw authentic photograph, James Webb Space Telescope First Deep Field showing glittering field of swirling cosmic spiral galaxies and gravitational lens arcs on obsidian void, extreme infrared sharpness, 8k photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/First Images from the James Webb Space Telescope (Official NASA Highlights)/First Images from the James Webb Space Telescope (Official NASA Highlights)~orig.mp4",
+    "footage_url": "https://images-assets.nasa.gov/video/First%20Images%20from%20the%20James%20Webb%20Space%20Telescope%20%28Official%20NASA%20Highlights%29/First%20Images%20from%20the%20James%20Webb%20Space%20Telescope%20%28Official%20NASA%20Highlights%29~orig.mp4",
     "tags": [
       "jwst deep field",
       "james webb",
@@ -1401,7 +1401,7 @@
       }
     ],
     "thumb_prompt": "raw authentic photograph, NASA Voyager 1 spacecraft with high-gain antenna floating in obsidian interstellar space outside the solar system, faint distant pinpoint Sun in background, extreme detail, 8k photorealistic, zero cgi, zero cartoon",
-    "footage_url": "http://images-assets.nasa.gov/video/JPL-20240425-VOYAGEf-0001-Voyager 1 Team Reacts to Receiving Engineering Data From Spacecraft/JPL-20240425-VOYAGEf-0001-Voyager 1 Team Reacts to Receiving Engineering Data From Spacecraft~orig.mp4",
+    "footage_url": "https://images-assets.nasa.gov/video/JPL-20240425-VOYAGEf-0001-Voyager%201%20Team%20Reacts%20to%20Receiving%20Engineering%20Data%20From%20Spacecraft/JPL-20240425-VOYAGEf-0001-Voyager%201%20Team%20Reacts%20to%20Receiving%20Engineering%20Data%20From%20Spacecraft~orig.mp4",
     "tags": [
       "voyager 1",
       "interstellar space",

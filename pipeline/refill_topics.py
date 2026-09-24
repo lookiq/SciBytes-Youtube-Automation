@@ -443,7 +443,7 @@ CURATED_REFILL_POOL = [
             {"start": 17.5, "end": 99.0, "text": "SUBSCRIBE TO SCIBYTES!", "color": "#00FF66"}
         ],
         "thumb_prompt": "raw authentic photograph, Artemis Orion solar wing tip camera capturing Orion capsule gliding eighty miles over detailed jagged lunar craters with Earth rising in black background, 8k photorealistic, zero cgi, zero cartoon",
-        "footage_url": "https://images-assets.nasa.gov/video/Artemis%20I%20FD15%20Orion%20Moon/Artemis%20I%20FD15%20Orion%20Moon~orig.mp4",
+        "footage_url": "https://images-assets.nasa.gov/video/jsc2026m000354-Artemis-II-Orion-Mission-Evaluation-Room-Team-During-Splashdown/jsc2026m000354-Artemis-II-Orion-Mission-Evaluation-Room-Team-During-Splashdown~orig.mp4",
         "tags": ["artemis orion", "moon flyby", "lunar craters", "nasa artemis", "human spaceflight", "moon exploration", "SciBytes", "shorts"],
         "used": False
     }
