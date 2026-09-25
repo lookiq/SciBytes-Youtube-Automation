@@ -1288,7 +1288,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "jwst_deep_field_galaxies",
