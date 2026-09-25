@@ -145,7 +145,7 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,Arial,56,&H0000FFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,3,2,40,40,460,1
+Style: CapCut,Arial,58,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,6,4,2,40,40,460,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -161,17 +161,28 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             continue
         total_chars = sum(len(w) for w in words)
         curr_time = start_sec
-        for i in range(0, len(words), words_per_chunk):
-            chunk = words[i:i+words_per_chunk]
-            chunk_text = ' '.join(chunk).upper()
-            chunk_chars = sum(len(w) for w in chunk)
-            chunk_dur = (chunk_chars / total_chars) * dur_sec
-            c_start = curr_time
-            c_end = min(curr_time + chunk_dur, end_sec)
-            dialogues.append(
-                f"Dialogue: 0,{format_ass_time(c_start)},{format_ass_time(c_end)},Default,,0,0,0,,{chunk_text}"
-            )
-            curr_time = c_end
+        word_objs = []
+        for w in words:
+            w_dur = (len(w) / total_chars) * dur_sec
+            w_start = curr_time
+            w_end = min(curr_time + w_dur, end_sec)
+            word_objs.append({'word': w, 'start': w_start, 'end': w_end})
+            curr_time = w_end
+
+        for i in range(0, len(word_objs), words_per_chunk):
+            chunk = word_objs[i:i+words_per_chunk]
+            for active_idx, target_w in enumerate(chunk):
+                styled_words = []
+                for j, w in enumerate(chunk):
+                    w_up = w['word'].upper()
+                    if j == active_idx:
+                        styled_words.append(r"{\c&H00E6FF&}" + w_up + r"{\c&HFFFFFF&}")
+                    else:
+                        styled_words.append(w_up)
+                line_text = ' '.join(styled_words)
+                dialogues.append(
+                    f"Dialogue: 0,{format_ass_time(target_w['start'])},{format_ass_time(target_w['end'])},CapCut,,0,0,0,,{line_text}"
+                )
 
     with open(dest_ass_path, 'w', encoding='utf-8') as f:
         f.write(header + "\n".join(dialogues) + "\n")
@@ -206,7 +217,7 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,Arial,56,&H0000FFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,3,2,40,40,460,1
+Style: CapCut,Arial,58,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,6,4,2,40,40,460,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -214,12 +225,20 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     dialogues = []
     for i in range(0, len(words), words_per_chunk):
         chunk = words[i:i+words_per_chunk]
-        chunk_text = ' '.join(w['word'] for w in chunk).upper()
-        c_start = chunk[0]['start']
-        c_end = chunk[-1]['end']
-        dialogues.append(
-            f"Dialogue: 0,{format_ass_time(c_start)},{format_ass_time(c_end)},Default,,0,0,0,,{chunk_text}"
-        )
+        for active_idx, target_w in enumerate(chunk):
+            styled_words = []
+            for j, w in enumerate(chunk):
+                cleaned_word = w['word'].replace('\\', '').replace('{', '').replace('}', '').upper()
+                if j == active_idx:
+                    styled_words.append(r"{\c&H00E6FF&}" + cleaned_word + r"{\c&HFFFFFF&}")
+                else:
+                    styled_words.append(cleaned_word)
+            line_text = ' '.join(styled_words)
+            c_start = target_w['start']
+            c_end = target_w['end']
+            dialogues.append(
+                f"Dialogue: 0,{format_ass_time(c_start)},{format_ass_time(c_end)},CapCut,,0,0,0,,{line_text}"
+            )
 
     with open(dest_ass_path, 'w', encoding='utf-8') as f:
         f.write(header + "\n".join(dialogues) + "\n")
