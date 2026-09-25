@@ -176,24 +176,145 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     with open(dest_ass_path, 'w', encoding='utf-8') as f:
         f.write(header + "\n".join(dialogues) + "\n")
 
-async def generate_voice(text, dest_audio_path, dest_ass_path=None):
-    print('Generating Christopher neural voice and verbatim timestamps...')
-    communicate = edge_tts.Communicate(text, VOICE, rate='+4%')
-    audio_bytes = bytearray()
-    sentences = []
-    async for chunk in communicate.stream():
-        if chunk['type'] == 'audio':
-            audio_bytes.extend(chunk['data'])
-        elif chunk['type'] == 'SentenceBoundary':
-            sentences.append(chunk)
+def create_ass_from_elevenlabs_alignment(alignment, dest_ass_path, words_per_chunk=3):
+    chars = alignment.get('characters', [])
+    starts = alignment.get('character_start_times_seconds', [])
+    ends = alignment.get('character_end_times_seconds', [])
+
+    words = []
+    curr = []
+    w_start = None
+    for i, ch in enumerate(chars):
+        s = starts[i]
+        e = ends[i]
+        if ch.isspace():
+            if curr and w_start is not None:
+                words.append({'word': ''.join(curr), 'start': w_start, 'end': ends[i-1] if i > 0 else e})
+                curr = []
+                w_start = None
+        else:
+            if w_start is None:
+                w_start = s
+            curr.append(ch)
+    if curr and w_start is not None:
+        words.append({'word': ''.join(curr), 'start': w_start, 'end': ends[-1]})
+
+    header = """[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,56,&H0000FFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,3,2,40,40,460,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""
+    dialogues = []
+    for i in range(0, len(words), words_per_chunk):
+        chunk = words[i:i+words_per_chunk]
+        chunk_text = ' '.join(w['word'] for w in chunk).upper()
+        c_start = chunk[0]['start']
+        c_end = chunk[-1]['end']
+        dialogues.append(
+            f"Dialogue: 0,{format_ass_time(c_start)},{format_ass_time(c_end)},Default,,0,0,0,,{chunk_text}"
+        )
+
+    with open(dest_ass_path, 'w', encoding='utf-8') as f:
+        f.write(header + "\n".join(dialogues) + "\n")
+
+def generate_elevenlabs_voice(text, dest_audio_path, dest_ass_path=None):
+    api_key = os.environ.get('ELEVENLABS_API_KEY')
+    if not api_key or not api_key.strip():
+        raise ValueError("ELEVENLABS_API_KEY is not set.")
+
+    voice_id = os.environ.get('ELEVENLABS_VOICE_ID', 'pNInz6obpgDQGcFmaJgB')  # Default: Adam
+    url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/with-timestamps"
+    headers = {
+        "xi-api-key": api_key.strip(),
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "text": text,
+        "model_id": "eleven_multilingual_v2",
+        "voice_settings": {
+            "stability": 0.5,
+            "similarity_boost": 0.8,
+            "style": 0.0,
+            "use_speaker_boost": True
+        }
+    }
+
+    print(f"Requesting voiceover from ElevenLabs (Voice ID: {voice_id})...")
+    res = requests.post(url, headers=headers, json=payload, timeout=45)
+
+    if res.status_code == 401:
+        raise PermissionError("ElevenLabs: Invalid API Key (401)")
+    elif res.status_code in (402, 429):
+        raise ResourceWarning(f"ElevenLabs: Quota exceeded or payment required ({res.status_code})")
+    elif res.status_code != 200:
+        raise RuntimeError(f"ElevenLabs API error ({res.status_code}): {res.text[:200]}")
+
+    data = res.json()
+    audio_base64 = data.get('audio_base64')
+    if not audio_base64:
+        raise RuntimeError("No audio data returned from ElevenLabs API")
+
+    import base64
+    audio_bytes = base64.b64decode(audio_base64)
+    with open(dest_audio_path, 'wb') as f:
+        f.write(audio_bytes)
+
+    alignment = data.get('alignment', {})
+    if dest_ass_path and alignment:
+        create_ass_from_elevenlabs_alignment(alignment, dest_ass_path)
+        print(f"Dynamic ASS subtitles generated from ElevenLabs timestamps: {dest_ass_path}")
+
+async def generate_edge_voice(text, dest_audio_path, dest_ass_path=None):
+    voice_to_use = 'en-US-BrianMultilingualNeural'
+    print(f"Generating Free Studio Neural voice ({voice_to_use}) and verbatim timestamps...")
+    try:
+        communicate = edge_tts.Communicate(text, voice_to_use, rate='+3%')
+        audio_bytes = bytearray()
+        sentences = []
+        async for chunk in communicate.stream():
+            if chunk['type'] == 'audio':
+                audio_bytes.extend(chunk['data'])
+            elif chunk['type'] == 'SentenceBoundary':
+                sentences.append(chunk)
+    except Exception as e:
+        print(f"Notice with primary neural voice ({e}), falling back to ChristopherNeural...")
+        communicate = edge_tts.Communicate(text, VOICE, rate='+4%')
+        audio_bytes = bytearray()
+        sentences = []
+        async for chunk in communicate.stream():
+            if chunk['type'] == 'audio':
+                audio_bytes.extend(chunk['data'])
+            elif chunk['type'] == 'SentenceBoundary':
+                sentences.append(chunk)
 
     with open(dest_audio_path, 'wb') as f:
         f.write(audio_bytes)
-    print(f'Voice saved to: {dest_audio_path}')
+    print(f"Voice saved to: {dest_audio_path}")
 
     if dest_ass_path and sentences:
         create_dynamic_ass_subtitles(sentences, dest_ass_path)
-        print(f'Verbatim ASS subtitles saved to: {dest_ass_path}')
+        print(f"Verbatim ASS subtitles saved to: {dest_ass_path}")
+
+def generate_voice(text, dest_audio_path, dest_ass_path=None):
+    eleven_key = os.environ.get('ELEVENLABS_API_KEY')
+    if eleven_key and eleven_key.strip():
+        try:
+            print("Attempting ultra-realistic ElevenLabs voiceover...")
+            generate_elevenlabs_voice(text, dest_audio_path, dest_ass_path)
+            print("ElevenLabs voiceover generated successfully!")
+            return
+        except Exception as e:
+            print(f"Notice: ElevenLabs unavailable or quota exceeded: {e}")
+            print("Seamlessly falling back to Free Studio-Mastered Neural Voice (Edge-TTS)...")
+
+    asyncio.run(generate_edge_voice(text, dest_audio_path, dest_ass_path))
 
 def get_media_duration(file_path):
     cmd = f'ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "{file_path}"'
@@ -288,12 +409,30 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
             f"{sub_filter}[outv]"
         )
 
-    has_audio = has_audio_stream(footage_path)
-    if has_audio:
-        filter_complex += f";[0:a]volume=0.18[foot_a];[1:a]volume=1.0[voice_a];[voice_a][foot_a]amix=inputs=2:duration=first[outa]"
-        audio_maps = ['-map', '[outa]']
+    # Audio Processing & Mixing
+    # 1. 100% Stripping of source footage audio (never map 0:a to avoid clashing music/noise)
+    # 2. Studio Mastering on Voiceover: low-end warmth + broadcast dynamic range compression
+    voice_mastering = (
+        "volume=1.0,equalizer=f=80:width_type=h:width=50:g=3.5,"
+        "equalizer=f=3200:width_type=h:width=1200:g=1.5,"
+        "compand=attacks=0.02:decays=0.1:points=-80/-80|-20/-10|0/-2"
+    )
+
+    bgm_path = os.path.join(os.path.dirname(__file__), 'assets', 'cosmic_ambient_drone.mp3')
+    has_bgm = os.path.exists(bgm_path)
+    extra_inputs = []
+
+    if has_bgm:
+        extra_inputs = ['-stream_loop', '-1', '-i', bgm_path]
+        filter_complex += (
+            f";[1:a]{voice_mastering}[voice_mastered];"
+            f"[2:a]volume=0.10[bgm];"
+            f"[voice_mastered][bgm]amix=inputs=2:duration=first:dropout_transition=2[outa]"
+        )
     else:
-        audio_maps = ['-map', '1:a']
+        filter_complex += f";[1:a]{voice_mastering}[outa]"
+
+    audio_maps = ['-map', '[outa]']
 
     safe_title = topic.get('title', 'SciBytes Short').replace('"', '').replace("'", "")
     safe_comment = topic.get('sub_header', 'SciBytes Science Facts').replace('"', '').replace("'", "")
@@ -311,6 +450,7 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
         '-stream_loop', '-1',
         '-i', footage_path,
         '-i', audio_path,
+        *extra_inputs,
         '-filter_complex', filter_complex,
         '-map', '[outv]',
         *audio_maps,
@@ -395,7 +535,7 @@ def build_short_pipeline(topic):
     ass_path = os.path.join('temp', f"{topic['id']}_subs.ass")
     spoken_script = normalize_script_cta(topic.get('script', ''))
     print(f"Generating voiceover and subtitles for '{topic['title']}'...")
-    asyncio.run(generate_voice(spoken_script, audio_path, ass_path))
+    generate_voice(spoken_script, audio_path, ass_path)
 
     output_video = os.path.join(OUTPUT_DIR, 'scibytes_short_latest.mp4')
     print("Rendering vertical Short video with FFmpeg...")

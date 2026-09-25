@@ -43,6 +43,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build Breaking Space Short
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
         run: |
           python pipeline/build_breaking_short.py \
             --headline "${{ inputs.headline }}" \

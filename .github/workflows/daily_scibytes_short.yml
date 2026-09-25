@@ -39,6 +39,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build SciBytes Short (Script, Voice, Footage, Subtitles, FFmpeg)
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
         run: |
           python pipeline/build_short.py
 
