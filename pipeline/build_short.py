@@ -145,7 +145,7 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: CapCut,Arial,58,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,6,4,2,40,40,460,1
+Style: CapCut,Arial,62,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,3,2,40,40,430,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -217,7 +217,7 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: CapCut,Arial,58,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,6,4,2,40,40,460,1
+Style: CapCut,Arial,62,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,3,2,40,40,430,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -409,10 +409,16 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
     if framing_mode == 'smart_canvas':
         filter_complex = (
             f"[0:v]trim=duration={duration},setpts=PTS-STARTPTS,split=2[bg_raw][fg_raw];"
-            f"[bg_raw]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=25:5,eq=brightness=-0.25:contrast=1.1[bg];"
-            f"[fg_raw]scale=1080:-2,eq=contrast=1.1:saturation=1.2[fg];"
+            f"[bg_raw]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=25:5,eq=brightness=-0.35:contrast=1.15[bg];"
+            f"[fg_raw]scale=1080:-2,"
+            f"scale=w='1080*(1+0.08*t/{duration})':h='-2':eval=frame,"
+            f"crop=1080:ih:(in_w-1080)/2:0,"
+            f"eq=contrast=1.15:saturation=1.25[fg];"
             f"[bg][fg]overlay=(W-w)/2:(H-h)/2[basev];"
-            f"[basev]drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
+            f"[basev]vignette=angle=0.38,fade=t=in:st=0:d=0.35,"
+            f"drawbox=y=0:h=330:color=black@0.40:t=fill,"
+            f"drawbox=y=1280:h=640:color=black@0.40:t=fill,"
+            f"drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
             f"drawtext={font_opt}text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:borderw=5:bordercolor=black:shadowcolor=black@0.9:shadowx=3:shadowy=3,"
             f"drawtext={font_opt}text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2"
             f"{sub_filter}[outv]"
@@ -421,7 +427,12 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
         filter_complex = (
             f"[0:v]trim=duration={duration},setpts=PTS-STARTPTS,"
             f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
-            f"eq=contrast=1.12:saturation=1.22:brightness=0.01,"
+            f"scale=w='1080*(1+0.08*t/{duration})':h='1920*(1+0.08*t/{duration})':eval=frame,"
+            f"crop=1080:1920:(in_w-1080)/2:(in_h-1920)/2,"
+            f"vignette=angle=0.38,fade=t=in:st=0:d=0.35,"
+            f"eq=contrast=1.16:saturation=1.26:brightness=0.01,"
+            f"drawbox=y=0:h=330:color=black@0.40:t=fill,"
+            f"drawbox=y=1280:h=640:color=black@0.40:t=fill,"
             f"drawtext={font_opt}text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
             f"drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
             f"drawtext={font_opt}text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:borderw=5:bordercolor=black:shadowcolor=black@0.9:shadowx=3:shadowy=3"
