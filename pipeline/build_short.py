@@ -498,6 +498,45 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
     subprocess.run(ffmpeg_cmd, check=True)
     print(f'Short rendered successfully: {output_path}')
 
+def build_cinematic_thumbnail_prompt(sub_header):
+    lower = sub_header.lower()
+    if any(k in lower for k in ['black hole', 'singularity', 'event horizon', 'gargantua']):
+        return (
+            f"insanely detailed photorealistic IMAX space photograph, supermassive black hole consuming space, "
+            f"glowing orange and violet swirling accretion disk, gravitational lensing curving cosmic starlight, "
+            f"ultra sharp 8k texture, cinematic dramatic lighting, volumetric glow, National Geographic astrophysics"
+        )
+    elif any(k in lower for k in ['sun', 'solar', 'flare', 'plasma', 'coronal']):
+        return (
+            f"extreme close-up 8k photography, massive solar flare erupting violently from the fiery surface of the Sun, "
+            f"twisted loops of incandescent plasma in deep space, blinding white-hot corona, "
+            f"NASA Solar Dynamics Observatory authentic photo, cinematic lighting, hyper-detailed"
+        )
+    elif any(k in lower for k in ['galaxy', 'milky way', 'andromeda', 'stars']):
+        return (
+            f"jaw-dropping 8K James Webb Space Telescope ultra-deep field photograph, majestic swirling spiral galaxy with "
+            f"billions of glistening stars, glowing magenta and cyan cosmic dust clouds, extreme sharpness, "
+            f"cinematic astrophysics documentary"
+        )
+    elif any(k in lower for k in ['planet', 'jupiter', 'saturn', 'mars']):
+        return (
+            f"photorealistic 8k close-up shot from deep space orbit of {sub_header}, "
+            f"swirling turbulent atmospheric storm clouds, glowing rings in dark cosmos, "
+            f"hyper-realistic space exploration photography, cinematic lighting"
+        )
+    elif any(k in lower for k in ['nebula', 'pillars of creation']):
+        return (
+            f"breathtaking 8k NASA James Webb Telescope photograph of cosmic nebula, "
+            f"towering colorful pillars of gas and starbirth dust, glowing emerald, gold and violet hues, "
+            f"hyper-detailed, authentic astrophysics"
+        )
+    else:
+        return (
+            f"awe-inspiring 8k IMAX space documentary photograph of {sub_header} in deep universe, "
+            f"vibrant celestial colors, glowing cosmic dust, extreme focus, "
+            f"National Geographic space edition, dramatic cinematic lighting"
+        )
+
 def generate_photorealistic_thumbnail(topic, output_thumbnail_path):
     print("Generating 100% free photorealistic AI thumbnail...")
     sub_header = topic.get('sub_header', topic['title'].split('#')[0].strip())
@@ -507,12 +546,7 @@ def generate_photorealistic_thumbnail(topic, output_thumbnail_path):
 
     base_prompt = topic.get('thumb_prompt')
     if not base_prompt:
-        base_prompt = (
-            f"raw authentic photograph, National Geographic scientific documentary, "
-            f"view of {sub_header} in deep space, NASA satellite telescope photo, "
-            f"Hasselblad H6D-100c 85mm lens, photorealistic, 8k, ultra sharp textures, "
-            f"natural lighting, zero cgi, zero cartoon, authentic astrophysics"
-        )
+        base_prompt = build_cinematic_thumbnail_prompt(sub_header)
 
     encoded = urllib.parse.quote(base_prompt)
     url = f"https://image.pollinations.ai/prompt/{encoded}?width=1080&height=1920&model=flux-realism&nologo=true"
