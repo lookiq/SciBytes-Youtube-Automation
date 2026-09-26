@@ -74,26 +74,18 @@ CURATED_COSMIC_VAULT = {
     ],
     'nebula': [
         {
-            'title': 'James Webb Space Telescope First Ultra-Deep Cosmic Images',
-            'url': 'https://images-assets.nasa.gov/video/GSFC_NSL_Webb_Images_Ep44/GSFC_NSL_Webb_Images_Ep44~orig.mp4'
-        },
-        {
             'title': 'Hubble Space Telescope Cosmic Nebula Visualization',
             'url': 'https://images-assets.nasa.gov/video/ksc_061404_t-nebula/ksc_061404_t-nebula~orig.mp4'
         },
         {
             'title': 'Carina Nebula 3D Flythrough in High-Resolution Infrared',
-            'url': 'https://images-assets.nasa.gov/video/GSFC_NSL_Webb_Images_Ep44/GSFC_NSL_Webb_Images_Ep44~orig.mp4'
+            'url': 'https://images-assets.nasa.gov/video/ksc_061404_t-nebula/ksc_061404_t-nebula~orig.mp4'
         }
     ],
     'planets': [
         {
             'title': 'Cassini Infrared High-Resolution Saturn Rings & Clouds',
             'url': 'https://images-assets.nasa.gov/video/GSFC_20170912_Cassini_m12709_CIRS_Short/GSFC_20170912_Cassini_m12709_CIRS_Short~orig.mp4'
-        },
-        {
-            'title': 'Juno Spacecraft Ultra-HD Flyby of Jupiter Atmosphere and Moons',
-            'url': 'https://images-assets.nasa.gov/video/GSFC_20230307_NSL_Juno_Ep54/GSFC_20230307_NSL_Juno_Ep54~orig.mp4'
         },
         {
             'title': 'NASA Curiosity Rover High-Definition Mars Panorama',
@@ -108,10 +100,6 @@ CURATED_COSMIC_VAULT = {
         {
             'title': 'NASA Roman Space Telescope Cosmic Survey High-Res Flythrough',
             'url': 'https://images-assets.nasa.gov/video/15081-%20Roman%20Mission%20Trailer%20-%20Long/15081-%20Roman%20Mission%20Trailer%20-%20Long~orig.mp4'
-        },
-        {
-            'title': 'NASA Interstellar Cosmic Deep Space Journey',
-            'url': 'https://images-assets.nasa.gov/video/GSFC_20190327_M13161_NSL/GSFC_20190327_M13161_NSL~orig.mp4'
         },
         {
             'title': 'Hyperspace Spacetime Warping 3D Simulation (CGI)',
