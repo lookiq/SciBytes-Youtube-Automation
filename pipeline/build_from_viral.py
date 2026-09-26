@@ -18,38 +18,17 @@ try:
     from pipeline.script_reengineer import reengineer_script
     from pipeline.build_short import build_short_pipeline
     from pipeline.seo_engine import generate_seo_metadata
+    from pipeline.cinematic_footage_engine import get_cinematic_space_footage
 except ImportError:
     from transcript_engine import extract_transcript_from_url
     from script_reengineer import reengineer_script
     from build_short import build_short_pipeline
     from seo_engine import generate_seo_metadata
+    from cinematic_footage_engine import get_cinematic_space_footage
 
 def search_matching_nasa_footage(keywords):
-    query = " ".join(keywords[:2])
-    print(f"Searching NASA media archive for 4K/HD footage matching '{query}'...")
-    url = f"https://images-api.nasa.gov/search?q={urllib.parse.quote(query)}&media_type=video"
-    try:
-        res = requests.get(url, timeout=15).json()
-        items = res.get('collection', {}).get('items', [])
-        for item in items[:5]:
-            nasa_id = item.get('data', [{}])[0].get('nasa_id')
-            if not nasa_id:
-                continue
-            col_url = f"https://images-api.nasa.gov/asset/{nasa_id}"
-            col_res = requests.get(col_url, timeout=15).json()
-            video_files = [x.get('href') for x in col_res.get('collection', {}).get('items', []) if x.get('href', '').endswith('.mp4')]
-            # Prefer orig or large
-            for f in video_files:
-                if '~orig.mp4' in f or '~large.mp4' in f or '~medium.mp4' in f:
-                    print(f"Matched NASA footage: {f}")
-                    return f
-    except Exception as e:
-        print(f"Notice in NASA search: {e}")
-
-    # Fallback to high-quality default space footage
-    fallback = "https://images-assets.nasa.gov/video/301_BlackHoles/301_BlackHoles~orig.mp4"
-    print(f"Using verified cosmic archive footage: {fallback}")
-    return fallback
+    query = " ".join(keywords) if isinstance(keywords, list) else str(keywords)
+    return get_cinematic_space_footage(query)
 
 def process_viral_short(youtube_url, upload=False):
     print("=" * 60)
