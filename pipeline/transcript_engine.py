@@ -34,13 +34,23 @@ def extract_transcript_from_url(youtube_url):
         ]
         meta_res = subprocess.run(meta_cmd, capture_output=True, text=True, errors='ignore')
         metadata = {}
-        if meta_res.returncode == 0 and meta_res.stdout.strip():
+        if meta_res.returncode != 0:
+            err_msg = meta_res.stderr.strip() if meta_res.stderr else "Video is unavailable or link is invalid."
+            # Extract readable error line
+            readable_lines = [l for l in err_msg.splitlines() if 'ERROR:' in l]
+            readable_err = readable_lines[0] if readable_lines else err_msg
+            raise ValueError(f"Could not load YouTube video: {readable_err}")
+
+        if meta_res.stdout.strip():
             try:
                 metadata = json.loads(meta_res.stdout)
             except Exception:
                 pass
                 
-        title = metadata.get('title', 'Viral Space Short')
+        title = metadata.get('title')
+        if not title:
+            raise ValueError(f"Could not retrieve video metadata for: {youtube_url}")
+            
         duration = metadata.get('duration', 30)
         
         # 2. Extract Subtitles/Transcript
@@ -68,8 +78,11 @@ def extract_transcript_from_url(youtube_url):
         if not transcript:
             # Fallback: if no transcript track, use description / title
             desc = metadata.get('description', '')
-            transcript = desc if desc else title
-            print("Notice: No audio transcript track found; using video metadata summary.")
+            if desc and len(desc.strip()) > 40:
+                transcript = desc.strip()
+                print("Notice: No audio subtitle track found; using video description.")
+            else:
+                raise ValueError("No spoken transcript found in this video. Please provide a video with spoken English dialogue or commentary.")
             
         print(f"Extracted {len(transcript)} chars from '{title}'")
         return {

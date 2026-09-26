@@ -491,7 +491,8 @@ def generate_photorealistic_thumbnail(topic, output_thumbnail_path):
     print("Generating 100% free photorealistic AI thumbnail...")
     sub_header = topic.get('sub_header', topic['title'].split('#')[0].strip())
     top_header = topic.get('top_header', 'SCIBYTES DAILY')
-    first_sub = topic.get('subtitles', [{}])[0].get('text', sub_header)
+    subs = topic.get('subtitles') or []
+    first_sub = subs[0].get('text', sub_header) if subs else sub_header
 
     base_prompt = topic.get('thumb_prompt')
     if not base_prompt:
