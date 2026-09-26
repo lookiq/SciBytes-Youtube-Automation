@@ -1,0 +1,63 @@
+name: Autonomous Viral Trend Hunter & Short Publisher
+
+on:
+  schedule:
+    # Runs daily at 14:00 UTC (8:00 PM Bangladesh Standard Time)
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+    inputs:
+      auto_upload:
+        description: 'Publish directly to YouTube Studio'
+        type: boolean
+        required: true
+        default: true
+
+jobs:
+  hunt-trend-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install System Dependencies (FFmpeg & Fonts)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+
+      - name: Install Python Requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install yt-dlp requests
+
+      - name: Hunt Top Trending Space Short & Publish
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          YOUTUBE_PRIVACY_STATUS: 'public'
+        run: |
+          UPLOAD_FLAG="--auto-upload"
+          if [ "${{ inputs.auto_upload }}" = "false" ]; then
+            UPLOAD_FLAG="--auto"
+          fi
+          python pipeline/viral_trend_hunter.py $UPLOAD_FLAG
+
+      - name: Commit Updated Viral History
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "SciBytes Automation Bot"
+          git add pipeline/assets/processed_viral_history.json
+          git commit -m "chore(history): record latest processed viral video [skip ci]" || echo "No history changes to commit"
+          git push origin main || echo "Nothing to push"
