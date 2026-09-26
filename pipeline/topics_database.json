@@ -1475,7 +1475,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "quantum_supercomputers_speed",
