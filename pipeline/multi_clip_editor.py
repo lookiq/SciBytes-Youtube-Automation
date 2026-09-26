@@ -94,8 +94,8 @@ def build_segment_plan(total_duration, clip_sources, min_len=1.8, max_len=3.4):
         src_info = clip_sources[source_idx % num_sources]
         src_path = src_info if isinstance(src_info, str) else src_info['path']
         
-        # Check if source is external/viral to apply Anti-Content ID Shield
-        is_external = any(k in os.path.basename(src_path).lower() for k in ['viral', 'youtube', 'tiktok', 'insta', 'download'])
+        # Check if source is external to apply Anti-Content ID Shield (hflip, speed shift, color grading)
+        is_external = not any(k in os.path.basename(src_path).lower() for k in ['nasa_official', 'internal_asset'])
 
         src_dur = get_media_duration(src_path)
         base_offset = 2.0 + (len(segments) * 6.5) % max(1.0, (src_dur - 8.0))
@@ -135,10 +135,11 @@ def render_micro_segment(seg, temp_dir):
     effect = seg['effect']
     is_external = seg['is_external']
 
-    # 1. Anti-Content ID Filters
-    # Horizontal Flip + 1.04x Speed Shift on external clips
+    # 1. Anti-Content ID Filters & Clean Guard
+    # Strip any potential bottom watermark/ticker and apply Horizontal Flip + 1.04x Speed Shift
     shield_filters = []
     if is_external:
+        shield_filters.append("crop=in_w:in_h-80:0:0")
         shield_filters.append("hflip")
         shield_filters.append("setpts=PTS/1.04")
 
@@ -282,8 +283,8 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
     inputs = [
         '-i', montage_raw,
         '-i', audio_path,
-        '-i', top_card_path,
-        '-i', sub_pill_path
+        '-loop', '1', '-i', top_card_path,
+        '-loop', '1', '-i', sub_pill_path
     ]
     input_file_index = 4
 
@@ -335,9 +336,9 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
 
     video_filter = (
         f"[0:v]vignette=angle=0.34,drawbox=y=1340:h=580:color=black@0.42:t=fill[v_base];"
-        f"[v_base][2:v]overlay=0:0[v_card];"
+        f"[v_base][2:v]overlay=0:0:repeatlast=1[v_card];"
         f"[v_card]null{sub_filter}[v_subs];"
-        f"[v_subs][3:v]overlay=0:0:enable='between(t,{outro_start:.2f},{duration:.2f})'[outv]"
+        f"[v_subs][3:v]overlay=0:0:repeatlast=1:enable='between(t,{outro_start:.2f},{duration:.2f})'[outv]"
     )
 
     full_filter = f"{video_filter};{amix_filter}"
