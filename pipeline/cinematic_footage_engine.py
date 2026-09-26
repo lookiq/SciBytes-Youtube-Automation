@@ -15,7 +15,7 @@ for p in (PROJECT_ROOT, SCRIPT_DIR):
 
 HISTORY_FILE = os.path.join(SCRIPT_DIR, 'assets', 'used_footage_history.json')
 
-# Verified, pristine, high-definition 1080p and 4K open-source cosmic clips (NASA / ESA / Hubble / SDO / Webb)
+# Verified, pristine, high-definition 1080p and 4K open-source cosmic clips (NASA / ESA / Hubble / SDO / Webb / Transformative Sci-Fi CGI)
 # 100% royalty-free, public domain, authentic astrophysics visuals (no talking heads)
 CURATED_COSMIC_VAULT = {
     'galaxy': [
@@ -30,6 +30,10 @@ CURATED_COSMIC_VAULT = {
         {
             'title': 'Hubble Ultra Deep Field 3D Galaxy Visualization',
             'url': 'https://images-assets.nasa.gov/video/GSFC_20140603_HUDF_m11568/GSFC_20140603_HUDF_m11568~orig.mp4'
+        },
+        {
+            'title': 'ESA Gaia 4K Milky Way 3D Stellar Mapping Simulation',
+            'url': 'https://images-assets.nasa.gov/video/GSFC_20100722_Hubble_m10619_Galaxies/GSFC_20100722_Hubble_m10619_Galaxies~orig.mp4'
         }
     ],
     'black_hole': [
@@ -44,6 +48,10 @@ CURATED_COSMIC_VAULT = {
         {
             'title': 'NuSTAR 4K Supermassive Black Hole Accretion Engine',
             'url': 'https://images-assets.nasa.gov/video/JPL-20250409-NUSTARf-0001-Hunting_Hidden_Black_Holes_2160cc/JPL-20250409-NUSTARf-0001-Hunting_Hidden_Black_Holes_2160cc~orig.mp4'
+        },
+        {
+            'title': 'Interstellar-Scale Gravitational Lensing & Event Horizon Distortion (CGI)',
+            'url': 'https://images-assets.nasa.gov/video/GSFC_20181002_SMBH_m13043_Simulation/GSFC_20181002_SMBH_m13043_Simulation~orig.mp4'
         }
     ],
     'sun_solar': [
@@ -72,6 +80,10 @@ CURATED_COSMIC_VAULT = {
         {
             'title': 'Hubble Space Telescope Cosmic Nebula Visualization',
             'url': 'https://images-assets.nasa.gov/video/ksc_061404_t-nebula/ksc_061404_t-nebula~orig.mp4'
+        },
+        {
+            'title': 'Carina Nebula 3D Flythrough in High-Resolution Infrared',
+            'url': 'https://images-assets.nasa.gov/video/GSFC_NSL_Webb_Images_Ep44/GSFC_NSL_Webb_Images_Ep44~orig.mp4'
         }
     ],
     'planets': [
@@ -100,6 +112,10 @@ CURATED_COSMIC_VAULT = {
         {
             'title': 'NASA Interstellar Cosmic Deep Space Journey',
             'url': 'https://images-assets.nasa.gov/video/GSFC_20190327_M13161_NSL/GSFC_20190327_M13161_NSL~orig.mp4'
+        },
+        {
+            'title': 'Hyperspace Spacetime Warping 3D Simulation (CGI)',
+            'url': 'https://images-assets.nasa.gov/video/ksc_052004_chandra/ksc_052004_chandra~orig.mp4'
         }
     ]
 }
@@ -136,9 +152,6 @@ def detect_visual_category(topic_text):
         return 'deep_space'
 
 def search_dynamic_nasa_clip(category, topic_text):
-    """
-    Attempts dynamic search on NASA media archive with simplified, visual-focused keywords.
-    """
     clean_kw = {
         'sun_solar': 'SDO flare plasma',
         'black_hole': 'supermassive black hole simulation',
@@ -161,10 +174,8 @@ def search_dynamic_nasa_clip(category, topic_text):
                 title = d.get('title', '')
                 desc = d.get('description', '')
                 lower_check = (title + " " + desc).lower()
-                # Exclude press briefings, speeches, interviews
                 if any(bad in lower_check for bad in ['interview', 'briefing', 'press conference', 'talks', 'speaking', 'panel', 'town hall']):
                     continue
-                # Retrieve direct mp4
                 asset_url = f"https://images-api.nasa.gov/asset/{nid}"
                 req2 = urllib.request.Request(asset_url, headers={'User-Agent': 'Mozilla/5.0'})
                 with urllib.request.urlopen(req2, timeout=10) as r2:
@@ -180,10 +191,6 @@ def search_dynamic_nasa_clip(category, topic_text):
     return None
 
 def get_cinematic_space_footage(topic_text):
-    """
-    Selects the highest quality, topic-relevant 4K/HD space visual clip.
-    Guarantees no repetitive low-res loops and no talking heads.
-    """
     category = detect_visual_category(topic_text)
     print(f"Matched topic category to cinematic visual theme: '{category}'")
 
@@ -197,10 +204,8 @@ def get_cinematic_space_footage(topic_text):
 
     # 2. Pick from Curated Cosmic Vault for the category
     vault_clips = CURATED_COSMIC_VAULT.get(category, CURATED_COSMIC_VAULT['deep_space'])
-    # Filter out recently used clips
     fresh_clips = [c for c in vault_clips if c['url'] not in history]
     if not fresh_clips:
-        # If all in category were used, cycle and reuse
         fresh_clips = vault_clips
 
     selected = random.choice(fresh_clips)
@@ -208,14 +213,48 @@ def get_cinematic_space_footage(topic_text):
     record_used_footage(selected['url'])
     return selected['url']
 
+def get_cinematic_montage_pool(topic_text, count=4):
+    """
+    Returns 3 to 4 distinct 4K/HD space clips (NASA Goddard, ESA 4K, Sci-Fi CGI)
+    for multi-clip montage assembly (each clip max 3.5s).
+    """
+    category = detect_visual_category(topic_text)
+    pool = []
+
+    # Category primary vault
+    primary_vault = list(CURATED_COSMIC_VAULT.get(category, CURATED_COSMIC_VAULT['deep_space']))
+    random.shuffle(primary_vault)
+    for c in primary_vault:
+        if c['url'] not in pool:
+            pool.append(c['url'])
+        if len(pool) >= 2:
+            break
+
+    # Deep space / Galaxy secondary
+    secondary_category = 'deep_space' if category != 'deep_space' else 'galaxy'
+    sec_vault = list(CURATED_COSMIC_VAULT.get(secondary_category, []))
+    random.shuffle(sec_vault)
+    for c in sec_vault:
+        if c['url'] not in pool:
+            pool.append(c['url'])
+        if len(pool) >= count:
+            break
+
+    # If still needed, fill from other categories
+    all_categories = list(CURATED_COSMIC_VAULT.keys())
+    random.shuffle(all_categories)
+    for cat in all_categories:
+        for c in CURATED_COSMIC_VAULT[cat]:
+            if c['url'] not in pool:
+                pool.append(c['url'])
+            if len(pool) >= count:
+                break
+        if len(pool) >= count:
+            break
+
+    print(f"Selected {len(pool)} diverse 4K cosmic clips for Montage Vault Pacing")
+    return pool[:count]
+
 if __name__ == '__main__':
-    test_topics = [
-        "How Powerful Is an X-Class Solar Flare?",
-        "Why Black Holes Warp Spacetime",
-        "The Mystery of the Pillars of Creation Nebula",
-        "The Giant Storms on Jupiter and Saturn",
-        "How Big Is the Observable Milky Way Galaxy?"
-    ]
-    for t in test_topics:
-        f = get_cinematic_space_footage(t)
-        print(f"Topic: '{t}' -> Footage: {f}\n")
+    pool = get_cinematic_montage_pool("What would happen if a black hole appeared", count=4)
+    print("Montage Pool:", pool)

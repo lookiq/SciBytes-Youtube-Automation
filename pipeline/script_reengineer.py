@@ -62,6 +62,19 @@ CRITICAL RULES:
         print(f"Notice: Gemini API re-engineer notice ({e}), using Heuristic AI Engine...")
         return None
 
+def generate_provocative_science_question(clean_title, script_text):
+    lower = (clean_title + " " + script_text).lower()
+    if any(k in lower for k in ['black hole', 'singularity', 'event horizon', 'warp', 'spaghetti', 'classroom', 'destroy']):
+        return "Could anything ever escape the singularity's pull?"
+    elif any(k in lower for k in ['sun', 'solar', 'flare', 'plasma', 'coronal', 'blackout', 'fire']):
+        return "Could our planet survive a direct solar superflare?"
+    elif any(k in lower for k in ['jupiter', 'saturn', 'gas giant', 'storm', 'neptune']):
+        return "What secrets remain buried beneath those crushing clouds?"
+    elif any(k in lower for k in ['galaxy', 'milky way', 'stars', 'deep space', 'alien', 'universe']):
+        return "What other impossible physics is hiding across the cosmos?"
+    else:
+        return "What other secrets lie waiting in the dark?"
+
 def heuristic_reengineer(raw_title, transcript):
     """
     Intelligent heuristic rewriter that extracts key concepts, builds a viral curiosity hook,
@@ -78,7 +91,6 @@ def heuristic_reengineer(raw_title, transcript):
         hook = f"Scientists have just uncovered something incredible about {clean_title}."
         body = f"This cosmic phenomenon reveals the extreme physics operating in deep space."
     else:
-        # Take the most impactful sentence for the body
         hook_candidate = raw_sentences[0]
         if not hook_candidate.lower().startswith(('what', 'why', 'how', 'imagine', 'if')):
             hook = f"Did you know that {hook_candidate[0].lower() + hook_candidate[1:]}?"
@@ -90,9 +102,10 @@ def heuristic_reengineer(raw_title, transcript):
             body = "This deep space discovery proves that reality in the cosmos is far stranger than fiction."
 
     full_script = f"{hook} {body}".strip()
-    # Normalize ending
+    # Normalize ending with Hybrid CTA Outro formula
     full_script = re.sub(r'Subscribe.*$', '', full_script, flags=re.IGNORECASE).strip()
-    full_script += " Subscribe to SciBytes for more interesting videos!"
+    provocative_q = generate_provocative_science_question(clean_title, full_script)
+    full_script += f" {provocative_q} Subscribe to SciBytes to explore the universe."
 
     top_header = "COSMIC DISCOVERY"
     sub_header = clean_title.upper()[:35]
