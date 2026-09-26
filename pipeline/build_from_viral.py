@@ -90,9 +90,26 @@ def process_viral_short(youtube_url, upload=False):
         youtube = get_authenticated_service()
         upload_video(youtube, topic)
 
+    # Save direct copies to User's Desktop
+    desktop_dir = os.path.join(os.environ.get('USERPROFILE', os.path.expanduser('~')), 'Desktop')
+    desktop_video = os.path.join(desktop_dir, 'SciBytes_Viral_Short_Preview.mp4')
+    desktop_thumb = os.path.join(desktop_dir, 'SciBytes_Thumbnail_Preview.jpg')
+    try:
+        import shutil
+        if os.path.exists(output_video):
+            shutil.copy2(output_video, desktop_video)
+            print(f"Direct Desktop video saved: {desktop_video}")
+        thumb_path = os.path.join('output', 'thumbnail.jpg')
+        if os.path.exists(thumb_path):
+            shutil.copy2(thumb_path, desktop_thumb)
+            print(f"Direct Desktop thumbnail saved: {desktop_thumb}")
+    except Exception as e:
+        print(f"Desktop copy notice: {e}")
+
     print("\n" + "=" * 60)
     print("VIRAL SHORT GENERATION COMPLETE!")
-    print("Video output: output/scibytes_short_latest.mp4")
+    print(f"Desktop Preview : {desktop_video}")
+    print("Video output    : output/scibytes_short_latest.mp4")
     print("Thumbnail output: output/thumbnail.jpg")
     print("=" * 60)
 
