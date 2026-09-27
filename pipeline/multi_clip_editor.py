@@ -4,6 +4,7 @@ import subprocess
 import shutil
 import random
 import time
+import glob
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
@@ -98,8 +99,11 @@ def build_segment_plan(total_duration, clip_sources, min_len=1.8, max_len=3.4):
         is_external = not any(k in os.path.basename(src_path).lower() for k in ['nasa_official', 'internal_asset'])
 
         src_dur = get_media_duration(src_path)
-        base_offset = 2.0 + (len(segments) * 6.5) % max(1.0, (src_dur - 8.0))
-        start_offset = find_clean_start_offset(src_path, base_offset)
+        if src_dur <= (seg_len + 1.0):
+            start_offset = 0.5 if src_dur > seg_len else 0.0
+        else:
+            base_offset = 1.0 + (len(segments) * 5.0) % max(1.0, (src_dur - seg_len - 1.0))
+            start_offset = find_clean_start_offset(src_path, base_offset)
 
         effect = effects[effect_idx % len(effects)]
         transition = 'flash' if len(segments) > 0 and (len(segments) % 2 == 1) else 'cut'
@@ -203,6 +207,13 @@ def assemble_multi_clip_video(clip_sources, total_duration, output_video_path, t
     Returns list of cut timestamps for audio sound effects.
     """
     os.makedirs(temp_dir, exist_ok=True)
+    # Clear previous segments to ensure fresh render without stale frames
+    for old_f in glob.glob(os.path.join(temp_dir, 'mc_seg_*.mp4')):
+        try:
+            os.remove(old_f)
+        except Exception:
+            pass
+
     plan = build_segment_plan(total_duration, clip_sources)
     print(f"Divided timeline into {len(plan)} dynamic montage clips (each <= 3.5s):")
     for s in plan:
@@ -237,12 +248,12 @@ def assemble_multi_clip_video(clip_sources, total_duration, output_video_path, t
     print(f"Seamlessly stitched {len(seg_paths)} micro-clips: {output_video_path}")
     return cut_timestamps
 
-def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_path=None):
+def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_path=None, show_top_card=False):
     """
     Full pipeline rendering multi-clip Short with:
     1. Montage Pacing (3 to 4 clips, each 3.5s max)
     2. Anti-Content ID Shield (hflip, 1.04x speed, audio stripping)
-    3. Branded Visual Top Hook Card (Box 2) with Color Psychology tags
+    3. 100% full-screen immersive space visuals (unobstructed by top boxes)
     4. Floating Subscribe Pill Badge (Box 3) in final 3.5 seconds
     5. Synchronized Whoosh SFX on cuts + Bass drop opening + Cosmic BGM
     6. Dynamic active-word CapCut yellow pop ASS subtitles (Box 1)
@@ -251,53 +262,54 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
     temp_dir = 'temp'
     os.makedirs(temp_dir, exist_ok=True)
     duration = get_media_duration(audio_path)
-    print(f"Rendering Multi-Clip Short (Duration: {duration:.2f}s)...")
+    print(f"Rendering Multi-Clip Short (Duration: {duration:.2f}s, Top Card: {show_top_card})...")
 
     # Step 1: Assemble video montage of micro-clips (max 3.5s each)
     montage_raw = os.path.join(temp_dir, f"{topic['id']}_montage_raw.mp4")
     cut_timestamps = assemble_multi_clip_video(clip_sources, duration, montage_raw, temp_dir)
 
-    # Step 2: Generate Branded Overlays (Top Hook Card & Floating Subscribe Pill)
-    top_card_path = os.path.join(temp_dir, f"{topic['id']}_top_card.png")
-    create_top_hook_card(topic['title'], dest_path=top_card_path)
+    # Step 2: Generate Branded Overlays
+    inputs = [
+        '-i', montage_raw,
+        '-i', audio_path
+    ]
+    input_file_index = 2
+
+    top_card_idx = None
+    if show_top_card:
+        top_card_path = os.path.join(temp_dir, f"{topic['id']}_top_card.png")
+        create_top_hook_card(topic['title'], dest_path=top_card_path)
+        inputs.extend(['-loop', '1', '-i', top_card_path])
+        top_card_idx = input_file_index
+        input_file_index += 1
 
     sub_pill_path = os.path.join(temp_dir, "floating_subscribe_pill.png")
     create_floating_subscribe_pill(dest_path=sub_pill_path)
+    inputs.extend(['-loop', '1', '-i', sub_pill_path])
+    sub_pill_idx = input_file_index
+    input_file_index += 1
 
     # Step 3: Sound Design & Audio Mixing
     voice_mastering = (
-        "volume=1.0,equalizer=f=80:width_type=h:width=50:g=3.5,"
-        "equalizer=f=3200:width_type=h:width=1200:g=1.5,"
-        "compand=attacks=0.02:decays=0.1:points=-80/-80|-20/-10|0/-2"
+        "volume=1.85,equalizer=f=80:width_type=h:width=50:g=4.0,"
+        "equalizer=f=3200:width_type=h:width=1200:g=2.5,"
+        "compand=attacks=0.02:decays=0.1:points=-80/-80|-20/-6|0/-0.5"
     )
 
     bgm_path = os.path.join(SCRIPT_DIR, 'assets', 'cosmic_ambient_drone.mp3')
     bass_path = os.path.join(SCRIPT_DIR, 'assets', 'bass_impact.mp3')
     whoosh_path = os.path.join(SCRIPT_DIR, 'assets', 'whoosh_sfx.mp3')
 
-    # Sequential input files list
-    # Input 0: montage_raw (video)
-    # Input 1: audio_path (voice)
-    # Input 2: top_card_path (overlay image)
-    # Input 3: sub_pill_path (overlay image)
-    inputs = [
-        '-i', montage_raw,
-        '-i', audio_path,
-        '-loop', '1', '-i', top_card_path,
-        '-loop', '1', '-i', sub_pill_path
-    ]
-    input_file_index = 4
-
     audio_chains = []
     audio_chains.append(f"[1:a]{voice_mastering}[voice_clean]")
     mix_sources = ["[voice_clean]"]
 
-    # Background music
+    # Background music (ducked slightly for clear vocal presence)
     if os.path.exists(bgm_path):
         bgm_idx = input_file_index
         inputs.extend(['-stream_loop', '-1', '-i', bgm_path])
         input_file_index += 1
-        audio_chains.append(f"[{bgm_idx}:a]volume=0.08[bgm_clean]")
+        audio_chains.append(f"[{bgm_idx}:a]volume=0.06[bgm_clean]")
         mix_sources.append("[bgm_clean]")
 
     # Bass impact at t=0.0s
@@ -305,7 +317,7 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
         bass_idx = input_file_index
         inputs.extend(['-i', bass_path])
         input_file_index += 1
-        audio_chains.append(f"[{bass_idx}:a]volume=0.25[bass_clean]")
+        audio_chains.append(f"[{bass_idx}:a]volume=0.20[bass_clean]")
         mix_sources.append("[bass_clean]")
 
     # Whoosh SFX at each cut timestamp
@@ -316,17 +328,13 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
         delayed_whooshes = []
         for w_i, cut_t in enumerate(cut_timestamps[:10]):
             delay_ms = int(max(0, cut_t - 0.05) * 1000)
-            delayed_whooshes.append(f"[{whoosh_idx}:a]adelay={delay_ms}|{delay_ms},volume=0.20[w_{w_i}]")
+            delayed_whooshes.append(f"[{whoosh_idx}:a]adelay={delay_ms}|{delay_ms},volume=0.16[w_{w_i}]")
             mix_sources.append(f"[w_{w_i}]")
         audio_chains.extend(delayed_whooshes)
 
     amix_filter = f"{';'.join(audio_chains)};{''.join(mix_sources)}amix=inputs={len(mix_sources)}:duration=first:dropout_transition=2[outa]"
 
     # Step 4: Video Compositing
-    # Layer 0: Base montage video + Vignette + Bottom Safe Shadow
-    # Layer 1: Top Hook Card (Box 2)
-    # Layer 2: Dynamic ASS Subtitles (Box 1)
-    # Layer 3: Floating Subscribe Pill Badge (Box 3, final 3.5 seconds)
     sub_filter = ""
     if ass_path and os.path.exists(ass_path):
         rel_ass = os.path.relpath(ass_path).replace('\\', '/')
@@ -334,12 +342,19 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
 
     outro_start = max(0.0, duration - 3.5)
 
-    video_filter = (
-        f"[0:v]vignette=angle=0.34,drawbox=y=1340:h=580:color=black@0.42:t=fill[v_base];"
-        f"[v_base][2:v]overlay=0:0:repeatlast=1[v_card];"
-        f"[v_card]null{sub_filter}[v_subs];"
-        f"[v_subs][3:v]overlay=0:0:repeatlast=1:enable='between(t,{outro_start:.2f},{duration:.2f})'[outv]"
-    )
+    if show_top_card and top_card_idx is not None:
+        video_filter = (
+            f"[0:v]vignette=angle=0.34,drawbox=y=1340:h=580:color=black@0.42:t=fill[v_base];"
+            f"[v_base][{top_card_idx}:v]overlay=0:0:repeatlast=1[v_card];"
+            f"[v_card]null{sub_filter}[v_subs];"
+            f"[v_subs][{sub_pill_idx}:v]overlay=0:0:repeatlast=1:enable='between(t,{outro_start:.2f},{duration:.2f})'[outv]"
+        )
+    else:
+        video_filter = (
+            f"[0:v]vignette=angle=0.28,drawbox=y=1360:h=560:color=black@0.38:t=fill[v_base];"
+            f"[v_base]null{sub_filter}[v_subs];"
+            f"[v_subs][{sub_pill_idx}:v]overlay=0:0:repeatlast=1:enable='between(t,{outro_start:.2f},{duration:.2f})'[outv]"
+        )
 
     full_filter = f"{video_filter};{amix_filter}"
 

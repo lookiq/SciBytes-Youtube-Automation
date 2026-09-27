@@ -465,9 +465,9 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
     # 1. 100% Stripping of source footage audio (never map 0:a to avoid clashing music/noise)
     # 2. Studio Mastering on Voiceover: low-end warmth + broadcast dynamic range compression
     voice_mastering = (
-        "volume=1.0,equalizer=f=80:width_type=h:width=50:g=3.5,"
-        "equalizer=f=3200:width_type=h:width=1200:g=1.5,"
-        "compand=attacks=0.02:decays=0.1:points=-80/-80|-20/-10|0/-2"
+        "volume=1.85,equalizer=f=80:width_type=h:width=50:g=4.0,"
+        "equalizer=f=3200:width_type=h:width=1200:g=2.5,"
+        "compand=attacks=0.02:decays=0.1:points=-80/-80|-20/-6|0/-0.5"
     )
 
     bgm_path = os.path.join(os.path.dirname(__file__), 'assets', 'cosmic_ambient_drone.mp3')
