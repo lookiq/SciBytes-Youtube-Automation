@@ -1599,7 +1599,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "laser_speed_of_light",
