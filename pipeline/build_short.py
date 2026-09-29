@@ -57,54 +57,59 @@ def get_next_topic(exclude_ids=None):
     if exclude_ids is None:
         exclude_ids = set()
 
+    try:
+        from pipeline.dedup_shield import is_topic_already_used, is_clip_already_used, get_fresh_nasa_clip
+    except ImportError:
+        from dedup_shield import is_topic_already_used, is_clip_already_used, get_fresh_nasa_clip
+
     with open(DATABASE_FILE, 'r', encoding='utf-8') as f:
         topics = json.load(f)
 
-    uploaded_titles, uploaded_footages = get_uploaded_history()
-
-    # Collect all footage URLs that have already been marked used
-    used_footage_urls = set(uploaded_footages)
+    # Pass 1: Check for high-priority event alerts
     for topic in topics:
-        if topic.get('used', False):
-            used_footage_urls.add(topic.get('footage_url'))
-
-    # Pass 1: Check for high-priority event alerts (e.g. EVENT_ALERT, BREAKING, HIGH)
-    for topic in topics:
-        if topic.get('id') in exclude_ids:
+        t_id = topic.get('id')
+        t_title = topic.get('title', '')
+        if t_id in exclude_ids:
             continue
         if not topic.get('used', False) and topic.get('priority') in ['EVENT_ALERT', 'BREAKING', 'HIGH']:
-            t_title = topic.get('title', '').strip().lower()
-            f_url = topic.get('footage_url')
-            if f_url in used_footage_urls:
-                continue
-            if t_title in uploaded_titles:
+            if is_topic_already_used(t_id, t_title):
                 topic['used'] = True
                 continue
-            print(f"[PRIORITY EVENT ALERT DETECTED] Next topic: {topic.get('title')}")
+            f_url = topic.get('footage_url')
+            if is_clip_already_used(f_url):
+                fresh = get_fresh_nasa_clip(t_title)
+                if fresh and not is_clip_already_used(fresh):
+                    topic['footage_url'] = fresh
+                else:
+                    continue
+            print(f"[DEDUP SHIELD - PRIORITY ALERT] Selected unique topic: '{t_title}'")
             return topic
 
-    # Pass 2: Regular sequential scan
+    # Pass 2: Sequential scan with Strict Zero Repost & Zero Reuse Shield
     for topic in topics:
-        if topic.get('id') in exclude_ids:
-            continue
-        t_title = topic.get('title', '').strip().lower()
-        f_url = topic.get('footage_url')
-
-        # Guard 1: Must not already be marked used
-        if topic.get('used', False):
+        t_id = topic.get('id')
+        t_title = topic.get('title', '')
+        if t_id in exclude_ids:
             continue
 
-        # Guard 2: Footage URL must NOT match any already-used topic or uploaded footage
-        if f_url in used_footage_urls:
-            print(f"Skipping topic '{topic.get('title')}' - duplicate footage URL detected: {f_url}")
-            continue
-
-        # Guard 3: Title must NOT exist in upload_history.log
-        if t_title in uploaded_titles:
-            print(f"Skipping topic '{topic.get('title')}' - title already uploaded in history!")
+        # Guard 1: Zero Topic Repost Shield (must never have been posted in history)
+        if topic.get('used', False) or is_topic_already_used(t_id, t_title):
             topic['used'] = True
             continue
 
+        # Guard 2: Zero Clip Reuse Shield (footage must never have been used anywhere)
+        f_url = topic.get('footage_url')
+        if is_clip_already_used(f_url):
+            print(f"[DEDUP SHIELD] Footage for '{t_title}' was used previously. Searching fresh NASA archive footage...")
+            fresh = get_fresh_nasa_clip(t_title)
+            if fresh and not is_clip_already_used(fresh):
+                print(f"[DEDUP SHIELD] Successfully assigned 100% brand-new NASA footage: {fresh}")
+                topic['footage_url'] = fresh
+            else:
+                print(f"[DEDUP SHIELD] Skipping topic '{t_title}' to guarantee zero clip reuse.")
+                continue
+
+        print(f"[DEDUP SHIELD] Selected verified fresh topic: '{t_title}' (ID: {t_id})")
         return topic
 
     # NEVER reset and loop duplicates automatically!

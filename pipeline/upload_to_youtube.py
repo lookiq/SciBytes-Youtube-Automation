@@ -81,6 +81,16 @@ def upload_video():
     load_env_file()
     privacy_status = os.environ.get('YOUTUBE_PRIVACY_STATUS', 'public')
 
+    try:
+        from pipeline.dedup_shield import is_topic_already_used, record_content_upload
+    except ImportError:
+        from dedup_shield import is_topic_already_used, record_content_upload
+
+    # Guard: Strictly prevent duplicate uploads / reposts
+    if is_topic_already_used(metadata.get('id'), metadata.get('title')):
+        print(f"[DEDUP SHIELD ABORT] Topic '{metadata.get('title')}' is ALREADY posted on your YouTube channel! Zero Repost Shield triggered. Aborting duplicate upload.")
+        sys.exit(0)
+
     youtube = get_authenticated_service()
 
     # Sanitize tags to strictly ensure <= 400 YouTube character cost (accounting for quotes and commas)
@@ -178,6 +188,7 @@ def upload_video():
             print(f"Notice on custom thumbnail API: {e}")
 
     mark_topic_used(metadata.get('id'))
+    record_content_upload(metadata.get('id'), metadata['title'], metadata.get('footage_url'), video_id)
 
     log_entry = f"[{datetime.now().isoformat()}] ID: {video_id} | Title: {metadata['title']} | Footage: {metadata.get('footage_url', 'N/A')} | URL: {video_url}\n"
     with open('upload_history.log', 'a', encoding='utf-8') as f:

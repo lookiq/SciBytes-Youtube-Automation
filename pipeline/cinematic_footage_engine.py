@@ -182,65 +182,91 @@ def get_cinematic_space_footage(topic_text):
     category = detect_visual_category(topic_text)
     print(f"Matched topic category to cinematic visual theme: '{category}'")
 
-    history = load_used_history()
+    try:
+        from pipeline.dedup_shield import is_clip_already_used, get_fresh_nasa_clip, record_content_upload
+    except ImportError:
+        from dedup_shield import is_clip_already_used, get_fresh_nasa_clip, record_content_upload
 
-    # 1. Try dynamic NASA search first for freshness
+    # 1. Try dynamic NASA search first for guaranteed freshness
     dynamic_clip = search_dynamic_nasa_clip(category, topic_text)
-    if dynamic_clip:
+    if dynamic_clip and not is_clip_already_used(dynamic_clip):
         record_used_footage(dynamic_clip)
         return dynamic_clip
 
-    # 2. Pick from Curated Cosmic Vault for the category
+    # 2. Pick from Curated Cosmic Vault for the category (strictly never-used)
     vault_clips = CURATED_COSMIC_VAULT.get(category, CURATED_COSMIC_VAULT['deep_space'])
-    fresh_clips = [c for c in vault_clips if c['url'] not in history]
-    if not fresh_clips:
-        fresh_clips = vault_clips
+    fresh_clips = [c for c in vault_clips if not is_clip_already_used(c['url'])]
 
-    selected = random.choice(fresh_clips)
-    print(f"Selected pristine cosmic vault clip: '{selected['title']}'")
-    record_used_footage(selected['url'])
-    return selected['url']
+    if fresh_clips:
+        selected = random.choice(fresh_clips)
+        print(f"[DEDUP SHIELD] Selected pristine cosmic vault clip: '{selected['title']}'")
+        record_used_footage(selected['url'])
+        return selected['url']
+
+    # 3. If vault exhausted: fetch dynamically from NASA API (zero reuse guaranteed)
+    print(f"[DEDUP SHIELD] Vault clips for '{category}' already used. Querying NASA Video API for fresh 4K/HD clip...")
+    fresh_nasa = get_fresh_nasa_clip(f"{category} cosmic visualization")
+    if fresh_nasa:
+        record_used_footage(fresh_nasa)
+        return fresh_nasa
+
+    raise RuntimeError(f"CRITICAL ERROR: No unused clips available for '{category}'! Re-use strictly prevented.")
 
 def get_cinematic_montage_pool(topic_text, count=4):
     """
     Returns 3 to 4 distinct 4K/HD space clips (NASA Goddard, ESA 4K, Sci-Fi CGI)
     for multi-clip montage assembly (each clip max 3.5s).
+    Strictly guarantees that NO clip has ever been used in any past video.
     """
+    try:
+        from pipeline.dedup_shield import is_clip_already_used, get_fresh_nasa_clip
+    except ImportError:
+        from dedup_shield import is_clip_already_used, get_fresh_nasa_clip
+
     category = detect_visual_category(topic_text)
     pool = []
 
-    # Category primary vault
+    # Category primary vault (only unused clips)
     primary_vault = list(CURATED_COSMIC_VAULT.get(category, CURATED_COSMIC_VAULT['deep_space']))
     random.shuffle(primary_vault)
     for c in primary_vault:
-        if c['url'] not in pool:
+        if c['url'] not in pool and not is_clip_already_used(c['url']):
             pool.append(c['url'])
         if len(pool) >= 2:
             break
 
-    # Deep space / Galaxy secondary
+    # Deep space / Galaxy secondary (only unused clips)
     secondary_category = 'deep_space' if category != 'deep_space' else 'galaxy'
     sec_vault = list(CURATED_COSMIC_VAULT.get(secondary_category, []))
     random.shuffle(sec_vault)
     for c in sec_vault:
-        if c['url'] not in pool:
+        if c['url'] not in pool and not is_clip_already_used(c['url']):
             pool.append(c['url'])
         if len(pool) >= count:
             break
 
-    # If still needed, fill from other categories
+    # Fill from all other categories (only unused clips)
     all_categories = list(CURATED_COSMIC_VAULT.keys())
     random.shuffle(all_categories)
     for cat in all_categories:
         for c in CURATED_COSMIC_VAULT[cat]:
-            if c['url'] not in pool:
+            if c['url'] not in pool and not is_clip_already_used(c['url']):
                 pool.append(c['url'])
             if len(pool) >= count:
                 break
         if len(pool) >= count:
             break
 
-    print(f"Selected {len(pool)} diverse 4K cosmic clips for Montage Vault Pacing")
+    # If still needed, query NASA live archives for brand new footage
+    if len(pool) < count:
+        needed = count - len(pool)
+        print(f"[DEDUP SHIELD] Fetching {needed} additional fresh clips dynamically from NASA API...")
+        for _ in range(needed):
+            extra_clip = get_fresh_nasa_clip(f"{category} space exploration")
+            if extra_clip and extra_clip not in pool and not is_clip_already_used(extra_clip):
+                pool.append(extra_clip)
+
+    print(f"[DEDUP SHIELD] Assembled montage pool of {len(pool)} 100% fresh, never-used 4K space clips.")
     return pool[:count]
 
 if __name__ == '__main__':

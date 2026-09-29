@@ -479,19 +479,25 @@ def refill_database(dry_run=False):
     print(f"Currently unused in queue : {unused_before}")
     print("=" * 60)
 
+    try:
+        from pipeline.dedup_shield import is_topic_already_used, is_clip_already_used
+    except ImportError:
+        from dedup_shield import is_topic_already_used, is_clip_already_used
+
     added_topics = []
     for topic in CURATED_REFILL_POOL:
         t_id = topic['id']
+        t_title = topic.get('title', '')
         t_footage = topic.get('footage_url')
 
-        # Safety Check 1: ID must not exist
-        if t_id in existing_ids:
-            print(f"Skipping '{t_id}' - ID already exists.")
+        # Safety Check 1: ID & Title must not exist in DB or upload history
+        if t_id in existing_ids or is_topic_already_used(t_id, t_title):
+            print(f"[DEDUP SHIELD] Skipping '{t_id}' - topic already used or posted.")
             continue
 
-        # Safety Check 2: Footage URL must not be in use
-        if t_footage and (t_footage in used_footage_urls or t_footage.replace('https://', 'http://') in used_footage_urls):
-            print(f"Skipping '{t_id}' - Footage URL already used.")
+        # Safety Check 2: Footage URL must never have been used anywhere
+        if t_footage and (is_clip_already_used(t_footage) or t_footage in used_footage_urls):
+            print(f"[DEDUP SHIELD] Skipping '{t_id}' - Footage URL already used previously.")
             continue
 
         added_topics.append(topic)
