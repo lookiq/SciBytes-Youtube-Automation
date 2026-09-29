@@ -2094,7 +2094,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "mars_curiosity_ancient_water",
