@@ -2467,7 +2467,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "osiris_rex_asteroid_sample",
