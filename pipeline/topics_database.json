@@ -2589,7 +2589,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "psyche_giant_metal_asteroid",
