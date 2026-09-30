@@ -53,6 +53,35 @@ def get_uploaded_history():
                             history_footages.add(footage_part)
     return history_titles, history_footages
 
+def is_space_galaxy_topic(topic):
+    cat = topic.get('category', '').upper()
+    priority = topic.get('priority', '').upper()
+    if cat in ['SPACE_GALAXY', 'GALAXY', 'GALAXIES', 'DEEP_SPACE', 'BLACK_HOLE', 'ASTROPHYSICS']:
+        return True
+    if priority in ['SPACE', 'GALAXY', 'SPACE_GALAXY']:
+        return True
+
+    title = topic.get('title', '').lower()
+    headers = (topic.get('top_header', '') + " " + topic.get('sub_header', '')).lower()
+    tags = ' '.join(topic.get('tags', [])).lower()
+    combined = f"{title} {headers} {tags}"
+
+    # Exclude planetary / local asteroid / rover / crater topics unless black hole/galaxy/supernova
+    exclude_planetary = ['asteroid', 'asteroids', 'rover', 'crater', 'charon', 'aurora', 'volcano', 'ocean']
+    if any(ep in combined for ep in exclude_planetary):
+        if not any(k in combined for k in ['black hole', 'galaxy', 'galaxies', 'supernova', 'nebula']):
+            return False
+
+    deep_space_keywords = [
+        'galaxy', 'galaxies', 'milky way', 'andromeda', 'black hole', 'singularity',
+        'event horizon', 'nebula', 'supernova', 'hypernova', 'kilonova', 'quasar',
+        'pulsar', 'neutron star', 'deep space', 'dark matter', 'dark energy',
+        'observable universe', 'cosmic web', 'stephan', 'starlight in the universe',
+        'first stars', 'first light after the big bang', 'first molecule', 'redshift',
+        'gamma ray', 'gamma-ray', 'cosmic blast'
+    ]
+    return any(k in combined for k in deep_space_keywords)
+
 def get_next_topic(exclude_ids=None):
     if exclude_ids is None:
         exclude_ids = set()
@@ -85,7 +114,34 @@ def get_next_topic(exclude_ids=None):
             print(f"[DEDUP SHIELD - PRIORITY ALERT] Selected unique topic: '{t_title}'")
             return topic
 
-    # Pass 2: Sequential scan with Strict Zero Repost & Zero Reuse Shield
+    # Pass 2: Priority scan for Deep Space & Galaxy Topics (User Explicit Priority)
+    for topic in topics:
+        t_id = topic.get('id')
+        t_title = topic.get('title', '')
+        if t_id in exclude_ids:
+            continue
+
+        if topic.get('used', False) or is_topic_already_used(t_id, t_title):
+            topic['used'] = True
+            continue
+
+        if not is_space_galaxy_topic(topic):
+            continue
+
+        f_url = topic.get('footage_url')
+        if is_clip_already_used(f_url):
+            print(f"[DEDUP SHIELD] Space topic '{t_title}' clip was used previously. Searching fresh NASA archive footage...")
+            fresh = get_fresh_nasa_clip(t_title)
+            if fresh and not is_clip_already_used(fresh):
+                print(f"[DEDUP SHIELD] Assigned fresh NASA clip: {fresh}")
+                topic['footage_url'] = fresh
+            else:
+                continue
+
+        print(f"[DEDUP SHIELD - SPACE & GALAXY PRIORITY] Selected fresh topic: '{t_title}' (ID: {t_id})")
+        return topic
+
+    # Pass 3: Sequential scan with Strict Zero Repost & Zero Reuse Shield
     for topic in topics:
         t_id = topic.get('id')
         t_title = topic.get('title', '')

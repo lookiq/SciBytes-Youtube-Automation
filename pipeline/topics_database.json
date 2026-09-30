@@ -3566,5 +3566,931 @@
       "shorts"
     ],
     "used": false
+  },
+  {
+    "id": "andromeda_milky_way_collision",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "The Cosmic Collision of Milky Way and Andromeda #Shorts",
+    "top_header": "IN 4.5 BILLION YEARS",
+    "sub_header": "TWO GIANT GALAXIES WILL CRASH!",
+    "script": "In four and a half billion years, our Milky Way and the giant Andromeda galaxy will collide at over two hundred and fifty thousand miles per hour. Trillions of stars will be flung into deep space as gravity warps both spiral disks. Their central supermassive black holes will merge, forging a single colossal elliptical galaxy. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "TWO GIANT GALAXIES COLLIDING!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "CRASHING AT 250,000 MPH!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "TRILLIONS OF STARS FLUNG AWAY!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 20.5,
+        "text": "SUPERMASSIVE BLACK HOLES MERGING!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.5,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20100722_Hubble_m10619_Galaxies/GSFC_20100722_Hubble_m10619_Galaxies~orig.mp4",
+    "tags": [
+      "galaxy collision",
+      "andromeda milky way",
+      "space facts",
+      "astronomy",
+      "deep space",
+      "galaxies",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "ton_618_largest_black_hole",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "The Terrifying Size of the Largest Black Hole #Shorts",
+    "top_header": "BIGGEST BLACK HOLE KNOWN",
+    "sub_header": "TON 618: 66 BILLION SUNS!",
+    "script": "TON 618 is the largest supermassive black hole ever discovered, packing the mass of sixty-six billion suns into a single abyss. It is so gargantuan that eleven solar systems could sit side-by-side inside its event horizon. The hyperheated gas swirling into it shines brighter than one hundred and forty trillion suns. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "LARGEST BLACK HOLE EVER FOUND!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "MASS OF 66 BILLION SUNS!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 14.5,
+        "text": "FITS 11 ENTIRE SOLAR SYSTEMS!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 14.5,
+        "end": 20.0,
+        "text": "SHINES LIKE 140 TRILLION SUNS!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.0,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/ksc_012505_black_holes/ksc_012505_black_holes~orig.mp4",
+    "tags": [
+      "ton 618",
+      "largest black hole",
+      "black hole facts",
+      "space mysteries",
+      "astrophysics",
+      "universe size",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "evolution_of_galaxies_deep_space",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "How Billions of Galaxies Formed From Nothing #Shorts",
+    "top_header": "ORIGIN OF THE COSMOS",
+    "sub_header": "TWO TRILLION GALAXIES IN SPACE!",
+    "script": "In the observable universe, there are over two trillion galaxies, each home to hundreds of billions of stars. Right after the Big Bang, microscopic quantum ripples stretched into colossal cosmic filaments of dark matter. Gravity pulled ancient hydrogen into these cosmic webs, igniting the very first galaxies in deep space. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "TWO TRILLION GALAXIES IN SPACE!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "QUANTUM RIPPLES IN THE BIG BANG!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 14.5,
+        "text": "COLOSSAL WEBS OF DARK MATTER!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 14.5,
+        "end": 20.0,
+        "text": "FIRST GALAXIES IGNITED IN DARKNESS!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.0,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/Evolution_of_Galaxies_H264/Evolution_of_Galaxies_H264~orig.mp4",
+    "tags": [
+      "galaxy evolution",
+      "deep space",
+      "big bang",
+      "cosmology",
+      "universe formation",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "eta_carinae_doomed_hypergiant",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "The Doomed Monster Star Ready to Explode #Shorts",
+    "top_header": "HYPERNOVA WARNING",
+    "sub_header": "A STAR 100X BIGGER THAN OUR SUN!",
+    "script": "Eta Carinae is a volatile monster stellar system containing a hypergiant star over one hundred times more massive than the Sun, shining five million times brighter. In the nineteenth century, it erupted in a violent outburst creating glowing gas lobes. Astronomers warn it could detonate as a catastrophic hypernova at any second. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.2,
+        "text": "DOOMED MONSTER HYPERGIANT STAR!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.2,
+        "end": 9.2,
+        "text": "SHINING 5 MILLION TIMES BRIGHTER!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.2,
+        "end": 14.5,
+        "text": "VIOLENT OUTBURST CREATED NEBULA!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 14.5,
+        "end": 19.8,
+        "text": "READY TO DETONATE AS HYPERNOVA!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 19.8,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20190701_HST_m13244_Eta_Carinae/GSFC_20190701_HST_m13244_Eta_Carinae~orig.mp4",
+    "tags": [
+      "eta carinae",
+      "hypernova",
+      "supernova",
+      "dying star",
+      "deep space",
+      "astrophysics",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "fermi_history_of_starlight",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "Measuring All the Starlight in the Universe #Shorts",
+    "top_header": "NASA COSMIC CENSUS",
+    "sub_header": "ALL THE LIGHT IN COSMIC HISTORY!",
+    "script": "NASA's Fermi Space Telescope accomplished the impossible: calculating the total amount of starlight ever produced across cosmic history. By measuring gamma-rays from distant blazars colliding with cosmic fog, scientists determined that stars have emitted four times ten to the eighty-fourth photons since the universe was born. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "TOTAL STARLIGHT IN COSMIC HISTORY!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "MEASURED WITH HIGH-ENERGY GAMMA RAYS!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "BLAZARS COLLIDING WITH COSMIC FOG!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 20.2,
+        "text": "4 X 10^84 PARTICLES OF LIGHT!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.2,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20181129_FERMI_m13104_Starlight/GSFC_20181129_FERMI_m13104_Starlight~orig.mp4",
+    "tags": [
+      "starlight",
+      "fermi telescope",
+      "universe",
+      "cosmology",
+      "space facts",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "cosmic_origins_spectrograph_web",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "The Invisible Web Connecting Every Galaxy in Space #Shorts",
+    "top_header": "THE SKELETON OF SPACE",
+    "sub_header": "THE INVISIBLE COSMIC WEB!",
+    "script": "Galaxies are not scattered randomly in space. They are strung along a colossal, invisible framework called the Cosmic Web. Spanning hundreds of millions of light-years, vast strands of dark matter and hydrogen gas channel material into giant galaxy clusters, leaving mind-boggling empty voids between them. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "THE SKELETON OF THE UNIVERSE!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "COLOSSAL STRANDS OF DARK MATTER!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "FEEDING GIANT GALAXY CLUSTERS!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 20.0,
+        "text": "HUNDREDS OF MILLIONS OF LIGHT YEARS!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.0,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20080520_HST_m10223_COS/GSFC_20080520_HST_m10223_COS~orig.mp4",
+    "tags": [
+      "cosmic web",
+      "dark matter",
+      "galaxy clusters",
+      "deep space",
+      "universe structure",
+      "hubble",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "hubble_wide_field_redshift",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "Why Distant Galaxies Are Running Away From Us #Shorts",
+    "top_header": "COSMIC EXPANSION",
+    "sub_header": "SPACE IS STRETCHING AT HIGH SPEED!",
+    "script": "When astronomers look at distant galaxies with Hubble, their light is shifted toward the red end of the spectrum. This is cosmic redshift. The galaxies are not merely moving through space; space itself is expanding in all directions, stretching the light waves as they journey billions of years to reach our telescopes. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "DISTANT GALAXIES RUNNING AWAY!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "LIGHT SHIFTED INTO RED SPECTRUM!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "SPACE ITSELF IS STRETCHING OUT!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 20.2,
+        "text": "EXPANDING IN EVERY DIRECTION!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.2,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20080520_HST_m10222_WFC3_Redshift/GSFC_20080520_HST_m10222_WFC3_Redshift~orig.mp4",
+    "tags": [
+      "redshift",
+      "universe expansion",
+      "hubble telescope",
+      "physics facts",
+      "astronomy",
+      "deep space",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "sextant_pulsar_cosmic_lighthouse",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "How NASA Uses Dead Stars as Cosmic GPS #Shorts",
+    "top_header": "PULSAR NAVIGATION",
+    "sub_header": "DEAD STARS AS GALACTIC CLOCKS!",
+    "script": "Pulsars are rapidly spinning neutron stars that emit razor-sharp beams of radiation like cosmic lighthouses. Their rotations are so extraordinarily precise that NASA developed the SEXTANT system to use X-ray pulses from these dead stars to navigate spacecraft across deep space without any signals from Earth. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "DEAD STARS AS A GALACTIC GPS!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "SPINNING HUNDREDS OF TIMES A SECOND!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 14.8,
+        "text": "RAZOR-SHARP X-RAY BEAMS!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 14.8,
+        "end": 20.0,
+        "text": "AUTONOMOUS DEEP SPACE NAVIGATION!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.0,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20130405_SEXTANT_m10857_ISS_Animation/GSFC_20130405_SEXTANT_m10857_ISS_Animation~orig.mp4",
+    "tags": [
+      "pulsar",
+      "neutron star",
+      "nasa technology",
+      "space navigation",
+      "deep space",
+      "astrophysics",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "orion_nebula_stellar_nursery",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "Inside the Giant Cosmic Factory Where Stars Are Born #Shorts",
+    "top_header": "ORION NEBULA NURSERY",
+    "sub_header": "WHERE THOUSANDS OF STARS ARE BORN!",
+    "script": "The Orion Nebula is a breathtaking stellar nursery located one thousand three hundred light-years from Earth. Spanning twenty-four light-years across, this glowing cloud of turbulent gas and dust contains enough matter to forge ten thousand stars, where baby stars blast powerful stellar winds into cosmic space. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "INSIDE A GIANT STAR FACTORY!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "1,300 LIGHT-YEARS FROM EARTH!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "ENOUGH GAS FOR 10,000 STARS!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 20.2,
+        "text": "BABY STARS BLASTING STELLAR WINDS!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.2,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/JPL-20221122-SOLSYSf-0001-Orion Dust and Death/JPL-20221122-SOLSYSf-0001-Orion Dust and Death~orig.mp4",
+    "tags": [
+      "orion nebula",
+      "stellar nursery",
+      "nebula facts",
+      "star formation",
+      "deep space",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "spitzer_stars_of_cepheus",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "NASA Pierced the Dark Dust of Deep Space #Shorts",
+    "top_header": "SPITZER INFRARED EYE",
+    "sub_header": "UNCOVERING HIDDEN STELLAR BABIES!",
+    "script": "In visible light, giant molecular clouds in Cepheus look like black walls blocking the stars. But when NASA's Spitzer Space Telescope looked in infrared light, the opaque dust became completely transparent, revealing hundreds of hidden newborn stars and protoplanetary discs tucked inside deep cosmic cocoons. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.2,
+        "text": "PIERCING DARK WALLS OF DUST!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.2,
+        "end": 9.2,
+        "text": "VISIBLE LIGHT BLOCKED COMPLETELY!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.2,
+        "end": 14.8,
+        "text": "INFRARED REVEALS NEWBORN STARS!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 14.8,
+        "end": 20.0,
+        "text": "PLANETARY SYSTEMS FORMING INSIDE!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.0,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/20190530-SPITZRf-0001-Stars of Cephus/20190530-SPITZRf-0001-Stars of Cephus~orig.mp4",
+    "tags": [
+      "spitzer telescope",
+      "infrared astronomy",
+      "cepheus stars",
+      "deep space",
+      "nasa discoveries",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "first_molecule_after_big_bang",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "The First Molecule Created After the Big Bang #Shorts",
+    "top_header": "DAWN OF CHEMISTRY",
+    "sub_header": "THE UNIVERSE'S FIRST MOLECULE FOUND!",
+    "script": "Over thirteen billion years ago, when the universe was only a hundred thousand years old, helium and hydrogen combined to create the very first chemical bond in cosmic history: helium hydride. For decades, scientists could not find it in space until NASA's flying SOFIA observatory finally detected it inside a planetary nebula. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "THE VERY FIRST MOLECULE IN SPACE!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "CREATED 100,000 YEARS AFTER BIG BANG!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "HELIUM HYDRIDE DISCOVERY!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 20.2,
+        "text": "DETECTED BY NASA FLYING OBSERVATORY!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.2,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/ARC-20190417-AAV3194-SOFIA-HeHMolecule-NarratedAnimation-NASAWeb/ARC-20190417-AAV3194-SOFIA-HeHMolecule-NarratedAnimation-NASAWeb~orig.mp4",
+    "tags": [
+      "first molecule",
+      "big bang",
+      "helium hydride",
+      "cosmology",
+      "astrophysics",
+      "space discoveries",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "tess_deep_space_supernovae",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "NASA Caught Multiple Exploding Supernovae in Deep Space #Shorts",
+    "top_header": "STELLAR CATASTROPHE",
+    "sub_header": "NASA SNARLED EXPLODING SUPERNOVAE!",
+    "script": "NASA's planet-hunting TESS satellite achieved a monumental astrophysics feat: capturing the exact moment distant giant stars detonated into catastrophic supernovae. Because TESS stares continuously at massive sky patches, it recorded the initial shockwave tearing through the dying star before the explosion was even visible to ground telescopes. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "EXACT MOMENT A STAR EXPLODES!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "CAUGHT BY NASA'S TESS SATELLITE!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "SHOCKWAVE TEARING THROUGH THE STAR!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 20.2,
+        "text": "UNLEASHING UNIMAGINABLE ENERGY!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.2,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20190107_TESS_m12853_1stPlanet4k/GSFC_20190107_TESS_m12853_1stPlanet4k~orig.mp4",
+    "tags": [
+      "supernova",
+      "tess satellite",
+      "exploding stars",
+      "astrophysics",
+      "deep space",
+      "space science",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "chandra_supernova_crab_pulsar",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "The Cosmic Pulse Left Behind by an Exploded Star #Shorts",
+    "top_header": "CRAB NEBULA PULSAR",
+    "sub_header": "HEART OF AN EXPLODED GIANT STAR!",
+    "script": "Nearly a thousand years ago, skywatchers saw a star explode in broad daylight. Today, NASA's Chandra X-ray Observatory shows what is left: the Crab Nebula pulsar. Spinning thirty times a second, this hyper-dense remnant drives glowing rings of high-energy plasma and jets blasting trillions of miles into space. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.2,
+        "text": "STAR EXPLODED IN BROAD DAYLIGHT!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.2,
+        "end": 9.2,
+        "text": "CRAB NEBULA PULSAR HEARTBEAT!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.2,
+        "end": 14.8,
+        "text": "SPINNING 30 TIMES EVERY SECOND!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 14.8,
+        "end": 20.0,
+        "text": "HIGH-ENERGY PLASMA JETS IN SPACE!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.0,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/ksc_062304_chandra/ksc_062304_chandra~orig.mp4",
+    "tags": [
+      "crab nebula",
+      "pulsar",
+      "supernova remnant",
+      "chandra observatory",
+      "deep space",
+      "astronomy",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "chandra_deep_cosmos_survey",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "What Deep Space Looks Like in Invisible X-Rays #Shorts",
+    "top_header": "CHANDRA DEEP FIELD",
+    "sub_header": "THE UNSEEN HIGH-ENERGY COSMOS!",
+    "script": "If human eyes could see X-rays, the night sky would look like a wild fireworks show. NASA's Chandra X-ray Observatory peered deep into the cosmos to reveal thousands of supermassive black holes feasting on matter, colliding galaxy clusters, and multi-million-degree clouds of gas invisible to ordinary telescopes. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "THE INVISIBLE X-RAY COSMOS!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "PEERING BILLIONS OF LIGHT-YEARS DEEP!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "THOUSANDS OF FEEDING BLACK HOLES!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 20.2,
+        "text": "MILLION-DEGREE COSMIC GAS CLOUDS!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.2,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/ksc_042507_chandra_2/ksc_042507_chandra_2~orig.mp4",
+    "tags": [
+      "chandra deep field",
+      "x-ray astronomy",
+      "black holes",
+      "galaxy clusters",
+      "deep space",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "first_light_after_big_bang",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "The Moment the First Stars Ignited the Universe #Shorts",
+    "top_header": "COSMIC DAWN",
+    "sub_header": "THE VERY FIRST LIGHT IN EXISTENCE!",
+    "script": "Following the Big Bang, the entire universe was plunged into hundreds of millions of years of complete, pitch-black darkness. This era is known as the Cosmic Dark Ages. Finally, colossal primordial clouds collapsed under sheer gravity, igniting the very first stars and ending the darkness forever. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.2,
+        "text": "HUNDREDS OF MILLIONS OF YEARS IN DARKNESS!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.2,
+        "end": 9.2,
+        "text": "THE COSMIC DARK AGES!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.2,
+        "end": 14.8,
+        "text": "PRIMORDIAL CLOUDS COLLAPSING!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 14.8,
+        "end": 20.0,
+        "text": "FIRST STARS ENDED THE DARKNESS!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.0,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/First_Light_After_The_Big_Bang_H264/First_Light_After_The_Big_Bang_H264~orig.mp4",
+    "tags": [
+      "cosmic dawn",
+      "first stars",
+      "big bang",
+      "cosmology",
+      "deep space",
+      "universe history",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
+  },
+  {
+    "id": "mysterious_cow_cosmic_blast",
+    "category": "SPACE_GALAXY",
+    "priority": "SPACE_GALAXY",
+    "title": "The Most Mysterious Explosion Ever Seen in Deep Space #Shorts",
+    "top_header": "COSMIC MYSTERY",
+    "sub_header": "THE UNEXPLAINED COW EXPLOSION!",
+    "script": "In 2018, telescopes caught a freak cosmic explosion designated AT2018cow, nicknamed 'The Cow'. It flared up to tens of times brighter than a normal supernova in just days, blasting debris at ten percent the speed of light. Scientists believe it was the violent birth of a brand new black hole or magnetar. Subscribe to SciBytes for more interesting videos!",
+    "subtitles": [
+      {
+        "start": 0.0,
+        "end": 4.5,
+        "text": "MYSTERIOUS DEEP SPACE EXPLOSION!",
+        "color": "#FFFFFF",
+        "boxcolor": "red@0.9"
+      },
+      {
+        "start": 4.5,
+        "end": 9.5,
+        "text": "TENS OF TIMES BRIGHTER THAN SUPERNOVA!",
+        "color": "#FFFF00",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 9.5,
+        "end": 15.0,
+        "text": "DEBRIS AT 10% SPEED OF LIGHT!",
+        "color": "#FF3366",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 15.0,
+        "end": 20.2,
+        "text": "BIRTH OF A BRAND NEW BLACK HOLE!",
+        "color": "#00FFFF",
+        "boxcolor": "black@0.9"
+      },
+      {
+        "start": 20.2,
+        "end": 99.0,
+        "text": "SUBSCRIBE FOR MORE INTERESTING VIDEOS!",
+        "color": "#00FF66",
+        "boxcolor": "black@0.9"
+      }
+    ],
+    "footage_url": "http://images-assets.nasa.gov/video/GSFC_20190110_AT2018COW_m12855_4k/GSFC_20190110_AT2018COW_m12855_4k~orig.mp4",
+    "tags": [
+      "at2018cow",
+      "cosmic blast",
+      "black hole birth",
+      "supernova",
+      "astrophysics",
+      "space mystery",
+      "SciBytes",
+      "shorts"
+    ],
+    "used": false
   }
 ]
