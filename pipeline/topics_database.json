@@ -2894,7 +2894,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "mars_mount_sharp_rover_climb",
