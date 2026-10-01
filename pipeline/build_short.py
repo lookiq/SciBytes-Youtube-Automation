@@ -450,6 +450,51 @@ def get_bright_start_offset(footage_path, base_offset=0.0):
             break
     return current
 
+def select_cosmic_bgm(topic):
+    """
+    Dynamically selects the most fitting studio-mastered cosmic ambient soundtrack
+    based on the video's theme, headers, and keywords.
+    """
+    search_text = ' '.join([
+        topic.get('title', ''),
+        topic.get('top_header', ''),
+        topic.get('sub_header', ''),
+        ' '.join(topic.get('tags', [])),
+        topic.get('script', '')[:120]
+    ]).lower()
+
+    assets_dir = os.path.join(os.path.dirname(__file__), 'assets')
+
+    # 1. Dark matter, black holes, violent collisions, supernova remnants
+    if any(k in search_text for k in ['black hole', 'singularity', 'event horizon', 'dark matter', 'collision', 'crash', 'crushed', 'abyss', 'ton 618', 'supernova']):
+        bgm = os.path.join(assets_dir, 'black_hole_dark_matter.mp3')
+        if os.path.exists(bgm):
+            return bgm, 0.12
+
+    # 2. Nebulae, stellar nurseries, birth of stars, first light, beautiful cosmos
+    if any(k in search_text for k in ['nebula', 'pillars of creation', 'nursery', 'first light', 'first molecule', 'starlight', 'born', 'creation', 'wonder', 'orion', 'cepheus', 'carina']):
+        bgm = os.path.join(assets_dir, 'celestial_nebula_wonder.mp3')
+        if os.path.exists(bgm):
+            return bgm, 0.11
+
+    # 3. Pulsars, cosmic mystery, unexplained blasts, gamma-ray
+    if any(k in search_text for k in ['pulsar', 'signal', 'mystery', 'clock', 'beacon', 'unexplained', 'cow', 'gamma ray', 'gamma-ray', 'explosion']):
+        bgm = os.path.join(assets_dir, 'epic_space_mystery.mp3')
+        if os.path.exists(bgm):
+            return bgm, 0.12
+
+    # 4. Default deep space universe & galaxies
+    bgm = os.path.join(assets_dir, 'cosmic_deep_space.mp3')
+    if os.path.exists(bgm):
+        return bgm, 0.12
+
+    # Fallback to existing drone
+    fallback = os.path.join(assets_dir, 'cosmic_ambient_drone.mp3')
+    if os.path.exists(fallback):
+        return fallback, 0.10
+
+    return None, 0.0
+
 def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
     duration = get_media_duration(audio_path)
     print(f'Voice duration: {duration:.2f}s')
@@ -531,20 +576,36 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
         "compand=attacks=0.02:decays=0.1:points=-80/-80|-20/-6|0/-0.5"
     )
 
-    bgm_path = os.path.join(os.path.dirname(__file__), 'assets', 'cosmic_ambient_drone.mp3')
-    has_bgm = os.path.exists(bgm_path)
+    bgm_path, bgm_vol = select_cosmic_bgm(topic)
+    has_bgm = bgm_path is not None and os.path.exists(bgm_path)
+
+    hook_sfx_path = os.path.join(os.path.dirname(__file__), 'assets', 'cinematic_bass_drop.mp3')
+    has_hook_sfx = os.path.exists(hook_sfx_path)
+
     extra_inputs = []
+    audio_inputs_to_mix = ["[voice_mastered]"]
+    audio_filters = [f"[1:a]{voice_mastering}[voice_mastered]"]
+    current_input_idx = 2
 
     if has_bgm:
-        extra_inputs = ['-stream_loop', '-1', '-i', bgm_path]
-        filter_complex += (
-            f";[1:a]{voice_mastering}[voice_mastered];"
-            f"[2:a]volume=0.10[bgm];"
-            f"[voice_mastered][bgm]amix=inputs=2:duration=first:dropout_transition=2[outa]"
-        )
-    else:
-        filter_complex += f";[1:a]{voice_mastering}[outa]"
+        extra_inputs.extend(['-stream_loop', '-1', '-i', bgm_path])
+        audio_filters.append(f"[{current_input_idx}:a]volume={bgm_vol},highpass=f=40[bgm]")
+        audio_inputs_to_mix.append("[bgm]")
+        current_input_idx += 1
 
+    if has_hook_sfx:
+        extra_inputs.extend(['-i', hook_sfx_path])
+        audio_filters.append(f"[{current_input_idx}:a]volume=0.75,adelay=50|50[hook_sfx]")
+        audio_inputs_to_mix.append("[hook_sfx]")
+        current_input_idx += 1
+
+    if len(audio_inputs_to_mix) > 1:
+        mix_inputs = "".join(audio_inputs_to_mix)
+        audio_filters.append(f"{mix_inputs}amix=inputs={len(audio_inputs_to_mix)}:duration=first:dropout_transition=2[outa]")
+    else:
+        audio_filters.append("[voice_mastered]acopy[outa]")
+
+    filter_complex += ";" + ";".join(audio_filters)
     audio_maps = ['-map', '[outa]']
 
     safe_title = topic.get('title', 'SciBytes Short').replace('"', '').replace("'", "")
