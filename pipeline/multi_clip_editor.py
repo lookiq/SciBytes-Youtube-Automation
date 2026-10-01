@@ -296,8 +296,20 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
         "compand=attacks=0.02:decays=0.1:points=-80/-80|-20/-6|0/-0.5"
     )
 
-    bgm_path = os.path.join(SCRIPT_DIR, 'assets', 'cosmic_ambient_drone.mp3')
-    bass_path = os.path.join(SCRIPT_DIR, 'assets', 'bass_impact.mp3')
+    # Dynamic Cosmic BGM selection based on topic
+    try:
+        from pipeline.build_short import select_cosmic_bgm
+    except ImportError:
+        from build_short import select_cosmic_bgm
+
+    bgm_path, bgm_vol = select_cosmic_bgm(topic)
+    if not bgm_path or not os.path.exists(bgm_path):
+        bgm_path = os.path.join(SCRIPT_DIR, 'assets', 'cosmic_ambient_drone.mp3')
+        bgm_vol = 0.08
+
+    bass_path = os.path.join(SCRIPT_DIR, 'assets', 'cinematic_bass_drop.mp3')
+    if not os.path.exists(bass_path):
+        bass_path = os.path.join(SCRIPT_DIR, 'assets', 'bass_impact.mp3')
     whoosh_path = os.path.join(SCRIPT_DIR, 'assets', 'whoosh_sfx.mp3')
 
     audio_chains = []
@@ -305,11 +317,11 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
     mix_sources = ["[voice_clean]"]
 
     # Background music (ducked slightly for clear vocal presence)
-    if os.path.exists(bgm_path):
+    if bgm_path and os.path.exists(bgm_path):
         bgm_idx = input_file_index
         inputs.extend(['-stream_loop', '-1', '-i', bgm_path])
         input_file_index += 1
-        audio_chains.append(f"[{bgm_idx}:a]volume=0.06[bgm_clean]")
+        audio_chains.append(f"[{bgm_idx}:a]volume={bgm_vol:.2f}[bgm_clean]")
         mix_sources.append("[bgm_clean]")
 
     # Bass impact at t=0.0s

@@ -553,12 +553,8 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
             f"crop=1080:ih:(in_w-1080)/2:0,"
             f"eq=contrast=1.15:saturation=1.25[fg];"
             f"[bg][fg]overlay=(W-w)/2:(H-h)/2[basev];"
-            f"[basev]vignette=angle=0.38,fade=t=in:st=0:d=0.35,"
-            f"drawbox=y=0:h=330:color=black@0.40:t=fill,"
-            f"drawbox=y=1280:h=640:color=black@0.40:t=fill,"
-            f"drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
-            f"drawtext={font_opt}text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:borderw=5:bordercolor=black:shadowcolor=black@0.9:shadowx=3:shadowy=3,"
-            f"drawtext={font_opt}text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2"
+            f"[basev]vignette=angle=0.28,fade=t=in:st=0:d=0.35,"
+            f"drawbox=y=1360:h=560:color=black@0.38:t=fill"
             f"{sub_filter}[outv]"
         )
     else:
@@ -567,13 +563,9 @@ def render_short(topic, footage_path, audio_path, output_path, ass_path=None):
             f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
             f"scale=w='1080*(1+0.08*t/{duration})':h='1920*(1+0.08*t/{duration})':eval=frame,"
             f"crop=1080:1920:(in_w-1080)/2:(in_h-1920)/2,"
-            f"vignette=angle=0.38,fade=t=in:st=0:d=0.35,"
+            f"vignette=angle=0.28,fade=t=in:st=0:d=0.35,"
             f"eq=contrast=1.16:saturation=1.26:brightness=0.01,"
-            f"drawbox=y=0:h=330:color=black@0.40:t=fill,"
-            f"drawbox=y=1280:h=640:color=black@0.40:t=fill,"
-            f"drawtext={font_opt}text='SCIBYTES':fontcolor=#888888:fontsize=52:x=(w-text_w)/2:y=1750:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
-            f"drawtext={font_opt}text='{top_header}':fontcolor=#FFEA00:fontsize=36:x=(w-text_w)/2:y=170:borderw=4:bordercolor=black:shadowcolor=black@0.9:shadowx=2:shadowy=2,"
-            f"drawtext={font_opt}text='{sub_header}':fontcolor=#FFFFFF:fontsize=48:x=(w-text_w)/2:y=240:borderw=5:bordercolor=black:shadowcolor=black@0.9:shadowx=3:shadowy=3"
+            f"drawbox=y=1360:h=560:color=black@0.38:t=fill"
             f"{sub_filter}[outv]"
         )
 
@@ -757,8 +749,47 @@ def build_short_pipeline(topic):
     generate_voice(spoken_script, audio_path, ass_path)
 
     output_video = os.path.join(OUTPUT_DIR, 'scibytes_short_latest.mp4')
-    print("Rendering vertical Short video with FFmpeg...")
-    render_short(topic, footage_path, audio_path, output_video, ass_path)
+
+    # Adobe Premiere Pro Multi-Clip Montage Engine
+    # Assemble 3 to 4 distinct 1080p clips matching topic
+    clip_sources = [footage_path]
+    try:
+        from pipeline.cinematic_footage_engine import get_cinematic_montage_pool
+        from pipeline.multi_clip_editor import render_multi_clip_short
+    except ImportError:
+        from cinematic_footage_engine import get_cinematic_montage_pool
+        from multi_clip_editor import render_multi_clip_short
+
+    try:
+        pool_urls = get_cinematic_montage_pool(topic['title'], count=4)
+        for idx, p_url in enumerate(pool_urls):
+            if p_url == topic.get('footage_url'):
+                continue
+            p_path = os.path.join('temp', f"{topic['id']}_broll_{idx}.mp4")
+            if not os.path.exists(p_path) or os.path.getsize(p_path) == 0:
+                try:
+                    download_footage(p_url, p_path)
+                except Exception as dl_err:
+                    print(f"Notice: B-roll download failed ({p_url}): {dl_err}")
+                    continue
+            if os.path.exists(p_path) and os.path.getsize(p_path) > 10000:
+                clip_sources.append(p_path)
+        print(f"Assembled {len(clip_sources)} pristine 1080p source clips for dynamic montage editing.")
+    except Exception as pool_err:
+        print(f"Notice: Could not assemble full montage pool: {pool_err}")
+
+    rendered = False
+    if len(clip_sources) >= 2:
+        try:
+            print("Rendering Adobe Premiere Pro style Multi-Clip Short with dynamic micro-cuts & sound design...")
+            render_multi_clip_short(topic, clip_sources, audio_path, output_video, ass_path=ass_path, show_top_card=False)
+            rendered = True
+        except Exception as mc_err:
+            print(f"Notice: Multi-clip montage render encountered an issue: {mc_err}. Falling back to single-clip master renderer...")
+
+    if not rendered:
+        print("Rendering vertical Short video with FFmpeg single-clip master...")
+        render_short(topic, footage_path, audio_path, output_video, ass_path)
 
     # Generate photorealistic AI thumbnail with graceful fallback
     thumbnail_path = os.path.join(OUTPUT_DIR, 'thumbnail.jpg')
