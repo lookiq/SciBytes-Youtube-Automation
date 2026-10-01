@@ -471,27 +471,37 @@ def select_cosmic_bgm(topic):
         if os.path.exists(bgm):
             return bgm, 0.12
 
-    # 2. Nebulae, stellar nurseries, birth of stars, first light, beautiful cosmos
+    # 2. Interstellar 'Cornfield Chase' Theme: Galaxies, cosmic time, expanding universe, dance of stars
+    if any(k in search_text for k in ['galaxy', 'galaxies', 'andromeda', 'milky way', 'interstellar', 'time', 'billion years', 'expansion', 'speed of light', 'spacecraft', 'orbit', 'dance', 'web']):
+        bgm = os.path.join(assets_dir, 'interstellar_cornfield_chase.mp3')
+        if os.path.exists(bgm):
+            return bgm, 0.12
+
+    # 3. Nebulae, stellar nurseries, birth of stars, first light, beautiful cosmos
     if any(k in search_text for k in ['nebula', 'pillars of creation', 'nursery', 'first light', 'first molecule', 'starlight', 'born', 'creation', 'wonder', 'orion', 'cepheus', 'carina']):
         bgm = os.path.join(assets_dir, 'celestial_nebula_wonder.mp3')
         if os.path.exists(bgm):
             return bgm, 0.11
 
-    # 3. Pulsars, cosmic mystery, unexplained blasts, gamma-ray
+    # 4. Pulsars, cosmic mystery, unexplained blasts, gamma-ray
     if any(k in search_text for k in ['pulsar', 'signal', 'mystery', 'clock', 'beacon', 'unexplained', 'cow', 'gamma ray', 'gamma-ray', 'explosion']):
         bgm = os.path.join(assets_dir, 'epic_space_mystery.mp3')
         if os.path.exists(bgm):
             return bgm, 0.12
 
-    # 4. Default deep space universe & galaxies
-    bgm = os.path.join(assets_dir, 'cosmic_deep_space.mp3')
+    # 5. Default deep space universe & galaxies
+    bgm = os.path.join(assets_dir, 'interstellar_cornfield_chase.mp3')
     if os.path.exists(bgm):
         return bgm, 0.12
 
-    # Fallback to existing drone
-    fallback = os.path.join(assets_dir, 'cosmic_ambient_drone.mp3')
+    fallback = os.path.join(assets_dir, 'cosmic_deep_space.mp3')
     if os.path.exists(fallback):
-        return fallback, 0.10
+        return fallback, 0.12
+
+    # Fallback to existing drone
+    fallback_drone = os.path.join(assets_dir, 'cosmic_ambient_drone.mp3')
+    if os.path.exists(fallback_drone):
+        return fallback_drone, 0.10
 
     return None, 0.0
 
