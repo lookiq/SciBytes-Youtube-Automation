@@ -44,8 +44,8 @@ def find_clean_start_offset(footage_path, base_offset=2.0):
             '-ss', str(t),
             '-i', footage_path,
             '-vframes', '1',
-            '-vf', 'scale=320:180',
-            '-q:v', '5',
+            '-vf', 'scale=640:360',
+            '-q:v', '3',
             temp_sample
         ]
         subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=8)
@@ -58,15 +58,30 @@ def find_clean_start_offset(footage_path, base_offset=2.0):
                 bottom_crop = im.crop((0, int(h * 0.65), w, h))
                 bottom_mean = ImageStat.Stat(bottom_crop).mean[0]
 
-                # Clean cosmic B-roll validation
-                if (12.0 <= mean <= 125.0) and (bottom_mean <= 125.0):
-                    print(f"Verified 100% clean visual (mean={mean:.1f}, bottom={bottom_mean:.1f}) at {t:.1f}s in {os.path.basename(footage_path)[:26]}")
+                # Strict High-Contrast Text / Title / Graphic Detection
+                import numpy as np
+                arr = np.array(im)
+                bright_ratio = float(np.sum(arr > 220)) / (w * h)
+                
+                center_crop = im.crop((0, int(h * 0.15), w, int(h * 0.85)))
+                center_arr = np.array(center_crop)
+                center_bright = float(np.sum(center_arr > 220)) / center_arr.size
+
+                # Clean cosmic B-roll validation:
+                # 1. Cosmic range luminance (12.0 to 125.0)
+                # 2. Bottom ticker/banner low (<= 110.0)
+                # 3. Overall bright text pixel ratio strictly under 0.7% (0.007)
+                # 4. Center text bright ratio strictly under 0.8% (0.008)
+                if (12.0 <= mean <= 125.0) and (bottom_mean <= 110.0) and (bright_ratio < 0.007) and (center_bright < 0.008):
+                    print(f"Verified 100% clean visual (mean={mean:.1f}, text_ratio={bright_ratio*100:.2f}%) at {t:.1f}s in {os.path.basename(footage_path)[:26]}")
                     return t
                 else:
-                    print(f"Rejected text/banner slide at {t:.1f}s (mean={mean:.1f}, bottom={bottom_mean:.1f}) in {os.path.basename(footage_path)[:26]}")
+                    reason = "title/text graphic" if (bright_ratio >= 0.007 or center_bright >= 0.008) else "banner/slide"
+                    print(f"Rejected {reason} at {t:.1f}s (mean={mean:.1f}, text_ratio={bright_ratio*100:.2f}%) in {os.path.basename(footage_path)[:26]}")
             except Exception:
                 pass
 
+    print(f"Notice: No 100% text-free slice found for {os.path.basename(footage_path)[:26]}. Using safe base offset.")
     return max(2.0, base_offset)
 
 def build_segment_plan(total_duration, clip_sources, min_len=1.8, max_len=3.4):
