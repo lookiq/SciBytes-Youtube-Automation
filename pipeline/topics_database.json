@@ -3443,7 +3443,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "chandra_isolated_neutron_star",
