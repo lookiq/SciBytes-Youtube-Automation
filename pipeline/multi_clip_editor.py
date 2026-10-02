@@ -32,9 +32,9 @@ def find_clean_start_offset(footage_path, base_offset=2.0):
     """
     dur = get_media_duration(footage_path)
     temp_sample = os.path.join('temp', f"chk_{abs(hash(footage_path)) % 10000}.jpg")
-    step = 3.5
+    step = 4.0
 
-    for attempt in range(15):
+    for attempt in range(6):
         t = base_offset + (attempt * step)
         if t >= dur - 4.0:
             t = (attempt * step) % max(1.0, dur - 4.0)

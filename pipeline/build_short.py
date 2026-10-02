@@ -181,14 +181,38 @@ def download_footage(url, dest_path):
     norm_url = urllib.parse.urlunsplit((p.scheme or 'https', p.netloc, clean_path, p.query, p.fragment))
     if norm_url.startswith('http://'):
         norm_url = 'https://' + norm_url[7:]
-    print(f'Downloading real footage from: {norm_url}')
+    print(f'Fetching footage slice from: {norm_url}')
+
+    # High-speed HTTP range extraction via FFmpeg (extracts 40s in seconds instead of 400MB)
+    try:
+        slice_cmd = [
+            'ffmpeg', '-y',
+            '-ss', '00:00:02',
+            '-i', norm_url,
+            '-t', '40',
+            '-c', 'copy',
+            '-movflags', '+faststart',
+            dest_path
+        ]
+        res = subprocess.run(slice_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=35)
+        if res.returncode == 0 and os.path.exists(dest_path) and os.path.getsize(dest_path) > 300000:
+            print(f'Fast footage slice saved ({os.path.getsize(dest_path)//1024} KB): {dest_path}')
+            return
+    except Exception as e:
+        print(f'Notice: Fast slice fallback to direct download: {e}')
+
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
-    res = requests.get(norm_url, headers=headers, stream=True, timeout=60)
+    res = requests.get(norm_url, headers=headers, stream=True, timeout=(15, 30))
     res.raise_for_status()
     with open(dest_path, 'wb') as f:
-        for chunk in res.iter_content(chunk_size=1024*1024):
+        bytes_written = 0
+        for chunk in res.iter_content(chunk_size=512*1024):
             if chunk:
                 f.write(chunk)
+                bytes_written += len(chunk)
+                if bytes_written >= 45 * 1024 * 1024:
+                    print('Reached 45MB stream buffer limit, concluding download.')
+                    break
     print(f'Footage saved to: {dest_path}')
 
 def format_ass_time(seconds):
@@ -761,7 +785,7 @@ def build_short_pipeline(topic):
         from multi_clip_editor import render_multi_clip_short
 
     try:
-        pool_urls = get_cinematic_montage_pool(topic['title'], count=4)
+        pool_urls = get_cinematic_montage_pool(topic['title'], count=3)
         for idx, p_url in enumerate(pool_urls):
             if p_url == topic.get('footage_url'):
                 continue
