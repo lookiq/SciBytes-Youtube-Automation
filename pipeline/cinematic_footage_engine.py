@@ -24,12 +24,8 @@ CURATED_COSMIC_VAULT = {
             'url': 'https://images-assets.nasa.gov/video/GSFC_20100722_Hubble_m10619_Galaxies/GSFC_20100722_Hubble_m10619_Galaxies~orig.mp4'
         },
         {
-            'title': 'NASA Deep Space Chandra X-Ray Cosmos Flythrough',
-            'url': 'https://images-assets.nasa.gov/video/ksc_052004_chandra/ksc_052004_chandra~orig.mp4'
-        },
-        {
-            'title': 'Hubble Ultra Deep Field 3D Galaxy Visualization',
-            'url': 'https://images-assets.nasa.gov/video/GSFC_20140603_HUDF_m11568/GSFC_20140603_HUDF_m11568~orig.mp4'
+            'title': 'Evolution of Galaxies 1080p Deep Space Flythrough',
+            'url': 'https://images-assets.nasa.gov/video/Evolution_of_Galaxies_H264/Evolution_of_Galaxies_H264~large.mp4'
         },
         {
             'title': 'ESA Gaia 4K Milky Way 3D Stellar Mapping Simulation',
@@ -40,10 +36,6 @@ CURATED_COSMIC_VAULT = {
         {
             'title': '4K Supermassive Black Hole Spiraling Accretion Disk (NASA Goddard)',
             'url': 'https://images-assets.nasa.gov/video/GSFC_20181002_SMBH_m13043_Simulation/GSFC_20181002_SMBH_m13043_Simulation~orig.mp4'
-        },
-        {
-            'title': 'Swift Black Hole Gravitational Tidal Disruption',
-            'url': 'https://images-assets.nasa.gov/video/ksc_111604_swift_three_theories/ksc_111604_swift_three_theories~orig.mp4'
         },
         {
             'title': 'NASA Supermassive Black Hole Collision & Event Horizon (4K CGI)',
@@ -75,11 +67,7 @@ CURATED_COSMIC_VAULT = {
     'nebula': [
         {
             'title': 'Hubble Space Telescope Cosmic Nebula Visualization',
-            'url': 'https://images-assets.nasa.gov/video/ksc_061404_t-nebula/ksc_061404_t-nebula~orig.mp4'
-        },
-        {
-            'title': 'Carina Nebula 3D Flythrough in High-Resolution Infrared',
-            'url': 'https://images-assets.nasa.gov/video/ksc_061404_t-nebula/ksc_061404_t-nebula~orig.mp4'
+            'url': 'https://images-assets.nasa.gov/video/GSFC_20100722_Hubble_m10619_Galaxies/GSFC_20100722_Hubble_m10619_Galaxies~orig.mp4'
         }
     ],
     'planets': [
@@ -94,16 +82,12 @@ CURATED_COSMIC_VAULT = {
     ],
     'deep_space': [
         {
-            'title': 'Chandra X-Ray Deep Space Universe Survey',
-            'url': 'https://images-assets.nasa.gov/video/ksc_052004_chandra/ksc_052004_chandra~orig.mp4'
+            'title': 'Hubble 1080p Deep Space Flythrough',
+            'url': 'https://images-assets.nasa.gov/video/GSFC_20100722_Hubble_m10619_Galaxies/GSFC_20100722_Hubble_m10619_Galaxies~orig.mp4'
         },
         {
-            'title': 'NASA Roman Space Telescope Cosmic Survey High-Res Flythrough',
-            'url': 'https://images-assets.nasa.gov/video/15081-%20Roman%20Mission%20Trailer%20-%20Long/15081-%20Roman%20Mission%20Trailer%20-%20Long~orig.mp4'
-        },
-        {
-            'title': 'Hyperspace Spacetime Warping 3D Simulation (CGI)',
-            'url': 'https://images-assets.nasa.gov/video/ksc_052004_chandra/ksc_052004_chandra~orig.mp4'
+            'title': 'Evolution of Galaxies 1080p Deep Cosmos Flythrough',
+            'url': 'https://images-assets.nasa.gov/video/Evolution_of_Galaxies_H264/Evolution_of_Galaxies_H264~large.mp4'
         }
     ]
 }

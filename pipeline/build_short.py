@@ -803,7 +803,23 @@ def build_short_pipeline(topic):
         print(f"Notice: Could not assemble full montage pool: {pool_err}")
 
     rendered = False
-    if len(clip_sources) >= 2:
+
+    # Tier 1: ffmpeg-ai Architecture (100% Clean, 0% Copyright Risk, Dynamic Ken Burns Scene Engine)
+    try:
+        from pipeline.ai_scene_engine import assemble_ai_scene_video
+        from pipeline.multi_clip_editor import render_master_composite
+        ai_montage_raw = os.path.join('temp', f"{topic['id']}_ai_montage_raw.mp4")
+        duration = get_media_duration(audio_path)
+        cut_ts = assemble_ai_scene_video(topic, duration, ai_montage_raw, temp_dir='temp')
+        if cut_ts is not None and os.path.exists(ai_montage_raw) and os.path.getsize(ai_montage_raw) > 300000:
+            print("[FFMPEG-AI] Rendering master composite with AI scenes, ASS karaoke subtitles, and mastered audio...")
+            render_master_composite(topic, ai_montage_raw, audio_path, output_video, ass_path=ass_path, show_top_card=False, cut_timestamps=cut_ts)
+            rendered = True
+    except Exception as ai_err:
+        print(f"Notice: AI scene engine fallback ({ai_err}). Trying multi-clip video montage...")
+
+    # Tier 2: Multi-Clip Montage Engine
+    if not rendered and len(clip_sources) >= 2:
         try:
             print("Rendering Adobe Premiere Pro style Multi-Clip Short with dynamic micro-cuts & sound design...")
             render_multi_clip_short(topic, clip_sources, audio_path, output_video, ass_path=ass_path, show_top_card=False)

@@ -34,13 +34,13 @@ def find_clean_start_offset(footage_path, base_offset=2.0):
     temp_sample = os.path.join('temp', f"chk_{abs(hash(footage_path)) % 10000}.jpg")
     step = 4.0
 
-    for attempt in range(6):
+    for attempt in range(8):
         t = base_offset + (attempt * step)
         if t >= dur - 4.0:
             t = (attempt * step) % max(1.0, dur - 4.0)
 
         cmd = [
-            'ffmpeg', '-y',
+            'ffmpeg', '-y', '-nostdin',
             '-ss', str(t),
             '-i', footage_path,
             '-vframes', '1',
@@ -88,6 +88,7 @@ def build_segment_plan(total_duration, clip_sources, min_len=1.8, max_len=3.4):
     """
     Slices the total duration into dynamic micro-scenes (each 3.5s max, 1.8s - 3.4s).
     Cycles through 3 to 4 distinct cinematic clips and applies dynamic motion.
+    Pre-computes and caches clean visual offsets once per unique source.
     """
     segments = []
     curr_time = 0.0
@@ -97,6 +98,13 @@ def build_segment_plan(total_duration, clip_sources, min_len=1.8, max_len=3.4):
     effects = ['push', 'pull', 'punch', 'pan']
     source_idx = 0
     effect_idx = 0
+
+    # Cache clean offsets once per unique source
+    src_offsets = {}
+    for s_info in clip_sources:
+        p = s_info if isinstance(s_info, str) else s_info['path']
+        if p not in src_offsets:
+            src_offsets[p] = find_clean_start_offset(p, 2.0)
 
     while curr_time < total_duration:
         remaining = total_duration - curr_time
@@ -117,8 +125,8 @@ def build_segment_plan(total_duration, clip_sources, min_len=1.8, max_len=3.4):
         if src_dur <= (seg_len + 1.0):
             start_offset = 0.5 if src_dur > seg_len else 0.0
         else:
-            base_offset = 1.0 + (len(segments) * 5.0) % max(1.0, (src_dur - seg_len - 1.0))
-            start_offset = find_clean_start_offset(src_path, base_offset)
+            start_offset = src_offsets.get(src_path, 2.0)
+            src_offsets[src_path] = (start_offset + seg_len + 1.5) % max(1.0, (src_dur - seg_len - 1.0))
 
         effect = effects[effect_idx % len(effects)]
         transition = 'flash' if len(segments) > 0 and (len(segments) % 2 == 1) else 'cut'
@@ -200,7 +208,7 @@ def render_micro_segment(seg, temp_dir):
     source_slice = dur * 1.04 if is_external else dur
 
     cmd = [
-        'ffmpeg', '-y',
+        'ffmpeg', '-y', '-nostdin',
         '-ss', str(seg['start_offset']),
         '-i', seg['source_path'],
         '-t', str(source_slice),
@@ -212,7 +220,7 @@ def render_micro_segment(seg, temp_dir):
         out_path
     ]
 
-    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=45)
     return out_path
 
 def assemble_multi_clip_video(clip_sources, total_duration, output_video_path, temp_dir='temp'):
@@ -252,36 +260,26 @@ def assemble_multi_clip_video(clip_sources, total_duration, output_video_path, t
             f.write(f"file '{clean_path}'\n")
 
     cmd = [
-        'ffmpeg', '-y',
+        'ffmpeg', '-y', '-nostdin',
         '-f', 'concat',
         '-safe', '0',
         '-i', manifest_path,
         '-c', 'copy',
         output_video_path
     ]
-    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=60)
     print(f"Seamlessly stitched {len(seg_paths)} micro-clips: {output_video_path}")
     return cut_timestamps
 
-def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_path=None, show_top_card=False):
+def render_master_composite(topic, montage_raw, audio_path, output_path, ass_path=None, show_top_card=False, cut_timestamps=None):
     """
-    Full pipeline rendering multi-clip Short with:
-    1. Montage Pacing (3 to 4 clips, each 3.5s max)
-    2. Anti-Content ID Shield (hflip, 1.04x speed, audio stripping)
-    3. 100% full-screen immersive space visuals (unobstructed by top boxes)
-    4. Floating Subscribe Pill Badge (Box 3) in final 3.5 seconds
-    5. Synchronized Whoosh SFX on cuts + Bass drop opening + Cosmic BGM
-    6. Dynamic active-word CapCut yellow pop ASS subtitles (Box 1)
-    7. Direct Desktop preview synchronization
+    Renders master composite with subtitles, audio mastering, BGM, SFX, and CTA badge.
     """
     temp_dir = 'temp'
     os.makedirs(temp_dir, exist_ok=True)
     duration = get_media_duration(audio_path)
-    print(f"Rendering Multi-Clip Short (Duration: {duration:.2f}s, Top Card: {show_top_card})...")
-
-    # Step 1: Assemble video montage of micro-clips (max 3.5s each)
-    montage_raw = os.path.join(temp_dir, f"{topic['id']}_montage_raw.mp4")
-    cut_timestamps = assemble_multi_clip_video(clip_sources, duration, montage_raw, temp_dir)
+    if cut_timestamps is None:
+        cut_timestamps = []
 
     # Step 2: Generate Branded Overlays
     inputs = [
@@ -372,15 +370,15 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
     if show_top_card and top_card_idx is not None:
         video_filter = (
             f"[0:v]vignette=angle=0.34,drawbox=y=1340:h=580:color=black@0.42:t=fill[v_base];"
-            f"[v_base][{top_card_idx}:v]overlay=0:0:repeatlast=1[v_card];"
+            f"[v_base][{top_card_idx}:v]overlay=0:0:repeatlast=1:shortest=1[v_card];"
             f"[v_card]null{sub_filter}[v_subs];"
-            f"[v_subs][{sub_pill_idx}:v]overlay=0:0:repeatlast=1:enable='between(t,{outro_start:.2f},{duration:.2f})'[outv]"
+            f"[v_subs][{sub_pill_idx}:v]overlay=0:0:repeatlast=1:shortest=1:enable='between(t,{outro_start:.2f},{duration:.2f})'[outv]"
         )
     else:
         video_filter = (
             f"[0:v]vignette=angle=0.28,drawbox=y=1360:h=560:color=black@0.38:t=fill[v_base];"
             f"[v_base]null{sub_filter}[v_subs];"
-            f"[v_subs][{sub_pill_idx}:v]overlay=0:0:repeatlast=1:enable='between(t,{outro_start:.2f},{duration:.2f})'[outv]"
+            f"[v_subs][{sub_pill_idx}:v]overlay=0:0:repeatlast=1:shortest=1:enable='between(t,{outro_start:.2f},{duration:.2f})'[outv]"
         )
 
     full_filter = f"{video_filter};{amix_filter}"
@@ -394,7 +392,7 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
     ]
 
     ffmpeg_cmd = [
-        'ffmpeg', '-y',
+        'ffmpeg', '-y', '-nostdin',
         *inputs,
         '-filter_complex', full_filter,
         '-map', '[outv]',
@@ -405,12 +403,12 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
         '-crf', '18',
         '-c:a', 'aac',
         '-b:a', '192k',
-        '-shortest',
+        '-t', f"{duration:.2f}",
         output_path
     ]
 
     print("Rendering final master composite with Anti-Content ID Shield, Top Card, Subtitles, SFX, and Hybrid CTA Badge...")
-    subprocess.run(ffmpeg_cmd, check=True)
+    subprocess.run(ffmpeg_cmd, check=True, timeout=180)
     print(f"Multi-clip Short rendered successfully: {output_path}")
 
     # Synchronize to Desktop preview
@@ -421,3 +419,25 @@ def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_pa
         print(f"Direct Desktop video preview updated: {desktop_video}")
     except Exception as e:
         print(f"Notice during Desktop copy: {e}")
+
+def render_multi_clip_short(topic, clip_sources, audio_path, output_path, ass_path=None, show_top_card=False):
+    """
+    Full pipeline rendering multi-clip Short with:
+    1. Montage Pacing (3 to 4 clips, each 3.5s max)
+    2. Anti-Content ID Shield (hflip, 1.04x speed, audio stripping)
+    3. 100% full-screen immersive space visuals (unobstructed by top boxes)
+    4. Floating Subscribe Pill Badge (Box 3) in final 3.5 seconds
+    5. Synchronized Whoosh SFX on cuts + Bass drop opening + Cosmic BGM
+    6. Dynamic active-word CapCut yellow pop ASS subtitles (Box 1)
+    7. Direct Desktop preview synchronization
+    """
+    temp_dir = 'temp'
+    os.makedirs(temp_dir, exist_ok=True)
+    duration = get_media_duration(audio_path)
+    print(f"Rendering Multi-Clip Short (Duration: {duration:.2f}s, Top Card: {show_top_card})...")
+
+    # Step 1: Assemble video montage of micro-clips (max 3.5s each)
+    montage_raw = os.path.join(temp_dir, f"{topic['id']}_montage_raw.mp4")
+    cut_timestamps = assemble_multi_clip_video(clip_sources, duration, montage_raw, temp_dir)
+    return render_master_composite(topic, montage_raw, audio_path, output_path, ass_path=ass_path, show_top_card=show_top_card, cut_timestamps=cut_timestamps)
+
