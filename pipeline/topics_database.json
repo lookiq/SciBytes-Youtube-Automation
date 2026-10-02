@@ -3504,7 +3504,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "artemis_moon_crater_flyby",
