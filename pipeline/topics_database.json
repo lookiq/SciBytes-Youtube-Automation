@@ -3855,7 +3855,7 @@
       "SciBytes",
       "shorts"
     ],
-    "used": false
+    "used": true
   },
   {
     "id": "cosmic_origins_spectrograph_web",
